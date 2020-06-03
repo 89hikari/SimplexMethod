@@ -121,7 +121,7 @@
             // solve_Button
             // 
             this.solve_Button.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.solve_Button.Location = new System.Drawing.Point(676, 414);
+            this.solve_Button.Location = new System.Drawing.Point(689, 414);
             this.solve_Button.Name = "solve_Button";
             this.solve_Button.Size = new System.Drawing.Size(192, 62);
             this.solve_Button.TabIndex = 9;
