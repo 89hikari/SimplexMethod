@@ -1,1 +1,1 @@
-Simplex method for solve the linear programming problem
+Simplex method for solve the linear programming problem. Russian language only, because of requirements.
