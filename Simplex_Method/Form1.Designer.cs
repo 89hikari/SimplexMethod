@@ -35,7 +35,30 @@
             this.SaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramm = new System.Windows.Forms.ToolStripMenuItem();
             this.Spravka = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.radioButton_auto_answer = new System.Windows.Forms.RadioButton();
+            this.radioButton_step_by_step = new System.Windows.Forms.RadioButton();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.radioButton_decimal_drob = new System.Windows.Forms.RadioButton();
+            this.radioButton_default_drob = new System.Windows.Forms.RadioButton();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.radioButton_imagine_b = new System.Windows.Forms.RadioButton();
+            this.radioButton_symplex = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radioButton_max = new System.Windows.Forms.RadioButton();
+            this.radioButton_min = new System.Windows.Forms.RadioButton();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -47,7 +70,7 @@
             this.Spravka});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(780, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(918, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -84,18 +107,250 @@
             this.Spravka.Size = new System.Drawing.Size(70, 20);
             this.Spravka.Text = "Справка";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(704, 392);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 37);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Решать";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.radioButton_auto_answer);
+            this.groupBox7.Controls.Add(this.radioButton_step_by_step);
+            this.groupBox7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox7.Location = new System.Drawing.Point(629, 314);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(277, 72);
+            this.groupBox7.TabIndex = 8;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Режим решения";
+            // 
+            // radioButton_auto_answer
+            // 
+            this.radioButton_auto_answer.AutoSize = true;
+            this.radioButton_auto_answer.Location = new System.Drawing.Point(8, 42);
+            this.radioButton_auto_answer.Name = "radioButton_auto_answer";
+            this.radioButton_auto_answer.Size = new System.Drawing.Size(117, 19);
+            this.radioButton_auto_answer.TabIndex = 5;
+            this.radioButton_auto_answer.TabStop = true;
+            this.radioButton_auto_answer.Text = "Автоматический";
+            this.radioButton_auto_answer.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_step_by_step
+            // 
+            this.radioButton_step_by_step.AutoSize = true;
+            this.radioButton_step_by_step.Location = new System.Drawing.Point(8, 19);
+            this.radioButton_step_by_step.Name = "radioButton_step_by_step";
+            this.radioButton_step_by_step.Size = new System.Drawing.Size(90, 19);
+            this.radioButton_step_by_step.TabIndex = 4;
+            this.radioButton_step_by_step.TabStop = true;
+            this.radioButton_step_by_step.Text = "Пошаговый";
+            this.radioButton_step_by_step.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.radioButton_decimal_drob);
+            this.groupBox6.Controls.Add(this.radioButton_default_drob);
+            this.groupBox6.Location = new System.Drawing.Point(627, 162);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(279, 72);
+            this.groupBox6.TabIndex = 7;
+            this.groupBox6.TabStop = false;
+            // 
+            // radioButton_decimal_drob
+            // 
+            this.radioButton_decimal_drob.AutoSize = true;
+            this.radioButton_decimal_drob.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton_decimal_drob.Location = new System.Drawing.Point(8, 40);
+            this.radioButton_decimal_drob.Name = "radioButton_decimal_drob";
+            this.radioButton_decimal_drob.Size = new System.Drawing.Size(261, 19);
+            this.radioButton_decimal_drob.TabIndex = 5;
+            this.radioButton_decimal_drob.TabStop = true;
+            this.radioButton_decimal_drob.Text = "Использовать числа с плавающей точкой";
+            this.radioButton_decimal_drob.UseVisualStyleBackColor = true;
+            this.radioButton_decimal_drob.CheckedChanged += new System.EventHandler(this.radioButton_decimal_drob_CheckedChanged);
+            // 
+            // radioButton_default_drob
+            // 
+            this.radioButton_default_drob.AutoSize = true;
+            this.radioButton_default_drob.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton_default_drob.Location = new System.Drawing.Point(8, 15);
+            this.radioButton_default_drob.Name = "radioButton_default_drob";
+            this.radioButton_default_drob.Size = new System.Drawing.Size(233, 19);
+            this.radioButton_default_drob.TabIndex = 4;
+            this.radioButton_default_drob.TabStop = true;
+            this.radioButton_default_drob.Text = "Использовать обыкновенные дроби";
+            this.radioButton_default_drob.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.radioButton_imagine_b);
+            this.groupBox5.Controls.Add(this.radioButton_symplex);
+            this.groupBox5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox5.Location = new System.Drawing.Point(627, 240);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(279, 68);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Метод решения";
+            // 
+            // radioButton_imagine_b
+            // 
+            this.radioButton_imagine_b.AutoSize = true;
+            this.radioButton_imagine_b.Location = new System.Drawing.Point(6, 42);
+            this.radioButton_imagine_b.Name = "radioButton_imagine_b";
+            this.radioButton_imagine_b.Size = new System.Drawing.Size(192, 19);
+            this.radioButton_imagine_b.TabIndex = 3;
+            this.radioButton_imagine_b.TabStop = true;
+            this.radioButton_imagine_b.Text = "Метод искусственного базиса";
+            this.radioButton_imagine_b.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_symplex
+            // 
+            this.radioButton_symplex.AutoSize = true;
+            this.radioButton_symplex.Location = new System.Drawing.Point(6, 19);
+            this.radioButton_symplex.Name = "radioButton_symplex";
+            this.radioButton_symplex.Size = new System.Drawing.Size(121, 19);
+            this.radioButton_symplex.TabIndex = 2;
+            this.radioButton_symplex.TabStop = true;
+            this.radioButton_symplex.Text = "Симплекс метод";
+            this.radioButton_symplex.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radioButton_max);
+            this.groupBox4.Controls.Add(this.radioButton_min);
+            this.groupBox4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox4.Location = new System.Drawing.Point(627, 84);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(279, 72);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Решать задачу на";
+            // 
+            // radioButton_max
+            // 
+            this.radioButton_max.AutoSize = true;
+            this.radioButton_max.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton_max.Location = new System.Drawing.Point(8, 44);
+            this.radioButton_max.Name = "radioButton_max";
+            this.radioButton_max.Size = new System.Drawing.Size(48, 19);
+            this.radioButton_max.TabIndex = 1;
+            this.radioButton_max.TabStop = true;
+            this.radioButton_max.Text = "max";
+            this.radioButton_max.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_min
+            // 
+            this.radioButton_min.AutoSize = true;
+            this.radioButton_min.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton_min.Location = new System.Drawing.Point(8, 19);
+            this.radioButton_min.Name = "radioButton_min";
+            this.radioButton_min.Size = new System.Drawing.Size(46, 19);
+            this.radioButton_min.TabIndex = 0;
+            this.radioButton_min.TabStop = true;
+            this.radioButton_min.Text = "min";
+            this.radioButton_min.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(780, 58);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(44, 20);
+            this.numericUpDown2.TabIndex = 4;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(624, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(151, 15);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Количество ограничений:";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(780, 33);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(44, 20);
+            this.numericUpDown1.TabIndex = 2;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(624, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Количество переменных:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(780, 450);
+            this.ClientSize = new System.Drawing.Size(918, 444);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Симплекс Метод";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,6 +364,23 @@
         private System.Windows.Forms.ToolStripMenuItem SaveFile;
         private System.Windows.Forms.ToolStripMenuItem AboutProgramm;
         private System.Windows.Forms.ToolStripMenuItem Spravka;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.RadioButton radioButton_auto_answer;
+        private System.Windows.Forms.RadioButton radioButton_step_by_step;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.RadioButton radioButton_decimal_drob;
+        private System.Windows.Forms.RadioButton radioButton_default_drob;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton radioButton_imagine_b;
+        private System.Windows.Forms.RadioButton radioButton_symplex;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RadioButton radioButton_max;
+        private System.Windows.Forms.RadioButton radioButton_min;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -17,5 +17,9 @@ namespace Simplex_Method
             InitializeComponent();
         }
 
+        private void radioButton_decimal_drob_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
