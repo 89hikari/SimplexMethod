@@ -35,7 +35,7 @@
             this.SaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramm = new System.Windows.Forms.ToolStripMenuItem();
             this.Spravka = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.solve_Button = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.radioButton_auto_answer = new System.Windows.Forms.RadioButton();
             this.radioButton_step_by_step = new System.Windows.Forms.RadioButton();
@@ -52,6 +52,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.checkBoxCornerDot = new System.Windows.Forms.CheckBox();
+            this.dataGridView_CornerDot = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -59,6 +65,11 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CornerDot)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -107,15 +118,15 @@
             this.Spravka.Size = new System.Drawing.Size(70, 20);
             this.Spravka.Text = "Справка";
             // 
-            // button1
+            // solve_Button
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(704, 392);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 37);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Решать";
-            this.button1.UseVisualStyleBackColor = true;
+            this.solve_Button.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.solve_Button.Location = new System.Drawing.Point(676, 414);
+            this.solve_Button.Name = "solve_Button";
+            this.solve_Button.Size = new System.Drawing.Size(192, 62);
+            this.solve_Button.TabIndex = 9;
+            this.solve_Button.Text = "Решать";
+            this.solve_Button.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
@@ -320,17 +331,85 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Количество переменных:";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox2.Location = new System.Drawing.Point(12, 33);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(606, 75);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Функция";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 17);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(600, 55);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridView2);
+            this.groupBox3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox3.Location = new System.Drawing.Point(12, 110);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(606, 276);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Ограничения-равенства";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 17);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(600, 256);
+            this.dataGridView2.TabIndex = 0;
+            // 
+            // checkBoxCornerDot
+            // 
+            this.checkBoxCornerDot.AutoSize = true;
+            this.checkBoxCornerDot.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxCornerDot.Location = new System.Drawing.Point(15, 414);
+            this.checkBoxCornerDot.Name = "checkBoxCornerDot";
+            this.checkBoxCornerDot.Size = new System.Drawing.Size(224, 19);
+            this.checkBoxCornerDot.TabIndex = 12;
+            this.checkBoxCornerDot.Text = "Задать начальную угловую точку x0";
+            this.checkBoxCornerDot.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_CornerDot
+            // 
+            this.dataGridView_CornerDot.AllowUserToAddRows = false;
+            this.dataGridView_CornerDot.AllowUserToDeleteRows = false;
+            this.dataGridView_CornerDot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_CornerDot.Location = new System.Drawing.Point(15, 439);
+            this.dataGridView_CornerDot.Name = "dataGridView_CornerDot";
+            this.dataGridView_CornerDot.Size = new System.Drawing.Size(600, 73);
+            this.dataGridView_CornerDot.TabIndex = 13;
+            this.dataGridView_CornerDot.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(918, 444);
+            this.ClientSize = new System.Drawing.Size(918, 524);
+            this.Controls.Add(this.dataGridView_CornerDot);
+            this.Controls.Add(this.checkBoxCornerDot);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.solve_Button);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.label1);
@@ -351,6 +430,11 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CornerDot)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,7 +448,7 @@
         private System.Windows.Forms.ToolStripMenuItem SaveFile;
         private System.Windows.Forms.ToolStripMenuItem AboutProgramm;
         private System.Windows.Forms.ToolStripMenuItem Spravka;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button solve_Button;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.RadioButton radioButton_auto_answer;
         private System.Windows.Forms.RadioButton radioButton_step_by_step;
@@ -381,6 +465,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.CheckBox checkBoxCornerDot;
+        private System.Windows.Forms.DataGridView dataGridView_CornerDot;
     }
 }
 
