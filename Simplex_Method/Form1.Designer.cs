@@ -58,6 +58,8 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.checkBoxCornerDot = new System.Windows.Forms.CheckBox();
             this.dataGridView_CornerDot = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -99,12 +101,14 @@
             this.OpenFile.Name = "OpenFile";
             this.OpenFile.Size = new System.Drawing.Size(288, 22);
             this.OpenFile.Text = "Открыть файл с задачей";
+            this.OpenFile.Click += new System.EventHandler(this.OpenFile_Click);
             // 
             // SaveFile
             // 
             this.SaveFile.Name = "SaveFile";
             this.SaveFile.Size = new System.Drawing.Size(288, 22);
             this.SaveFile.Text = "Сохранить в файл текущую задачу";
+            this.SaveFile.Click += new System.EventHandler(this.SaveFile_Click);
             // 
             // AboutProgramm
             // 
@@ -120,13 +124,14 @@
             // 
             // solve_Button
             // 
+            this.solve_Button.BackColor = System.Drawing.Color.LightGreen;
             this.solve_Button.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.solve_Button.Location = new System.Drawing.Point(689, 414);
+            this.solve_Button.Location = new System.Drawing.Point(676, 423);
             this.solve_Button.Name = "solve_Button";
             this.solve_Button.Size = new System.Drawing.Size(192, 62);
             this.solve_Button.TabIndex = 9;
             this.solve_Button.Text = "Решать";
-            this.solve_Button.UseVisualStyleBackColor = true;
+            this.solve_Button.UseVisualStyleBackColor = false;
             // 
             // groupBox7
             // 
@@ -183,7 +188,6 @@
             this.radioButton_decimal_drob.TabStop = true;
             this.radioButton_decimal_drob.Text = "Использовать числа с плавающей точкой";
             this.radioButton_decimal_drob.UseVisualStyleBackColor = true;
-            this.radioButton_decimal_drob.CheckedChanged += new System.EventHandler(this.radioButton_decimal_drob_CheckedChanged);
             // 
             // radioButton_default_drob
             // 
@@ -345,6 +349,7 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 17);
@@ -366,6 +371,7 @@
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 17);
@@ -388,12 +394,24 @@
             // 
             this.dataGridView_CornerDot.AllowUserToAddRows = false;
             this.dataGridView_CornerDot.AllowUserToDeleteRows = false;
+            this.dataGridView_CornerDot.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView_CornerDot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_CornerDot.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridView_CornerDot.Location = new System.Drawing.Point(15, 439);
             this.dataGridView_CornerDot.Name = "dataGridView_CornerDot";
             this.dataGridView_CornerDot.Size = new System.Drawing.Size(600, 73);
             this.dataGridView_CornerDot.TabIndex = 13;
             this.dataGridView_CornerDot.Visible = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "txt";
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Текстовые файлы(*.txt)|*.txt";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "Текстовые файлы(*.txt)|*.txt";
             // 
             // Form1
             // 
@@ -471,6 +489,8 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.CheckBox checkBoxCornerDot;
         private System.Windows.Forms.DataGridView dataGridView_CornerDot;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

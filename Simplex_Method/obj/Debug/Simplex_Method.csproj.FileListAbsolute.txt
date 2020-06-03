@@ -8,3 +8,5 @@ C:\Users\Vladislav\source\repos\Simplex_Method\Simplex_Method\obj\Debug\Simplex_
 C:\Users\Vladislav\source\repos\Simplex_Method\Simplex_Method\obj\Debug\Simplex_Method.csproj.CoreCompileInputs.cache
 C:\Users\Vladislav\source\repos\Simplex_Method\Simplex_Method\obj\Debug\Simplex_Method.exe
 C:\Users\Vladislav\source\repos\Simplex_Method\Simplex_Method\obj\Debug\Simplex_Method.pdb
+C:\Users\Vladislav\source\repos\Simplex_Method\Simplex_Method\obj\Debug\Simplex_Method.StepsArtificial.resources
+C:\Users\Vladislav\source\repos\Simplex_Method\Simplex_Method\obj\Debug\Simplex_Method.StepsSolve.resources
