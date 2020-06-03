@@ -1,1 +1,1 @@
-"# SimplexMethod" 
+Simplex method for solve the linear programming problem
