@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FileActions = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutProgramm = new System.Windows.Forms.ToolStripMenuItem();
+            this.Spravka = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,23 +42,23 @@
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.оПрограммеToolStripMenuItem,
-            this.справкаToolStripMenuItem});
+            this.FileActions,
+            this.AboutProgramm,
+            this.Spravka});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(780, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // файлToolStripMenuItem
+            // FileActions
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileActions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenFile,
             this.SaveFile});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.FileActions.Name = "FileActions";
+            this.FileActions.Size = new System.Drawing.Size(52, 20);
+            this.FileActions.Text = "Файл";
             // 
             // OpenFile
             // 
@@ -71,24 +72,26 @@
             this.SaveFile.Size = new System.Drawing.Size(288, 22);
             this.SaveFile.Text = "Сохранить в файл текущую задачу";
             // 
-            // оПрограммеToolStripMenuItem
+            // AboutProgramm
             // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.AboutProgramm.Name = "AboutProgramm";
+            this.AboutProgramm.Size = new System.Drawing.Size(99, 20);
+            this.AboutProgramm.Text = "О программе";
             // 
-            // справкаToolStripMenuItem
+            // Spravka
             // 
-            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
-            this.справкаToolStripMenuItem.Text = "Справка";
+            this.Spravka.Name = "Spravka";
+            this.Spravka.Size = new System.Drawing.Size(70, 20);
+            this.Spravka.Text = "Справка";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(780, 450);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Симплекс Метод";
             this.menuStrip1.ResumeLayout(false);
@@ -101,11 +104,11 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FileActions;
         private System.Windows.Forms.ToolStripMenuItem OpenFile;
         private System.Windows.Forms.ToolStripMenuItem SaveFile;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutProgramm;
+        private System.Windows.Forms.ToolStripMenuItem Spravka;
     }
 }
 
