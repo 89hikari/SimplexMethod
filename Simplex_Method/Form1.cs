@@ -16,5 +16,6 @@ namespace Simplex_Method
         {
             InitializeComponent();
         }
+
     }
 }
