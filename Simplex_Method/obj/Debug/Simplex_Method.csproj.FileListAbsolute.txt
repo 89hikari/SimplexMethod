@@ -24,3 +24,17 @@ C:\Users\Vladislav\source\repos\SimplexMethod\Simplex_Method\bin\Debug\Simplex_M
 C:\Users\Vladislav\source\repos\SimplexMethod\Simplex_Method\bin\Debug\Simplex_Method.exe
 C:\Users\Vladislav\source\repos\SimplexMethod\Simplex_Method\bin\Debug\Simplex_Method.pdb
 C:\Users\Vladislav\source\repos\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.AutoModeArtificalBasix.resources
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\bin\Debug\Simplex_Method.exe.config
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\bin\Debug\Simplex_Method.exe
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\bin\Debug\Simplex_Method.pdb
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.csprojAssemblyReference.cache
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.AutoMode.resources
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.AutoModeArtificalBasix.resources
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.Form1.resources
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.Properties.Resources.resources
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.StepsArtificial.resources
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.StepsSolve.resources
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.csproj.GenerateResource.cache
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.csproj.CoreCompileInputs.cache
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.exe
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.pdb

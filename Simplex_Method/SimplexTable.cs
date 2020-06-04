@@ -1302,10 +1302,18 @@ namespace Simplex_Method
                 int temp;
 
                 //заполняем коэффициентами
-                for (int i = 0; i < Grid.Rows.Count - 1; i++)
+                try
                 {
-                    temp = Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x'));
-                    finish_corner_dot[temp - 1] = simplex_elements[i][simplex_elements[0].Count - 1].ToString();
+                    for (int i = 0; i < Grid.Rows.Count - 1; i++)
+                    {
+                        temp = Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x'));
+                        finish_corner_dot[temp - 1] = simplex_elements[i][simplex_elements[0].Count - 1].ToString();
+                    }
+                }
+                catch (Exception d)
+                {
+                    MessageBox.Show("Что-то пошло не так.\nПроверьте правильность введённой задачи, либо выбор элементов.");
+                        return finish_corner_dot;
                 }
 
                 return finish_corner_dot;
@@ -1323,10 +1331,18 @@ namespace Simplex_Method
                 int temp;
 
                 //заполняем коэффициентами
-                for (int i = 0; i < Grid.Rows.Count - 1; i++)
+                try
                 {
-                    temp = Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x'));
-                    finish_corner_dot[temp - 1] = simplex_elements_with_radicals[i][simplex_elements_with_radicals[0].Count - 1].ToString();
+                    for (int i = 0; i < Grid.Rows.Count - 1; i++)
+                    {
+                        temp = Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x'));
+                        finish_corner_dot[temp - 1] = simplex_elements_with_radicals[i][simplex_elements_with_radicals[0].Count - 1].ToString();
+                    }
+                }
+                catch (Exception d)
+                {
+                    MessageBox.Show("Что-то пошло не так.\nПроверьте правильность введённой задачи, либо выбор элементов.");
+                        return finish_corner_dot;
                 }
 
                 return finish_corner_dot;

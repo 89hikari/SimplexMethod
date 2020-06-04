@@ -34,7 +34,6 @@ namespace Simplex_Method
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             clearGrids();
-
             drawing_function();
             drawing_org();
             drawing_corner_dot();
@@ -73,7 +72,14 @@ namespace Simplex_Method
    //         helpProvider1.HelpNamespace = file_path;
         }
 
-
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            MessageBoxButtons msb = MessageBoxButtons.YesNo;
+            String message = "Выйти из программы?";
+            String caption = "Выход";
+            if (MessageBox.Show(message, caption, msb) == DialogResult.Yes)
+                this.Close();
+        }
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -83,7 +89,6 @@ namespace Simplex_Method
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             clearGrids();
-
             drawing_function();
             drawing_org();
             non_sort_for_columns();
@@ -97,7 +102,7 @@ namespace Simplex_Method
 
                 if (i == Decimal.ToInt32(numericUpDown1.Value)) // именуем последний эл
                 {
-                    dataGridView2.Columns[i].HeaderText = "d";
+                    dataGridView2.Columns[i].HeaderText = "Свободный";
                 }
             } // Создаём столбцы
 
@@ -712,16 +717,6 @@ namespace Simplex_Method
                 if (((RadioButton)groupBox4.Controls[i]).Checked == true) { return i; }
             }
             return -1;
-        }
-
-        private void выходToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void оПрограммеToolStripMenuItem_Click_1(object sender, EventArgs e)
