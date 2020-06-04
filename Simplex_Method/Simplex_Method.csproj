@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoMode.Designer.cs">
+      <DependentUpon>AutoMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoModeArtificalBasix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoModeArtificalBasix.Designer.cs">
+      <DependentUpon>AutoModeArtificalBasix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +86,12 @@
     <Compile Include="StepsSolve.Designer.cs">
       <DependentUpon>StepsSolve.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AutoMode.resx">
+      <DependentUpon>AutoMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoModeArtificalBasix.resx">
+      <DependentUpon>AutoModeArtificalBasix.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

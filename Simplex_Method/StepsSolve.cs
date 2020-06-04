@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -209,7 +210,7 @@ namespace Simplex_Method
             string file_path = new Uri(filePath).LocalPath; // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug
                                                             // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug\data\Help\MainPageHelp.rtf
 
-            helpProvider1.HelpNamespace = file_path;
+   //         helpProvider1.HelpNamespace = file_path;
         }
 
         /// <summary>
@@ -242,7 +243,7 @@ namespace Simplex_Method
             {
                 Grid.Columns.Add($"x{Grid.ColumnCount + 1}", $"x{Grid.ColumnCount + 1}");
             }
-            for (int i = 0; i < N.Count; i++)
+            for (int i = 0; i < N.Count; i++)       
             {
                 Grid.Rows.Add();
                 for (int j = 0; j < N[i].Count; j++)
@@ -383,7 +384,229 @@ namespace Simplex_Method
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
+            switch (step)
+            {
+                case 0:
+                    try
+                    {
+                        if (Radical_or_Decimal)
+                        {
+                            //буферизация данных
+                            BufferingTableValues(ogr);
+                            //прямой ход Гаусса
+                            Gauss(ogr, CornerDot);
+                            //Обновление визуализации переменных.
+                            if (CornerDot)
+                                addGridParam(ogr, dataGridView3, variable_visualization);
+                            else
+                                addGridParam(ogr, dataGridView3);
+                        }
+                        else
+                        {
+                            //буферизация данных для дробей
+                            BufferingTableValues(ogr_with_radicals);
+                            //прямой ход Гаусса для дробей
+                            Gauss(ogr_with_radicals, CornerDot);
+                            //Обновление визуализации переменных.
+                            if (CornerDot)
+                                addGridParam(ogr_with_radicals, dataGridView3, variable_visualization);
+                            else
+                                addGridParam(ogr_with_radicals, dataGridView3);
+                        }
 
+                    }
+                    catch (Exception d)
+                    {
+                        MessageBox.Show(d.Message);
+                    }
+                    step++;
+                    tabControl1.TabPages[0].Text = "Шаг 1: Прямой ход метода Гаусса.";
+                    break;
+
+                case 1:
+                    if (Radical_or_Decimal)
+                    {
+                        //буферизация данных
+                        BufferingTableValues(ogr);
+                        //Выражение базисных переменных.
+                        HoistingMatrix(ogr, number_of_basix_permutations);
+                        //Обновление визуализации переменных.
+                        if (CornerDot)
+                            addGridParam(ogr, dataGridView3, variable_visualization);
+                        else
+                            addGridParam(ogr, dataGridView3);
+                    }
+                    else
+                    {
+                        //буферизация данных для дробей
+                        BufferingTableValues(ogr_with_radicals);
+                        //Выражение базисных переменных для дробей
+                        HoistingMatrix(ogr_with_radicals, number_of_basix_permutations);
+                        //Обновление визуализации переменных.
+                        if (CornerDot)
+                            addGridParam(ogr_with_radicals, dataGridView3, variable_visualization);
+                        else
+                            addGridParam(ogr_with_radicals, dataGridView3);
+                    }
+                    step++;
+                    tabControl1.TabPages[0].Text = "Шаг 2: Выражение базисных переменных.";
+                    break;
+
+                case 2:
+                    if (Radical_or_Decimal)
+                    {
+                        // буферизация данных
+                        BufferingTableValues(ogr);
+
+                        if (simplex_table_was_draw == false)
+                        {
+                            simplextable = new SimplexTable(number_of_basix_permutations, number_of_free_variables, ogr, cel_function, true, Radical_or_Decimal);
+                            DrawSimplexTable(ogr);
+                            //Симплекс-таблица была создана
+                            simplex_table_was_draw = true;
+                        }
+                    }
+                    else
+                    {
+                        // буферизация данных для дробей
+                        BufferingTableValues(ogr_with_radicals);
+
+                        if (simplex_table_was_draw == false)
+                        {
+                            simplextable = new SimplexTable(number_of_basix_permutations, number_of_free_variables, ogr_with_radicals, cel_function_with_radicals, true, Radical_or_Decimal);
+                            DrawSimplexTable(ogr_with_radicals);
+                            //Симплекс-таблица была создана
+                            simplex_table_was_draw = true;
+                        }
+                    }
+
+                    switch (simplextable.ResponseCheck())
+                    {
+                        case 0:
+                            step++;
+                            tabControl1.TabPages[0].Text = "Шаг 3: Симплекс-таблица.";
+                            break;
+                        case 1:
+                            // Если ответ готов сразу без выбора опорного элемента
+                            tabControl1.TabPages[0].Text = "Ответ готов!";
+                            // Увиличиваем шаг. И делаем видимыми элементы
+                            step++;
+                            label_answer.Visible = true;
+                            groupBoxCornerDot.Visible = true;
+
+                            // Подставляем ответ
+                            if (MinMax == 0)
+                            {
+                                if (Radical_or_Decimal)
+                                    label_answer.Text = "Ответ :" + simplextable.Response();
+                                else
+                                    label_answer.Text = "Ответ :" + simplextable.Responce_for_radicals().Reduction();
+                            }
+                            else
+                            {
+                                if (Radical_or_Decimal)
+                                    label_answer.Text = "Ответ: " + simplextable.Response() * (-1);
+                                else
+                                    label_answer.Text = "Ответ :" + simplextable.Responce_for_radicals().Reduction() * (-1);
+                            }
+
+                            // Выводим точку X*
+                            if (corner_dot_was_added == false)
+                            {
+                                corner_dot_was_added = true;
+                                //добавляем точку
+                                addGridParam(ResponseDot(), dataGridViewCornerDot);
+                            }
+
+                            buttonNext.Enabled = false;
+                            break;
+                        case -1:
+                            step++;
+                            MessageBox.Show("Задача не разрешима!");
+                            tabControl1.TabPages[0].Text = "Задача не разрешима!";
+                            buttonNext.Enabled = false;
+                            break;
+                    }
+                    break;
+
+                case 3:
+                    //выбор опорного
+                    SelectionOfTheSupportElement(simplextable);
+                    step++;
+                    tabControl1.TabPages[0].Text = "Шаг" + step + ": Выбор опорного элемента";
+                    break;
+                default:
+                    try
+                    {
+                        //выбран ли опорный элемент
+                        ButtonPressedOrNot(simplextable);
+                        //Смена местами визуализаций переменных(после выбора опорного элемента) + буферизация координат опорного элемента.
+                        ChangeOfVisualizationVariables(simplextable);
+                        //Буферизация элементов симплекс таблицы
+                        simplextable.BufferingSimplexTableValues(step);
+                        //удаляем подсвеченные ячейки
+                        delete_green_grids();
+                        //вычисление симплекс таблицы по выбранному опорному элементу
+                        simplextable.CalculateSimplexTable(row_of_the_support_element, column_of_the_support_element);
+                        // обновление данных ячеек таблицы
+                        if (Radical_or_Decimal)
+                            addGridParam_for_simplex_elements(simplextable.simplex_elements, dataGridView3);
+                        else
+                            addGridParam_for_simplex_elements(simplextable.simplex_elements_with_radicals, dataGridView3);
+
+                        switch (simplextable.ResponseCheck())
+                        {
+                            case 0:
+                                step++;
+                                tabControl1.TabPages[0].Text = "Шаг" + step + ": Выбор опорного элемента";
+                                //выбор опорного
+                                SelectionOfTheSupportElement(simplextable);
+                                break;
+                            case 1:
+                                tabControl1.TabPages[0].Text = "Ответ готов!";
+                                step++;
+                                label_answer.Visible = true;
+                                groupBoxCornerDot.Visible = true;
+                                if (MinMax == 0)
+                                {
+                                    if (Radical_or_Decimal)
+                                        label_answer.Text = "Ответ :" + simplextable.Response();
+                                    else
+                                        label_answer.Text = "Ответ :" + simplextable.Responce_for_radicals().Reduction();
+                                }
+                                else
+                                {
+                                    if (Radical_or_Decimal)
+                                        label_answer.Text = "Ответ: " + simplextable.Response() * (-1);
+                                    else
+                                        label_answer.Text = "Ответ :" + simplextable.Responce_for_radicals().Reduction() * (-1);
+                                }
+
+                                if (corner_dot_was_added == false)
+                                {
+                                    corner_dot_was_added = true;
+                                    //добавляем точку
+                                    addGridParam(ResponseDot(), dataGridViewCornerDot);
+                                }
+
+                                buttonNext.Enabled = false;
+                                break;
+                            case -1:
+                                step++;
+                                MessageBox.Show("Задача не разрешима!");
+                                tabControl1.TabPages[0].Text = "Задача не разрешима!";
+                                buttonNext.Enabled = false;
+                                break;
+                        }
+
+                    }
+                    catch (Exception d)
+                    {
+                        MessageBox.Show(d.Message);
+                    }
+
+                    break;
+            }
         }
 
 
@@ -996,7 +1219,136 @@ namespace Simplex_Method
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
+            switch (step)
+            {
+                case 0:
+                    bool Cancel = true;
+                    const string message =
+                            "Предыдущего шага нет. Возврат приведёт к закрытию текущей задачи. Вы уверены?";
+                    const string caption = "Закрыть задачу?";
+                    var result = MessageBox.Show(message, caption,
+                                                 MessageBoxButtons.YesNo,
+                                                 MessageBoxIcon.Question);
 
+                    if (result == DialogResult.Yes)
+                    {
+                        // cancel the closure of the form.
+                        Cancel = false;
+                    }
+
+                    if (!Cancel)
+                        this.Close();
+                    break;
+                case 1:
+                    // Если выбраны десятичные дроби
+                    if (Radical_or_Decimal)
+                    {
+
+                        // Возвращаем данные из буфера
+                        GetOutOfTheBuffer(ogr);
+                        // Отрисовываем новые 
+                        if (CornerDot)
+                            addGridParam(ogr, dataGridView3, variable_visualization);
+                        else
+                            addGridParam(ogr, dataGridView3);
+                    }
+                    // Если выбраны обыкновенные дроби
+                    else
+                    {
+                        // Возвращаем данные из буфера для дробей
+                        GetOutOfTheBuffer(ogr_with_radicals);
+                        if (CornerDot)
+                            addGridParam(ogr_with_radicals, dataGridView3, variable_visualization);
+                        else
+                            addGridParam(ogr_with_radicals, dataGridView3);
+                    }
+                    step--;
+                    tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничений равенств.";
+                    break;
+                case 2:
+                    if (Radical_or_Decimal)
+                    {
+                        // Возвращаем данные из буфера
+                        GetOutOfTheBuffer(ogr);
+                        // Отрисовываем новые 
+                        if (CornerDot)
+                            addGridParam(ogr, dataGridView3, variable_visualization);
+                        else
+                            addGridParam(ogr, dataGridView3);
+                    }
+                    else
+                    {
+                        // Возвращаем данные из буфера для дробей
+                        GetOutOfTheBuffer(ogr_with_radicals);
+                        // Отрисовываем новые
+                        if (CornerDot)
+                            addGridParam(ogr_with_radicals, dataGridView3, variable_visualization);
+                        else
+                            addGridParam(ogr_with_radicals, dataGridView3);
+                    }
+                    step--;
+                    tabControl1.TabPages[0].Text = "Шаг 1: Прямой ход метода Гаусса.";
+                    break;
+                case 3:
+                    if (Radical_or_Decimal)
+                    {
+                        // Возвращаем данные из буфера
+                        GetOutOfTheBuffer(ogr);
+                        // Отрисовываем новые 
+                        if (CornerDot)
+                            addGridParam(ogr, dataGridView3, variable_visualization);
+                        else
+                            addGridParam(ogr, dataGridView3);
+                    }
+                    else
+                    {
+                        // Возвращаем данные из буфера для дробей
+                        GetOutOfTheBuffer(ogr_with_radicals);
+                        // Отрисовываем новые
+                        if (CornerDot)
+                            addGridParam(ogr_with_radicals, dataGridView3, variable_visualization);
+                        else
+                            addGridParam(ogr_with_radicals, dataGridView3);
+                    }
+
+                    simplex_table_was_draw = false;
+                    step--;
+                    tabControl1.TabPages[0].Text = "Шаг 2: Выражение базисных переменных.";
+                    label_answer.Visible = false;
+                    groupBoxCornerDot.Visible = false;
+                    buttonNext.Enabled = true;
+                    break;
+                case 4:
+                    // Делаем все ячейки без зелёного выделения
+                    delete_green_grids();
+                    step--;
+                    tabControl1.TabPages[0].Text = "Шаг 3: Симплекс-таблица.";
+                    break;
+                default:
+                    // Делаем все ячейки без зелёного выделения
+                    delete_green_grids();
+                    //возвращение данных из буфера
+                    simplextable.GetOutOfTheBufferSimplex(step);
+                    // меняем обратно местами те иксы, которые меняли в прошлый раз
+                    ChangeOfVisualizationVariables_without_bufferization(simplextable);
+                    if (Radical_or_Decimal)
+                    {
+                        // отображаем то, что вернули из буфера
+                        addGridParam_for_simplex_elements(simplextable.simplex_elements, dataGridView3);
+                    }
+                    else
+                    {
+                        addGridParam_for_simplex_elements(simplextable.simplex_elements_with_radicals, dataGridView3);
+                    }
+                    //выбор опорного
+                    SelectionOfTheSupportElement(simplextable);
+                    step--;
+                    tabControl1.TabPages[0].Text = "Шаг" + step + ": Выбор опорного элемента";
+                    label_answer.Visible = false;
+                    groupBoxCornerDot.Visible = false;
+                    buttonNext.Enabled = true;
+                    break;
+            }
         }
 
         private void delete_green_grids()

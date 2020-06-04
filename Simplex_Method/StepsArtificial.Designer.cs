@@ -112,6 +112,7 @@
             this.buttonBack.TabIndex = 2;
             this.buttonBack.Text = "Назад";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // buttonNext
             // 
@@ -121,6 +122,7 @@
             this.buttonNext.TabIndex = 1;
             this.buttonNext.Text = "Далее";
             this.buttonNext.UseVisualStyleBackColor = true;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // groupBox1
             // 
@@ -150,10 +152,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 501);
+            this.ClientSize = new System.Drawing.Size(702, 495);
             this.Controls.Add(this.tabControl1);
-            this.Name = "StepsArtificial";
-            this.Text = "StepsArtificial";
+            this.Name = "StepByStepArtifical";
+       //     this.helpProvider1.SetShowHelp(this, true);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Пошаговый режим - Метод искусственного базиса";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StepsArtificial_FormClosed);
+            this.Load += new System.EventHandler(this.StepsArtificial_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

@@ -132,6 +132,7 @@
             this.solve_Button.TabIndex = 9;
             this.solve_Button.Text = "Решать";
             this.solve_Button.UseVisualStyleBackColor = false;
+            this.solve_Button.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox7
             // 
@@ -188,6 +189,7 @@
             this.radioButton_decimal_drob.TabStop = true;
             this.radioButton_decimal_drob.Text = "Использовать числа с плавающей точкой";
             this.radioButton_decimal_drob.UseVisualStyleBackColor = true;
+            this.radioButton_decimal_drob.UseVisualStyleBackColor = true;
             // 
             // radioButton_default_drob
             // 
@@ -200,6 +202,7 @@
             this.radioButton_default_drob.TabStop = true;
             this.radioButton_default_drob.Text = "Использовать обыкновенные дроби";
             this.radioButton_default_drob.UseVisualStyleBackColor = true;
+            this.radioButton_default_drob.CheckedChanged += new System.EventHandler(this.radioButton_default_drob_CheckedChanged);
             // 
             // groupBox5
             // 
@@ -223,6 +226,7 @@
             this.radioButton_imagine_b.TabStop = true;
             this.radioButton_imagine_b.Text = "Метод искусственного базиса";
             this.radioButton_imagine_b.UseVisualStyleBackColor = true;
+            this.radioButton_imagine_b.CheckedChanged += new System.EventHandler(this.radioButton_imagine_b_CheckedChanged);
             // 
             // radioButton_symplex
             // 
@@ -258,6 +262,7 @@
             this.radioButton_max.TabStop = true;
             this.radioButton_max.Text = "max";
             this.radioButton_max.UseVisualStyleBackColor = true;
+            this.radioButton_max.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton_min
             // 
@@ -292,6 +297,7 @@
             0,
             0,
             0});
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // label2
             // 
@@ -302,6 +308,7 @@
             this.label2.Size = new System.Drawing.Size(151, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "Количество ограничений:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // numericUpDown1
             // 
@@ -324,6 +331,7 @@
             0,
             0,
             0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label1
             // 
@@ -334,6 +342,7 @@
             this.label1.Size = new System.Drawing.Size(150, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Количество переменных:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox2
             // 
@@ -356,6 +365,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(600, 55);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // groupBox3
             // 
@@ -389,6 +399,7 @@
             this.checkBoxCornerDot.TabIndex = 12;
             this.checkBoxCornerDot.Text = "Задать начальную угловую точку x0";
             this.checkBoxCornerDot.UseVisualStyleBackColor = true;
+            this.checkBoxCornerDot.CheckedChanged += new System.EventHandler(this.checkBoxCornerDot_CheckedChanged);
             // 
             // dataGridView_CornerDot
             // 

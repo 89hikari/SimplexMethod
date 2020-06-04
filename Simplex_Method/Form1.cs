@@ -70,7 +70,7 @@ namespace Simplex_Method
             string file_path = new Uri(filePath).LocalPath; // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug
                                                             // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug\data\Help\MainPageHelp.rtf
 
-            helpProvider1.HelpNamespace = file_path;
+   //         helpProvider1.HelpNamespace = file_path;
         }
 
 
