@@ -13,14 +13,14 @@ using System.Windows.Forms;
 
 namespace Simplex_Method
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         /// <summary>
         /// Определитель - какой режим работы с дробями выбран. false - обыкновенные. true - десятичные
         /// </summary>
         bool decimal_or_radical_drob = false;
 
-        public Form1()
+        public Main()
         {
             InitializeComponent();
 
@@ -806,7 +806,7 @@ namespace Simplex_Method
                 addGridParam(_text[i], dataGridView2);
             }
             non_sort_for_columns();
-            dataGridView2.Columns[dataGridView2.ColumnCount - 1].HeaderText = "d";
+            dataGridView2.Columns[dataGridView2.ColumnCount - 1].HeaderText = "Свободный";
 
             drawing_corner_dot();
         }

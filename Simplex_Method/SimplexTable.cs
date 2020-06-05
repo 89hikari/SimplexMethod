@@ -428,7 +428,7 @@ namespace Simplex_Method
                     a -= cel_function[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
 
                     ////отображение
-                    Grid.Rows[number_of_permutations].Cells[column_index].Value = a;
+                    Grid.Rows[number_of_permutations].Cells[column_index].Value = a * (-1);
                     column_index++;
                 }
 
@@ -437,7 +437,7 @@ namespace Simplex_Method
                 for (int i = 0; i < simplex_elements.Count; i++)
                     a += simplex_elements[i][simplex_elements[0].Count - 1] * cel_function[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
 
-                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a;
+                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a * (-1);
 
                 // добавляем в рабочий массив последнюю посчитанную строку
                 for (int i = Grid.Rows.Count - 1; i < Grid.Rows.Count; i++)
@@ -469,7 +469,7 @@ namespace Simplex_Method
 
                     ////отображение
 
-                    Grid.Rows[number_of_permutations].Cells[column_index].Value = a;
+                    Grid.Rows[number_of_permutations].Cells[column_index].Value = a * (-1);
                     column_index++;
                 }
 
@@ -478,7 +478,7 @@ namespace Simplex_Method
                 for (int i = 0; i < simplex_elements_with_radicals.Count; i++)
                     a += simplex_elements_with_radicals[i][simplex_elements_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
 
-                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a;
+                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a * (-1);
 
                 // добавляем в рабочий массив последнюю посчитанную строку
                 for (int i = Grid.Rows.Count - 1; i < Grid.Rows.Count; i++)
@@ -840,7 +840,7 @@ namespace Simplex_Method
                         //если есть минимальный, то делаем его подсвеченным
                         if ((minimum[0] != -1) && (minimum[1] != -1))
                         {
-                            Grid.Rows[minimum[0]].Cells[minimum[1]].Style.BackColor = System.Drawing.Color.GreenYellow;
+                            Grid.Rows[minimum[0]].Cells[minimum[1]].Style.BackColor = System.Drawing.Color.Green;
 
                             //координаты возможного опорного элемента
                             the_coordinates_of_the_support_element.Add(new List<int>());
@@ -890,7 +890,7 @@ namespace Simplex_Method
                         //если есть минимальный, то делаем его подсвеченным
                         if ((minimum[0] != -1) && (minimum[1] != -1))
                         {
-                            Grid.Rows[minimum[0]].Cells[minimum[1]].Style.BackColor = System.Drawing.Color.GreenYellow;
+                            Grid.Rows[minimum[0]].Cells[minimum[1]].Style.BackColor = System.Drawing.Color.Green;
 
                             //координаты возможного опорного элемента
                             the_coordinates_of_the_support_element.Add(new List<int>());
@@ -1302,19 +1302,12 @@ namespace Simplex_Method
                 int temp;
 
                 //заполняем коэффициентами
-                try
-                {
+                
                     for (int i = 0; i < Grid.Rows.Count - 1; i++)
                     {
                         temp = Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x'));
                         finish_corner_dot[temp - 1] = simplex_elements[i][simplex_elements[0].Count - 1].ToString();
-                    }
-                }
-                catch (Exception d)
-                {
-                    MessageBox.Show("Что-то пошло не так.\nПроверьте правильность введённой задачи, либо выбор элементов.");
-                        return finish_corner_dot;
-                }
+                    }        
 
                 return finish_corner_dot;
             }
@@ -1331,19 +1324,12 @@ namespace Simplex_Method
                 int temp;
 
                 //заполняем коэффициентами
-                try
-                {
+
                     for (int i = 0; i < Grid.Rows.Count - 1; i++)
                     {
                         temp = Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x'));
                         finish_corner_dot[temp - 1] = simplex_elements_with_radicals[i][simplex_elements_with_radicals[0].Count - 1].ToString();
-                    }
-                }
-                catch (Exception d)
-                {
-                    MessageBox.Show("Что-то пошло не так.\nПроверьте правильность введённой задачи, либо выбор элементов.");
-                        return finish_corner_dot;
-                }
+                    } 
 
                 return finish_corner_dot;
             }

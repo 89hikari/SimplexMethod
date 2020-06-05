@@ -1,6 +1,8 @@
-﻿namespace Simplex_Method
+﻿using System.Drawing;
+
+namespace Simplex_Method
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileActions = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -367,7 +369,11 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(875, 55);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.Font = new Font("Tahoma", 10);
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.DefaultCellStyle.SelectionBackColor = Color.PaleGreen;
+       
             // 
             // groupBox3
             // 
@@ -390,6 +396,9 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(875, 256);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.Font = new Font("Tahoma", 10);
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.DefaultCellStyle.SelectionBackColor = Color.PaleGreen;
             // 
             // checkBoxCornerDot
             // 
@@ -412,7 +421,10 @@
             this.dataGridView_CornerDot.Name = "dataGridView_CornerDot";
             this.dataGridView_CornerDot.Size = new System.Drawing.Size(875, 73);
             this.dataGridView_CornerDot.TabIndex = 13;
+            this.dataGridView_CornerDot.Font = new Font("Tahoma", 10);
             this.dataGridView_CornerDot.Visible = false;
+            this.dataGridView_CornerDot.RowHeadersVisible = false;
+            this.dataGridView_CornerDot.DefaultCellStyle.SelectionBackColor = Color.PaleGreen;
             // 
             // openFileDialog1
             // 
