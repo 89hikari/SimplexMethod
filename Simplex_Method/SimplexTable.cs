@@ -474,11 +474,13 @@ namespace Simplex_Method
                 }
 
                 //коэффициент в нижнем правом углу симплекс таблицы
-                a = new Fraction(0);
+                Fraction b = new Fraction(0);
                 for (int i = 0; i < simplex_elements_with_radicals.Count; i++)
-                    a += simplex_elements_with_radicals[i][simplex_elements_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
+                    b += simplex_elements_with_radicals[i][simplex_elements_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1] * (-1);
 
-                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a * (-1);
+                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = b * (-1);
+                b = b * (-1);
+                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = b * (-1);
 
                 // добавляем в рабочий массив последнюю посчитанную строку
                 for (int i = Grid.Rows.Count - 1; i < Grid.Rows.Count; i++)
