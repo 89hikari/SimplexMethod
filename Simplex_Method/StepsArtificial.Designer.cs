@@ -31,6 +31,7 @@ namespace Simplex_Method
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StepsArtificial));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.groupBoxCornerDot = new System.Windows.Forms.GroupBox();
@@ -63,15 +64,14 @@ namespace Simplex_Method
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView3.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dataGridView3.Location = new System.Drawing.Point(3, 17);
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersWidth = 60;
             this.dataGridView3.Size = new System.Drawing.Size(625, 289);
-            this.dataGridView3.Font = new Font("Tahoma", 10);
             this.dataGridView3.TabIndex = 0;
-            this.dataGridView3.MultiSelect = false;
             // 
             // groupBoxCornerDot
             // 
@@ -92,13 +92,13 @@ namespace Simplex_Method
             this.dataGridViewCornerDot.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridViewCornerDot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCornerDot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewCornerDot.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dataGridViewCornerDot.Location = new System.Drawing.Point(3, 17);
             this.dataGridViewCornerDot.Name = "dataGridViewCornerDot";
             this.dataGridViewCornerDot.ReadOnly = true;
-            this.dataGridViewCornerDot.Size = new System.Drawing.Size(619, 60);
-            this.dataGridViewCornerDot.Font = new Font("Tahoma", 10);
-            this.dataGridViewCornerDot.TabIndex = 4;
             this.dataGridViewCornerDot.RowHeadersVisible = false;
+            this.dataGridViewCornerDot.Size = new System.Drawing.Size(619, 60);
+            this.dataGridViewCornerDot.TabIndex = 4;
             // 
             // buttonBack
             // 
@@ -154,6 +154,7 @@ namespace Simplex_Method
             this.Controls.Add(this.label_answer);
             this.Controls.Add(this.groupBoxCornerDot);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StepsArtificial";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Метод искусственного базиса, пошаговый режим.";

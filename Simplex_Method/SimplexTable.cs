@@ -473,13 +473,13 @@ namespace Simplex_Method
                     column_index++;
                 }
 
-                //коэффициент в нижнем правом углу симплекс таблицы
+                //значение функции
                 Fraction b = new Fraction(0);
                 for (int i = 0; i < simplex_elements_with_radicals.Count; i++)
                     b += simplex_elements_with_radicals[i][simplex_elements_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1] * (-1);
 
                 Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = b * (-1);
-                b = b * (-1);
+                b = b * (-1); //убейте меня
                 Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = b * (-1);
 
                 // добавляем в рабочий массив последнюю посчитанную строку

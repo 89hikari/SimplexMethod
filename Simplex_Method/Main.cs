@@ -179,17 +179,23 @@ namespace Simplex_Method
                 for (int j = 0; j < Grid.Columns.Count; j++)
                 {
                     if (Grid.Rows[i].Cells[j].Value == null)
-                        throw new Exception("Какой-то из элементов не заполнен. Пожалуйста попробуйте ещё раз");
+                        throw new Exception("Где-то есть незаполненные элементы.");
 
-                    N[i].Add(Convert.ToDouble(Grid.Rows[i].Cells[j].Value.ToString().Trim()));
+                    try
+                    {
+                        N[i].Add(Convert.ToDouble(Grid.Rows[i].Cells[j].Value.ToString().Trim()));
+                    }
+                    catch (Exception d)
+                    {
+                        MessageBox.Show(d.Message);
+                        return;
+                    }
                 }
             }
         }
 
         public void read_grids(DataGridView Grid, List<List<Fraction>> N)
         {
-
-
             for (int i = 0; i < Grid.Rows.Count; i++)
             {
                 N.Add(new List<Fraction>());
@@ -198,7 +204,7 @@ namespace Simplex_Method
                     string[] tmp_fraction = new string[2];
 
                     if (Grid.Rows[i].Cells[j].Value == null)
-                        throw new Exception("Какой-то из элементов не заполнен. Пожалуйста попробуйте ещё раз");
+                        throw new Exception("Где-то есть незаполненные элементы.");
 
                     tmp_fraction = (Grid.Rows[i].Cells[j].Value.ToString().Split('/'));
                     if (tmp_fraction.Length == 1)
@@ -225,7 +231,7 @@ namespace Simplex_Method
                     string[] tmp_fraction = new string[2];
 
                     if (Grid.Rows[i].Cells[j].Value == null)
-                        throw new Exception("Какой-то из элементов не заполнен. Пожалуйста попробуйте ещё раз");
+                        throw new Exception("Где-то есть незаполненные элементы.");
 
 
                     tmp_fraction = (Grid.Rows[i].Cells[j].Value.ToString().Split('/'));
@@ -259,7 +265,7 @@ namespace Simplex_Method
                 }
                 catch (Exception d)
                 {
-                    MessageBox.Show(d.Message, "Ошибка!");
+                    MessageBox.Show(d.Message, "Ошибка");
                     return;
                 }
 
@@ -275,7 +281,7 @@ namespace Simplex_Method
                 }
                 catch (Exception d)
                 {
-                    MessageBox.Show(d.Message, "Ошибка!");
+                    MessageBox.Show(d.Message, "Ошибка");
                     return;
                 }
             }
@@ -321,18 +327,24 @@ namespace Simplex_Method
 
             // Определитель - выбрана ли угловая точка
             bool CornerDot = checkBoxCornerDot.Checked;
-
             //если выбраны пошаговый режим, симплекс-метод и задана начальная угловая точка
             if ((radioButton_step_by_step.Checked == true) && (radioButton_symplex.Checked == true) && (checkBoxCornerDot.Checked == true))
             {
                 ///<summary>
                 ///Корневая точка List<List<double>>
                 ///</summary>
-                List<List<double>> corner_dot = new List<List<double>>();
-                read_grids(dataGridView_CornerDot, corner_dot);
+                ///
 
+                List<List<double>> corner_dot = new List<List<double>>();
                 List<List<Fraction>> corner_dot_with_radicals = new List<List<Fraction>>();
-                read_grids(dataGridView_CornerDot, corner_dot_with_radicals);
+                if (decimal_or_radical_drob) {
+                    read_grids(dataGridView_CornerDot, corner_dot);
+
+                } 
+                else
+                {
+                    read_grids(dataGridView_CornerDot, corner_dot_with_radicals);
+                }
 
                 int index = 0;//индекс переменной, которая является базисной
                 int count_basix_var = 0;//число базисных переменных
@@ -354,7 +366,7 @@ namespace Simplex_Method
                 else
                 {
                     //проверяем на возможность выражения базисных переменных для обыкновенных
-                    for (int j = 0; j < corner_dot[0].Count; j++)
+                    for (int j = 0; j < corner_dot_with_radicals[0].Count; j++)
                     {
                         //проверяем базисная ли переменная
                         if (corner_dot_with_radicals[0][j] != 0)
