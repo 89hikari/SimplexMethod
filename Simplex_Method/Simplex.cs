@@ -993,6 +993,7 @@ namespace Simplex_Method
                     a -= cel_function[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
 
                     ////отображение
+                    ///
                     Grid.Rows[number_of_permutations].Cells[column_index].Value = a;
                     column_index++;
                 }
