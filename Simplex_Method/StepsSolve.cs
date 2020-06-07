@@ -64,7 +64,7 @@ namespace Simplex_Method
         /// <summary>
         /// Симплекс-таблица.
         /// </summary>
-        SimplexTable simplextable;
+        Simplex simplextable;
         /// <summary>
         /// Разрешающая строка.
         /// </summary>
@@ -461,7 +461,7 @@ namespace Simplex_Method
 
                         if (simplex_table_was_draw == false)
                         {
-                            simplextable = new SimplexTable(number_of_basix_permutations, number_of_free_variables, ogr, cel_function, true, Radical_or_Decimal);
+                            simplextable = new Simplex(number_of_basix_permutations, number_of_free_variables, ogr, cel_function, true, Radical_or_Decimal);
                             DrawSimplexTable(ogr);
                             //Симплекс-таблица была создана
                             simplex_table_was_draw = true;
@@ -474,7 +474,7 @@ namespace Simplex_Method
 
                         if (simplex_table_was_draw == false)
                         {
-                            simplextable = new SimplexTable(number_of_basix_permutations, number_of_free_variables, ogr_with_radicals, cel_function_with_radicals, true, Radical_or_Decimal);
+                            simplextable = new Simplex(number_of_basix_permutations, number_of_free_variables, ogr_with_radicals, cel_function_with_radicals, true, Radical_or_Decimal);
                             DrawSimplexTable(ogr_with_radicals);
                             //Симплекс-таблица была создана
                             simplex_table_was_draw = true;
@@ -658,7 +658,7 @@ namespace Simplex_Method
 
 
 
-        private void ChangeOfVisualizationVariables(SimplexTable simplextable)
+        private void ChangeOfVisualizationVariables(Simplex simplextable)
         {
             string tmp_x;
 
@@ -673,7 +673,7 @@ namespace Simplex_Method
             dataGridView3.Columns[column_of_the_support_element].HeaderText = tmp_x;
         }
 
-        private void ChangeOfVisualizationVariables_without_bufferization(SimplexTable simplextable)
+        private void ChangeOfVisualizationVariables_without_bufferization(Simplex simplextable)
         {
             string tmp_x;
             int[] tmp_coordination = new int[2];
@@ -694,7 +694,7 @@ namespace Simplex_Method
         /// Проверяем, выбран ли опорный элемент
         /// </summary>
         /// <param name="simplextable"></param>
-        private void ButtonPressedOrNot(SimplexTable simplextable)
+        private void ButtonPressedOrNot(Simplex simplextable)
         {
             for (int i = 0; i < the_coordinates_of_the_support_element.Count; i++)
             {
@@ -712,7 +712,7 @@ namespace Simplex_Method
         /// Нахождение всех опорных элементов и их выделение
         /// </summary>
         /// <param name="simplextable"></param>
-        public void SelectionOfTheSupportElement(SimplexTable simplextable)
+        public void SelectionOfTheSupportElement(Simplex simplextable)
         {
             if (Radical_or_Decimal)
             {
@@ -752,7 +752,7 @@ namespace Simplex_Method
                         //если есть минимальный, то делаем его подсвеченным
                         if ((minimum[0] != -1) && (minimum[1] != -1))
                         {
-                            dataGridView3.Rows[minimum[0]].Cells[minimum[1]].Style.BackColor = System.Drawing.Color.GreenYellow;
+                            dataGridView3.Rows[minimum[0]].Cells[minimum[1]].Style.BackColor = System.Drawing.Color.Green;
 
                             //координаты возможного опорного элемента
                             the_coordinates_of_the_support_element.Add(new List<int>());
@@ -802,7 +802,7 @@ namespace Simplex_Method
                         //если есть минимальный, то делаем его подсвеченным
                         if ((minimum[0] != -1) && (minimum[1] != -1))
                         {
-                            dataGridView3.Rows[minimum[0]].Cells[minimum[1]].Style.BackColor = System.Drawing.Color.GreenYellow;
+                            dataGridView3.Rows[minimum[0]].Cells[minimum[1]].Style.BackColor = System.Drawing.Color.Green;
 
                             //координаты возможного опорного элемента
                             the_coordinates_of_the_support_element.Add(new List<int>());
@@ -889,14 +889,14 @@ namespace Simplex_Method
                     a -= simplextable.cel_function[0][Int32.Parse(dataGridView3.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
 
                     ////отображение
-                    dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a;
+                    dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a * (-1);
                     column_index++;
                 }
 
                 //коэффициент в нижнем правом углу симплекс таблицы
                 a = 0;
                 for (int i = 0; i < simplextable.ogr.Count; i++)
-                    a += simplextable.ogr[i][simplextable.ogr[0].Count - 1] * cel_function[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
+                    a += simplextable.ogr[i][simplextable.ogr[0].Count - 1] * cel_function[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1] * (-1);
 
                 dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a;
 
@@ -987,16 +987,18 @@ namespace Simplex_Method
 
                     ////отображение
 
-                    dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a;
+                    dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a * (-1);
                     column_index++;
                 }
 
                 //коэффициент в нижнем правом углу симплекс таблицы
                 a = new Fraction(0);
                 for (int i = 0; i < simplextable.ogr_with_radicals.Count; i++)
-                    a += simplextable.ogr_with_radicals[i][simplextable.ogr_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
+                    a += simplextable.ogr_with_radicals[i][simplextable.ogr_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1] * (-1);
 
-                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a;
+                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a * (-1);
+                a = a * (-1);
+                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a * (-1);
 
                 //заполняем рабочий массив
                 for (int i = 0; i < dataGridView3.Rows.Count; i++)

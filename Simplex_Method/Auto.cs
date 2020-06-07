@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Simplex_Method
 {
-    public partial class AutoMode : Form
+    public partial class Auto : Form
     {
         /// <summary>
         /// Матрица коэффициентов системы ограничений-равенств.
@@ -51,7 +51,7 @@ namespace Simplex_Method
         /// <summary>
         /// Симплекс-таблица.
         /// </summary>
-        SimplexTable simplextable;
+        Simplex simplextable;
         ///<summary>
         ///Корневая точка
         ///</summary>
@@ -69,7 +69,7 @@ namespace Simplex_Method
         /// </summary>
         private bool corner_dot_was_added;
 
-        public AutoMode(List<List<double>> cel_function, List<List<double>> ogr, int MinMax, bool CornerDot, int number_of_basix, bool decimal_or_radical_drob, List<int> variable_visualization)
+        public Auto(List<List<double>> cel_function, List<List<double>> ogr, int MinMax, bool CornerDot, int number_of_basix, bool decimal_or_radical_drob, List<int> variable_visualization)
         {
             InitializeComponent();
 
@@ -95,7 +95,7 @@ namespace Simplex_Method
             Implementation();
         }
 
-        public AutoMode(List<List<Fraction>> cel_function_with_radicals, List<List<Fraction>> ogr_with_radicals, int MinMax, bool CornerDot, int number_of_basix, bool decimal_or_radical_drob, List<int> variable_visualization)
+        public Auto(List<List<Fraction>> cel_function_with_radicals, List<List<Fraction>> ogr_with_radicals, int MinMax, bool CornerDot, int number_of_basix, bool decimal_or_radical_drob, List<int> variable_visualization)
         {
             InitializeComponent();
 
@@ -122,7 +122,7 @@ namespace Simplex_Method
 
         }
 
-        public AutoMode(List<List<double>> cel_function, List<List<double>> ogr, int minMax, int rang, bool decimal_or_radical_drob)
+        public Auto(List<List<double>> cel_function, List<List<double>> ogr, int minMax, int rang, bool decimal_or_radical_drob)
         {
             InitializeComponent();
             // Переносим заполненный массив с главного окна
@@ -146,7 +146,7 @@ namespace Simplex_Method
             Implementation();
         }
 
-        public AutoMode(List<List<Fraction>> cel_function_with_radicals, List<List<Fraction>> ogr_with_radicals, int minMax, int rang, bool decimal_or_radical_drob)
+        public Auto(List<List<Fraction>> cel_function_with_radicals, List<List<Fraction>> ogr_with_radicals, int minMax, int rang, bool decimal_or_radical_drob)
         {
             InitializeComponent();
             // Переносим заполненный массив с главного окна
@@ -186,7 +186,7 @@ namespace Simplex_Method
                 else
                     addGridParam(ogr, dataGridView3);
                 //создаём сиплекс-таблицу
-                simplextable = new SimplexTable(number_of_basix, number_of_free_variables, ogr, cel_function, true, Radical_or_Decimal);
+                simplextable = new Simplex(number_of_basix, number_of_free_variables, ogr, cel_function, true, Radical_or_Decimal);
                 DrawSimplexTable(ogr);
             }
             else
@@ -201,7 +201,7 @@ namespace Simplex_Method
                 else
                     addGridParam(ogr_with_radicals, dataGridView3);
                 //создаём сиплекс-таблицу
-                simplextable = new SimplexTable(number_of_basix, number_of_free_variables, ogr_with_radicals, cel_function_with_radicals, true, Radical_or_Decimal);
+                simplextable = new Simplex(number_of_basix, number_of_free_variables, ogr_with_radicals, cel_function_with_radicals, true, Radical_or_Decimal);
                 DrawSimplexTable(ogr_with_radicals);
             }
 

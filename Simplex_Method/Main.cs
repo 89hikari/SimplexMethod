@@ -494,7 +494,7 @@ namespace Simplex_Method
                     // Меняем колонки местами, чтобы обычный прямой ход Гаусса ставил базис именно по ненулевым столбцам корневой точки
                     ChangeColumnsForGauss(ogr, corner_dot, variable_visualization);
 
-                    AutoMode byAuto = new AutoMode(cel_function, ogr, MinMax, CornerDot, count_basix_var, decimal_or_radical_drob, variable_visualization);
+                    Auto byAuto = new Auto(cel_function, ogr, MinMax, CornerDot, count_basix_var, decimal_or_radical_drob, variable_visualization);
                     byAuto.ShowDialog();
                 }
                 else
@@ -509,7 +509,7 @@ namespace Simplex_Method
                     // Меняем колонки местами, чтобы обычный прямой ход Гаусса ставил базис именно по ненулевым столбцам корневой точки
                     ChangeColumnsForGauss(ogr_with_radicals, corner_dot_with_radicals, variable_visualization);
 
-                    AutoMode byAuto = new AutoMode(cel_function_with_radicals, ogr_with_radicals, MinMax, CornerDot, count_basix_var, decimal_or_radical_drob, variable_visualization);
+                    Auto byAuto = new Auto(cel_function_with_radicals, ogr_with_radicals, MinMax, CornerDot, count_basix_var, decimal_or_radical_drob, variable_visualization);
                     byAuto.ShowDialog();
                 }
             }
@@ -519,13 +519,13 @@ namespace Simplex_Method
                 // Если выбраны десятичные дроби
                 if (decimal_or_radical_drob == true)
                 {
-                    AutoMode byAuto = new AutoMode(cel_function, ogr, MinMax, rang, decimal_or_radical_drob);
+                    Auto byAuto = new Auto(cel_function, ogr, MinMax, rang, decimal_or_radical_drob);
                     byAuto.ShowDialog();
                 }
                 // Если выбраны обыкновенные дроби
                 else if (decimal_or_radical_drob == false)
                 {
-                    AutoMode byAuto = new AutoMode(cel_function_with_radicals, ogr_with_radicals, MinMax, rang, decimal_or_radical_drob);
+                    Auto byAuto = new Auto(cel_function_with_radicals, ogr_with_radicals, MinMax, rang, decimal_or_radical_drob);
                     byAuto.ShowDialog();
                 }
             }
@@ -540,7 +540,7 @@ namespace Simplex_Method
                     for (int i = 0; i < ogr[0].Count; i++)
                         variable_visualization.Add(i + 1);
 
-                    StepsArtificial stepByStepArtifical = new StepsArtificial(ogr, cel_function, rang, variable_visualization, MinMax, decimal_or_radical_drob);
+                    StepsIskBasis stepByStepArtifical = new StepsIskBasis(ogr, cel_function, rang, variable_visualization, MinMax, decimal_or_radical_drob);
                     stepByStepArtifical.Show();
                 }
                 else
@@ -551,7 +551,7 @@ namespace Simplex_Method
                     for (int i = 0; i < ogr_with_radicals[0].Count; i++)
                         variable_visualization.Add(i + 1);
 
-                    StepsArtificial stepByStepArtifical = new StepsArtificial(ogr_with_radicals, cel_function_with_radicals, rang, variable_visualization, MinMax, decimal_or_radical_drob);
+                    StepsIskBasis stepByStepArtifical = new StepsIskBasis(ogr_with_radicals, cel_function_with_radicals, rang, variable_visualization, MinMax, decimal_or_radical_drob);
                     stepByStepArtifical.Show();
                 }
 
@@ -568,7 +568,7 @@ namespace Simplex_Method
                     for (int i = 0; i < ogr[0].Count; i++)
                         variable_visualization.Add(i + 1);
 
-                    AutoModeArtificalBasix autoModeArtifical = new AutoModeArtificalBasix(ogr, cel_function, rang, variable_visualization, MinMax, decimal_or_radical_drob);
+                    AutoIskBasis autoModeArtifical = new AutoIskBasis(ogr, cel_function, rang, variable_visualization, MinMax, decimal_or_radical_drob);
                     autoModeArtifical.Show();
                 }
                 else
@@ -579,7 +579,7 @@ namespace Simplex_Method
                     for (int i = 0; i < ogr_with_radicals[0].Count; i++)
                         variable_visualization.Add(i + 1);
 
-                    AutoModeArtificalBasix autoModeArtifical = new AutoModeArtificalBasix(ogr_with_radicals, cel_function_with_radicals, rang, variable_visualization, MinMax, decimal_or_radical_drob);
+                    AutoIskBasis autoModeArtifical = new AutoIskBasis(ogr_with_radicals, cel_function_with_radicals, rang, variable_visualization, MinMax, decimal_or_radical_drob);
                     autoModeArtifical.Show();
                 }
             }

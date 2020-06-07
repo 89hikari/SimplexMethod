@@ -1,6 +1,6 @@
 ﻿namespace Simplex_Method
 {
-    partial class AutoMode
+    partial class AutoIskBasis
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoMode));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoIskBasis));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.groupBoxCornerDot = new System.Windows.Forms.GroupBox();
@@ -49,7 +49,7 @@
             this.groupBox1.Size = new System.Drawing.Size(631, 309);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Текущая задача";
+            this.groupBox1.Text = "Таблица";
             // 
             // dataGridView3
             // 
@@ -58,8 +58,8 @@
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(3, 17);
             this.dataGridView3.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dataGridView3.Location = new System.Drawing.Point(3, 17);
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
@@ -104,7 +104,7 @@
             this.label_answer.TabIndex = 5;
             this.label_answer.Text = "Ответ: ";
             // 
-            // AutoMode
+            // AutoModeArtificalBasix
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -114,8 +114,9 @@
             this.Controls.Add(this.groupBoxCornerDot);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "AutoMode";
-            this.Text = "Симплекс метод, автоматически.";
+            this.Name = "AutoModeArtificalBasix";
+            this.Text = "Искусственный базис, автоматически.";
+            this.Load += new System.EventHandler(this.AutoModeArtificalBasix_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBoxCornerDot.ResumeLayout(false);

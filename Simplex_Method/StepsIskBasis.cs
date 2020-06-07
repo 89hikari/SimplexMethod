@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Simplex_Method
 {
-    public partial class StepsArtificial : Form
+    public partial class StepsIskBasis : Form
     {
         /// <summary>
         /// Матрица коэффициентов системы ограничений-равенств.
@@ -59,11 +59,11 @@ namespace Simplex_Method
         /// <summary>
         /// Симплекс-таблица для искусственного базиса.
         /// </summary>
-        SimplexTable simplextable;
+        Simplex simplextable;
         /// <summary>
         /// Симплекс-таблица для обычных проходок.
         /// </summary>
-        SimplexTable simplextable1;
+        Simplex simplextable1;
         /// <summary>
         /// Определитель - какой режим работы с дробями выбран. false - обыкновенные. true - десятичные
         /// </summary>
@@ -97,7 +97,7 @@ namespace Simplex_Method
         /// </summary>
         bool ArtificalBasixGoToNull = false;
 
-        public StepsArtificial(List<List<double>> ogr, List<List<double>> cel_function, int rang, List<int> variable_visualization, int MinMax, bool decimal_or_radical_drob)
+        public StepsIskBasis(List<List<double>> ogr, List<List<double>> cel_function, int rang, List<int> variable_visualization, int MinMax, bool decimal_or_radical_drob)
         {
             InitializeComponent();
 
@@ -132,7 +132,7 @@ namespace Simplex_Method
             Implementation();
         }
 
-        public StepsArtificial(List<List<Fraction>> ogr_with_radicals, List<List<Fraction>> cel_function_with_radicals, int rang, List<int> variable_visualization, int MinMax, bool decimal_or_radical_drob)
+        public StepsIskBasis(List<List<Fraction>> ogr_with_radicals, List<List<Fraction>> cel_function_with_radicals, int rang, List<int> variable_visualization, int MinMax, bool decimal_or_radical_drob)
         {
             InitializeComponent();
 
@@ -175,14 +175,14 @@ namespace Simplex_Method
             if (Radical_or_Decimal)
             {
                 //создаём сиплекс-таблицу
-                simplextable = new SimplexTable(number_of_basix, number_of_free_variables, ogr, cel_function, false, Radical_or_Decimal);
+                simplextable = new Simplex(number_of_basix, number_of_free_variables, ogr, cel_function, false, Radical_or_Decimal);
                 //отрисовываем симплекс таблицу
                 simplextable.DrawSimplexTable(ogr, dataGridView3);
             }
             else
             {
                 //создаём сиплекс-таблицу
-                simplextable = new SimplexTable(number_of_basix, number_of_free_variables, ogr_with_radicals, cel_function_with_radicals, false, Radical_or_Decimal);
+                simplextable = new Simplex(number_of_basix, number_of_free_variables, ogr_with_radicals, cel_function_with_radicals, false, Radical_or_Decimal);
                 //отрисовываем симплекс таблицу
                 simplextable.DrawSimplexTable(ogr_with_radicals, dataGridView3);
             }
@@ -449,9 +449,9 @@ namespace Simplex_Method
                 {
                     // создаём новую симплекс таблицу для дальнейшей работы
                     if (Radical_or_Decimal)
-                        simplextable1 = new SimplexTable(simplextable);
+                        simplextable1 = new Simplex(simplextable);
                     else
-                        simplextable1 = new SimplexTable(simplextable);
+                        simplextable1 = new Simplex(simplextable);
                 }
 
                 if (!ArtificalBasixGoToNull)
@@ -687,7 +687,7 @@ namespace Simplex_Method
 
                     basix_variable_visualization = simplextable.GetOutTheBufferVariablevisualizationForDeleteRows();
 
-                    simplextable = new SimplexTable(simplextable1);
+                    simplextable = new Simplex(simplextable1);
 
                     if (Radical_or_Decimal)
                     {

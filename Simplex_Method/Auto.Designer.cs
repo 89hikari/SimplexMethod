@@ -1,9 +1,6 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-
-namespace Simplex_Method
+﻿namespace Simplex_Method
 {
-    partial class StepsArtificial
+    partial class Auto
     {
         /// <summary>
         /// Required designer variable.
@@ -31,15 +28,12 @@ namespace Simplex_Method
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StepsArtificial));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Auto));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.groupBoxCornerDot = new System.Windows.Forms.GroupBox();
             this.dataGridViewCornerDot = new System.Windows.Forms.DataGridView();
-            this.buttonBack = new System.Windows.Forms.Button();
             this.label_answer = new System.Windows.Forms.Label();
-            this.buttonNext = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.groupBoxCornerDot.SuspendLayout();
@@ -55,7 +49,7 @@ namespace Simplex_Method
             this.groupBox1.Size = new System.Drawing.Size(631, 309);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Таблица";
+            this.groupBox1.Text = "Текущая задача";
             // 
             // dataGridView3
             // 
@@ -64,8 +58,8 @@ namespace Simplex_Method
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dataGridView3.Location = new System.Drawing.Point(3, 17);
+            this.dataGridView3.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
@@ -79,11 +73,10 @@ namespace Simplex_Method
             this.groupBoxCornerDot.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBoxCornerDot.Location = new System.Drawing.Point(15, 372);
             this.groupBoxCornerDot.Name = "groupBoxCornerDot";
-            this.groupBoxCornerDot.Size = new System.Drawing.Size(628, 80);
+            this.groupBoxCornerDot.Size = new System.Drawing.Size(625, 80);
             this.groupBoxCornerDot.TabIndex = 6;
             this.groupBoxCornerDot.TabStop = false;
             this.groupBoxCornerDot.Text = "Угловая точка";
-            this.groupBoxCornerDot.Visible = false;
             // 
             // dataGridViewCornerDot
             // 
@@ -94,72 +87,35 @@ namespace Simplex_Method
             this.dataGridViewCornerDot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewCornerDot.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dataGridViewCornerDot.Location = new System.Drawing.Point(3, 17);
+            this.dataGridViewCornerDot.MultiSelect = false;
             this.dataGridViewCornerDot.Name = "dataGridViewCornerDot";
             this.dataGridViewCornerDot.ReadOnly = true;
             this.dataGridViewCornerDot.RowHeadersVisible = false;
-            this.dataGridViewCornerDot.Size = new System.Drawing.Size(622, 60);
+            this.dataGridViewCornerDot.Size = new System.Drawing.Size(619, 60);
             this.dataGridViewCornerDot.TabIndex = 4;
-            // 
-            // buttonBack
-            // 
-            this.buttonBack.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonBack.Location = new System.Drawing.Point(676, 252);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(171, 54);
-            this.buttonBack.TabIndex = 7;
-            this.buttonBack.Text = "Шаг назад";
-            this.buttonBack.UseVisualStyleBackColor = true;
-            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // label_answer
             // 
             this.label_answer.AutoSize = true;
-            this.label_answer.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_answer.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
             this.label_answer.Location = new System.Drawing.Point(33, 476);
             this.label_answer.Name = "label_answer";
             this.label_answer.Size = new System.Drawing.Size(95, 29);
-            this.label_answer.TabIndex = 8;
+            this.label_answer.TabIndex = 5;
             this.label_answer.Text = "Ответ: ";
-            this.label_answer.Visible = false;
             // 
-            // buttonNext
-            // 
-            this.buttonNext.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonNext.Location = new System.Drawing.Point(676, 145);
-            this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(171, 54);
-            this.buttonNext.TabIndex = 9;
-            this.buttonNext.Text = "Шаг вперёд";
-            this.buttonNext.UseVisualStyleBackColor = true;
-            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(1, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(880, 45);
-            this.label1.TabIndex = 10;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // StepsArtificial
+            // AutoMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(881, 534);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonBack);
-            this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.label_answer);
             this.Controls.Add(this.groupBoxCornerDot);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "StepsArtificial";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Метод искусственного базиса, пошаговый режим.";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StepsArtificial_FormClosed);
-            this.Load += new System.EventHandler(this.StepsArtificial_Load);
+            this.Name = "AutoMode";
+            this.Text = "Симплекс метод, автоматически.";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBoxCornerDot.ResumeLayout(false);
@@ -175,9 +131,6 @@ namespace Simplex_Method
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.GroupBox groupBoxCornerDot;
         private System.Windows.Forms.DataGridView dataGridViewCornerDot;
-        private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Label label_answer;
-        private System.Windows.Forms.Button buttonNext;
-        private System.Windows.Forms.Label label1;
     }
 }

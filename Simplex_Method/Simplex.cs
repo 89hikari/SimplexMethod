@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Simplex_Method
 {
-    public partial class SimplexTable
+    public partial class Simplex
     {
         public int number_of_permutations;
         public int number_of_free_variables;
@@ -83,9 +83,9 @@ namespace Simplex_Method
         /// Буфер для строк искуственного базиса
         /// </summary>
         public List<List<int>> buffer_delete_artifical_rows = new List<List<int>>();
-        private SimplexTable simplextable;
+        private Simplex simplextable;
 
-        public SimplexTable(int number_of_permutations, int number_of_free_variables, List<List<double>> ogr, List<List<double>> cel_function, bool simplex_or_artificial, bool radical_or_decimal)
+        public Simplex(int number_of_permutations, int number_of_free_variables, List<List<double>> ogr, List<List<double>> cel_function, bool simplex_or_artificial, bool radical_or_decimal)
         {
             this.number_of_permutations = number_of_permutations;
             this.number_of_free_variables = number_of_free_variables;
@@ -100,7 +100,7 @@ namespace Simplex_Method
             this.radical_or_decimal = radical_or_decimal;
         }
 
-        public SimplexTable(int number_of_basix_permutations, int number_of_free_variables, List<List<Fraction>> ogr_with_radicals, List<List<Fraction>> cel_function_with_radicals, bool simplex_or_artificial, bool radical_or_decimal)
+        public Simplex(int number_of_basix_permutations, int number_of_free_variables, List<List<Fraction>> ogr_with_radicals, List<List<Fraction>> cel_function_with_radicals, bool simplex_or_artificial, bool radical_or_decimal)
         {
             this.number_of_permutations = number_of_basix_permutations;
             this.number_of_free_variables = number_of_free_variables;
@@ -115,7 +115,7 @@ namespace Simplex_Method
             this.radical_or_decimal = radical_or_decimal;
         }
 
-        public SimplexTable(SimplexTable simplextable)
+        public Simplex(Simplex simplextable)
         {
             this.buffer_simplex_elements = simplextable.buffer_simplex_elements;
             this.buffer_simplex_elements_for_radicals = simplextable.buffer_simplex_elements_for_radicals;
