@@ -416,7 +416,7 @@ namespace Simplex_Method
             Grid.Rows.Add(N);
             non_sort_for_columns();
             if (corner_dot_was_added == false)
-                Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+                Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -440,7 +440,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -464,7 +464,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -488,7 +488,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -536,8 +536,8 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
-            Grid.Rows[Grid.RowCount - 1].HeaderCell.Value = "F";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
+            Grid.Rows[Grid.RowCount - 1].HeaderCell.Value = "f(x)";
         }
 
         /// <summary>
@@ -561,8 +561,8 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
-            Grid.Rows[Grid.RowCount - 1].HeaderCell.Value = "F";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
+            Grid.Rows[Grid.RowCount - 1].HeaderCell.Value = "f(x)";
         }
 
         /// <summary>
@@ -578,7 +578,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -594,7 +594,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>

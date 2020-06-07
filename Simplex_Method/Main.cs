@@ -102,7 +102,7 @@ namespace Simplex_Method
 
                 if (i == Decimal.ToInt32(numericUpDown1.Value)) // именуем последний эл
                 {
-                    dataGridView2.Columns[i].HeaderText = "Свободный";
+                    dataGridView2.Columns[i].HeaderText = "Своб.";
                 }
             } // Создаём столбцы
 
@@ -818,7 +818,7 @@ namespace Simplex_Method
                 addGridParam(_text[i], dataGridView2);
             }
             non_sort_for_columns();
-            dataGridView2.Columns[dataGridView2.ColumnCount - 1].HeaderText = "Свободный";
+            dataGridView2.Columns[dataGridView2.ColumnCount - 1].HeaderText = "Своб.";
 
             drawing_corner_dot();
         }

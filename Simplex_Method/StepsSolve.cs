@@ -229,7 +229,7 @@ namespace Simplex_Method
             Grid.Rows.Add(N);
             non_sort_for_columns();
             if (corner_dot_was_added == false)
-                Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+                Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -301,7 +301,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -357,7 +357,7 @@ namespace Simplex_Method
                 }
             }
             non_sort_for_columns();
-            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "d";
+            Grid.Columns[Grid.ColumnCount - 1].HeaderText = "Своб.";
         }
 
         /// <summary>
@@ -705,7 +705,7 @@ namespace Simplex_Method
                     return;
                 }
             }
-            throw new Exception("Не выбран опорный элемент");
+            throw new Exception("Выберите опорный элемент.");
         }
 
         /// <summary>
@@ -877,7 +877,7 @@ namespace Simplex_Method
                 column_index = 0;
                 // считаем коэффициенты последней строки
                 dataGridView3.Rows.Add();
-                dataGridView3.Rows[simplextable.number_of_permutations].HeaderCell.Value = "F";
+                dataGridView3.Rows[simplextable.number_of_permutations].HeaderCell.Value = "f(x)";
                 for (int j = simplextable.number_of_permutations; j < simplextable.ogr[0].Count - 1; j++)
                 {
                     //логика
@@ -886,7 +886,7 @@ namespace Simplex_Method
                     {
                         a += simplextable.ogr[i][j] * cel_function[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
                     }
-                    a -= simplextable.cel_function[0][Int32.Parse(dataGridView3.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
+                    a -= simplextable.cel_function[0][Int32.Parse(dataGridView3.Columns[column_index].HeaderCell.Value.ToString().Replace("Своб.", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
 
                     ////отображение
                     dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a;
@@ -974,7 +974,7 @@ namespace Simplex_Method
                 column_index = 0;
                 // считаем коэффициенты последней строки
                 dataGridView3.Rows.Add();
-                dataGridView3.Rows[simplextable.number_of_permutations].HeaderCell.Value = "F";
+                dataGridView3.Rows[simplextable.number_of_permutations].HeaderCell.Value = "f(x)";
                 for (int j = simplextable.number_of_permutations; j < simplextable.ogr_with_radicals[0].Count - 1; j++)
                 {
                     //логика
@@ -983,7 +983,7 @@ namespace Simplex_Method
                     {
                         a += simplextable.ogr_with_radicals[i][j] * cel_function_with_radicals[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
                     }
-                    a -= simplextable.cel_function_with_radicals[0][Int32.Parse(dataGridView3.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1];
+                    a -= simplextable.cel_function_with_radicals[0][Int32.Parse(dataGridView3.Columns[column_index].HeaderCell.Value.ToString().Replace("Своб.", column_index.ToString()).Trim('x')) - 1];
 
                     ////отображение
 
@@ -996,7 +996,9 @@ namespace Simplex_Method
                 for (int i = 0; i < simplextable.ogr_with_radicals.Count; i++)
                     a += simplextable.ogr_with_radicals[i][simplextable.ogr_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
 
-                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a;
+                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a * (-1);
+                a = a * (-1);
+                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a * (-1);
 
                 //заполняем рабочий массив
                 for (int i = 0; i < dataGridView3.Rows.Count; i++)

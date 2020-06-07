@@ -340,7 +340,7 @@ namespace Simplex_Method
 
             for (int j = 0; j < Grid.ColumnCount; j++)
             {
-                buffer_delete_artifical_columns[buffer_delete_artifical_columns.Count - 1].Add(Int32.Parse(Grid.Columns[j].HeaderText.Replace("d", (j + 1).ToString()).Trim('x')));
+                buffer_delete_artifical_columns[buffer_delete_artifical_columns.Count - 1].Add(Int32.Parse(Grid.Columns[j].HeaderText.Replace("Своб.", (j + 1).ToString()).Trim('x')));
             }
         }
 
@@ -349,7 +349,7 @@ namespace Simplex_Method
             buffer_delete_artifical_rows.Add(new List<int>());
             for (int i = 0; i < Grid.RowCount; i++)
             {
-                buffer_delete_artifical_rows[buffer_delete_artifical_rows.Count - 1].Add(Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Replace("F", (i + 1).ToString()).Trim('x')));
+                buffer_delete_artifical_rows[buffer_delete_artifical_rows.Count - 1].Add(Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Replace("f(x)", (i + 1).ToString()).Trim('x')));
             }
         }
 
@@ -416,7 +416,7 @@ namespace Simplex_Method
                 int column_index = 0;
                 // считаем коэффициенты последней строки
                 Grid.Rows.Add();
-                Grid.Rows[number_of_permutations].HeaderCell.Value = "F";
+                Grid.Rows[number_of_permutations].HeaderCell.Value = "f(x)";
                 for (int j = 0; j < simplex_elements[0].Count - 1; j++)
                 {
                     //логика
@@ -425,10 +425,10 @@ namespace Simplex_Method
                     {
                         a += simplex_elements[i][j] * cel_function[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
                     }
-                    a -= cel_function[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
+                    a -= cel_function[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("Своб.", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
 
                     ////отображение
-                    Grid.Rows[number_of_permutations].Cells[column_index].Value = a * (-1);
+                    Grid.Rows[number_of_permutations].Cells[column_index].Value = a;
                     column_index++;
                 }
 
@@ -439,7 +439,7 @@ namespace Simplex_Method
 
                 Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a * (-1);
                 a = a * (-1);
-                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a * (-1);
+                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a;
 
                 // добавляем в рабочий массив последнюю посчитанную строку
                 for (int i = Grid.Rows.Count - 1; i < Grid.Rows.Count; i++)
@@ -458,7 +458,7 @@ namespace Simplex_Method
                 int column_index = 0;
                 // считаем коэффициенты последней строки
                 Grid.Rows.Add();
-                Grid.Rows[number_of_permutations].HeaderCell.Value = "F";
+                Grid.Rows[number_of_permutations].HeaderCell.Value = "f(x)";
                 for (int j = 0; j < simplex_elements_with_radicals[0].Count - 1; j++)
                 {
                     //логика
@@ -467,11 +467,11 @@ namespace Simplex_Method
                     {
                         a += simplex_elements_with_radicals[i][j] * cel_function_with_radicals[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
                     }
-                    a -= cel_function_with_radicals[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1];
+                    a -= cel_function_with_radicals[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("Своб.", column_index.ToString()).Trim('x')) - 1];
 
                     ////отображение
 
-                    Grid.Rows[number_of_permutations].Cells[column_index].Value = a * (-1);
+                    Grid.Rows[number_of_permutations].Cells[column_index].Value = a;
                     column_index++;
                 }
 
@@ -482,7 +482,7 @@ namespace Simplex_Method
 
                 Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = b * (-1);
                 b = b * (-1); //убейте меня
-                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = b * (-1);
+                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = b;
 
                 // добавляем в рабочий массив последнюю посчитанную строку
                 for (int i = Grid.Rows.Count - 1; i < Grid.Rows.Count; i++)
@@ -981,7 +981,7 @@ namespace Simplex_Method
                 column_index = 0;
                 // считаем коэффициенты последней строки
                 Grid.Rows.Add();
-                Grid.Rows[number_of_permutations].HeaderCell.Value = "F";
+                Grid.Rows[number_of_permutations].HeaderCell.Value = "f(x)";
                 for (int j = number_of_permutations; j < ogr[0].Count - 1; j++)
                 {
                     //логика
@@ -990,7 +990,7 @@ namespace Simplex_Method
                     {
                         a += ogr[i][j] * cel_function[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
                     }
-                    a -= cel_function[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
+                    a -= cel_function[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("Своб.", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
 
                     ////отображение
                     ///
@@ -1030,7 +1030,7 @@ namespace Simplex_Method
                 }
                 // добавляем строку целевой функции
                 Grid.Rows.Add();
-                Grid.Rows[number_of_permutations].HeaderCell.Value = "F";
+                Grid.Rows[number_of_permutations].HeaderCell.Value = "f(x)";
 
                 // считаем коэффициенты последней строки
                 column_index = 0;
@@ -1203,7 +1203,7 @@ namespace Simplex_Method
                 column_index = 0;
                 // считаем коэффициенты последней строки
                 Grid.Rows.Add();
-                Grid.Rows[number_of_permutations].HeaderCell.Value = "F";
+                Grid.Rows[number_of_permutations].HeaderCell.Value = "f(x)";
                 for (int j = number_of_permutations; j < ogr_with_radicals[0].Count - 1; j++)
                 {
                     //логика
@@ -1212,7 +1212,7 @@ namespace Simplex_Method
                     {
                         a += ogr_with_radicals[i][j] * cel_function_with_radicals[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
                     }
-                    a -= cel_function_with_radicals[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1];
+                    a -= cel_function_with_radicals[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("Своб.", column_index.ToString()).Trim('x')) - 1];
 
                     ////отображение
 
@@ -1254,7 +1254,7 @@ namespace Simplex_Method
 
                 // добавляем строку целевой функции
                 Grid.Rows.Add();
-                Grid.Rows[number_of_permutations].HeaderCell.Value = "F";
+                Grid.Rows[number_of_permutations].HeaderCell.Value = "f(x)";
 
                 // считаем коэффициенты последней строки
                 column_index = 0;
