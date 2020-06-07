@@ -191,13 +191,13 @@ namespace Simplex_Method
 
             if (simplextable.ResponseCheck() == 1)
             {
-                tabControl1.TabPages[0].Text = "Холостой шаг: Метод искусственного базиса. Выбор опорного элемента.";
+            //    tabControl1.TabPages[0].Text = "Холостой шаг: Метод искусственного базиса. Выбор опорного элемента.";
                 //холостой шаг
                 //simplextable.IdleStep();
             }
             else
             {
-                tabControl1.TabPages[0].Text = "Шаг " + step + ": Метод искусственного базиса. Выбор опорного элемента.";
+             //   tabControl1.TabPages[0].Text = "Шаг " + step + ": Метод искусственного базиса. Выбор опорного элемента.";
                 //выбор опорного
                 simplextable.SelectionRandomSupportElement();
             }
@@ -269,7 +269,7 @@ namespace Simplex_Method
                                 break;
                             case 1:
                                 // Подставляем ответ
-                                tabControl1.TabPages[0].Text = "Ответ готов!";
+                           //     tabControl1.TabPages[0].Text = "Ответ готов!";
                                 if (MinMax == 0)
                                 {
                                     if (Radical_or_Decimal)
@@ -295,7 +295,7 @@ namespace Simplex_Method
 
                                 break;
                             case -1:
-                                tabControl1.TabPages[0].Text = "Линейная форма не ограничена сверху на множествен планов задачи.";
+                             //   tabControl1.TabPages[0].Text = "Линейная форма не ограничена сверху на множествен планов задачи.";
 
                                 MessageBox.Show("Линейная форма не ограничена сверху на множествен планов задачи.", "Ответ готов!");
 
@@ -312,7 +312,7 @@ namespace Simplex_Method
                             // Если симплекс таблица решена
 
                             // Подставляем ответ
-                            tabControl1.TabPages[0].Text = "Ответ готов!";
+                          //  tabControl1.TabPages[0].Text = "Ответ готов!";
                             if (MinMax == 0)
                             {
                                 if (Radical_or_Decimal)
@@ -339,7 +339,7 @@ namespace Simplex_Method
                         }
                         else
                         {
-                            tabControl1.TabPages[0].Text = "Шаг " + step + ": Метод искусственного базиса. Выбор опорного элемента.";
+                          //  tabControl1.TabPages[0].Text = "Шаг " + step + ": Метод искусственного базиса. Выбор опорного элемента.";
                             //выбор опорного
                             simplextable.SelectionRandomSupportElement();
                         }
@@ -397,7 +397,7 @@ namespace Simplex_Method
 
                         break;
                     case -1:
-                        tabControl1.TabPages[0].Text = "Линейная форма не ограничена сверху на множествен планов задачи.";
+                      //  tabControl1.TabPages[0].Text = "Линейная форма не ограничена сверху на множествен планов задачи.";
                         MessageBox.Show("Линейная форма не ограничена сверху на множествен планов задачи.", "Ответ готов!");
                         break;
                 }
