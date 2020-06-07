@@ -139,7 +139,7 @@ namespace Simplex_Method
             this.Radical_or_Decimal = decimal_or_radical_drob;
 
             // добавляем в ячейки, то есть отрисовываем то, что есть
-            tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничения равенств.";
+           // tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничения равенств.";
             addGridParam(ogr, dataGridView3);
 
             //Процесс выполнения.
@@ -163,7 +163,7 @@ namespace Simplex_Method
             this.Radical_or_Decimal = decimal_or_radical_drob;
 
             // добавляем в ячейки, то есть отрисовываем то, что есть
-            tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничения равенств.";
+          //  tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничения равенств.";
             addGridParam(ogr_with_radicals, dataGridView3);
 
             //Процесс выполнения.
@@ -227,7 +227,7 @@ namespace Simplex_Method
                 }
                 else if (responce == 1)
                 {
-                    tabControl1.TabPages[0].Text = "Ответ готов!";
+                   // tabControl1.TabPages[0].Text = "Ответ готов!";
                     // Подставляем ответ
                     if (MinMax == 0)
                     {
@@ -255,7 +255,7 @@ namespace Simplex_Method
                 else if (responce == -1)
                 {
                     MessageBox.Show("Задача не разрешима!");
-                    tabControl1.TabPages[0].Text = "Задача не разрешима!";
+                  //  tabControl1.TabPages[0].Text = "Задача не разрешима!";
                     break;
                 }
             }
@@ -433,17 +433,18 @@ namespace Simplex_Method
 
                     ////отображение
 
-                    dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a;
+                    dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a * (-1);
                     column_index++;
                 }
 
                 //коэффициент в нижнем правом углу симплекс таблицы
                 a = new Fraction(0);
                 for (int i = 0; i < simplextable.ogr_with_radicals.Count; i++)
-                    a += simplextable.ogr_with_radicals[i][simplextable.ogr_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
+                    a += simplextable.ogr_with_radicals[i][simplextable.ogr_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1] * (-1);
 
-                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a;
-
+                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a * (-1);
+                a = a * (-1);
+                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a * (-1);
                 //заполняем рабочий массив
                 for (int i = 0; i < dataGridView3.Rows.Count; i++)
                 {
@@ -528,7 +529,7 @@ namespace Simplex_Method
                         a += simplextable.ogr[i][j] * cel_function[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
                     }
                     a -= simplextable.cel_function[0][Int32.Parse(dataGridView3.Columns[column_index].HeaderCell.Value.ToString().Replace("d", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
-
+                    a = a * (-1);
                     ////отображение
                     dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a;
                     column_index++;
@@ -537,9 +538,11 @@ namespace Simplex_Method
                 //коэффициент в нижнем правом углу симплекс таблицы
                 a = 0;
                 for (int i = 0; i < simplextable.ogr.Count; i++)
-                    a += simplextable.ogr[i][simplextable.ogr[0].Count - 1] * cel_function[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
+                    a += simplextable.ogr[i][simplextable.ogr[0].Count - 1] * cel_function[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1] * (-1);
 
-                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a;
+                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a * (-1);
+                a = a * (-1);
+                dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[dataGridView3.Columns.Count - 1].Value = a * (-1);
 
                 //заполняем рабочий массив
                 for (int i = 0; i < dataGridView3.Rows.Count; i++)

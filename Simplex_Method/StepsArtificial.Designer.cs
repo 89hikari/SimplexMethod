@@ -79,7 +79,7 @@ namespace Simplex_Method
             this.groupBoxCornerDot.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBoxCornerDot.Location = new System.Drawing.Point(15, 372);
             this.groupBoxCornerDot.Name = "groupBoxCornerDot";
-            this.groupBoxCornerDot.Size = new System.Drawing.Size(625, 80);
+            this.groupBoxCornerDot.Size = new System.Drawing.Size(628, 80);
             this.groupBoxCornerDot.TabIndex = 6;
             this.groupBoxCornerDot.TabStop = false;
             this.groupBoxCornerDot.Text = "Угловая точка";
@@ -97,7 +97,7 @@ namespace Simplex_Method
             this.dataGridViewCornerDot.Name = "dataGridViewCornerDot";
             this.dataGridViewCornerDot.ReadOnly = true;
             this.dataGridViewCornerDot.RowHeadersVisible = false;
-            this.dataGridViewCornerDot.Size = new System.Drawing.Size(619, 60);
+            this.dataGridViewCornerDot.Size = new System.Drawing.Size(622, 60);
             this.dataGridViewCornerDot.TabIndex = 4;
             // 
             // buttonBack

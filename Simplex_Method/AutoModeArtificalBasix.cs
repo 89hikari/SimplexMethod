@@ -301,9 +301,6 @@ namespace Simplex_Method
 
                                 break;
                         }
-
-
-
                         break;
 
                     case 0:
@@ -345,7 +342,7 @@ namespace Simplex_Method
                         }
                         break;
                     case -1:
-                        MessageBox.Show("Решения не имеет");
+                      //  MessageBox.Show("Решения не имеет");
                         break;
                 }
             }

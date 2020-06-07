@@ -435,8 +435,10 @@ namespace Simplex_Method
                 //коэффициент в нижнем правом углу симплекс таблицы
                 a = 0;
                 for (int i = 0; i < simplex_elements.Count; i++)
-                    a += simplex_elements[i][simplex_elements[0].Count - 1] * cel_function[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
+                    a += simplex_elements[i][simplex_elements[0].Count - 1] * cel_function[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1] * (-1);
 
+                Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a * (-1);
+                a = a * (-1);
                 Grid.Rows[Grid.Rows.Count - 1].Cells[Grid.Columns.Count - 1].Value = a * (-1);
 
                 // добавляем в рабочий массив последнюю посчитанную строку

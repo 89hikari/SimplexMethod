@@ -116,7 +116,8 @@ namespace Simplex_Method
 
 
             // добавляем в ячейки, то есть отрисовываем то, что есть
-            tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничения равенств.";
+            //  label1.Text
+            label1.Text = "Матрица коэффициентов системы ограничения равенств.";
             addGridParam(ogr, dataGridView3);
         }
 
@@ -142,7 +143,7 @@ namespace Simplex_Method
             this.Radical_or_Decimal = decimal_or_radical_drob;
 
             // добавляем в ячейки, то есть отрисовываем то, что есть
-            tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничения равенств.";
+            label1.Text = "Матрица коэффициентов системы ограничения равенств.";
             addGridParam(ogr_with_radicals, dataGridView3);
         }
 
@@ -170,7 +171,7 @@ namespace Simplex_Method
             this.variable_visualization = variable_visualization;
 
             // добавляем в ячейки, то есть отрисовываем то, что есть
-            tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничения равенств.";
+            label1.Text = "Матрица коэффициентов системы ограничения равенств.";
             addGridParam(ogr_with_radicals, dataGridView3, variable_visualization);
         }
 
@@ -198,7 +199,7 @@ namespace Simplex_Method
             this.variable_visualization = variable_visualization;
 
             // добавляем в ячейки, то есть отрисовываем то, что есть
-            tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничения равенств.";
+            label1.Text = "Матрица коэффициентов системы ограничения равенств.";
             addGridParam(ogr, dataGridView3, variable_visualization);
         }
 
@@ -420,7 +421,7 @@ namespace Simplex_Method
                         MessageBox.Show(d.Message);
                     }
                     step++;
-                    tabControl1.TabPages[0].Text = "Шаг 1: Прямой ход метода Гаусса.";
+                    label1.Text = "Шаг 1: Прямой ход метода Гаусса.";
                     break;
 
                 case 1:
@@ -449,7 +450,7 @@ namespace Simplex_Method
                             addGridParam(ogr_with_radicals, dataGridView3);
                     }
                     step++;
-                    tabControl1.TabPages[0].Text = "Шаг 2: Выражение базисных переменных.";
+                    label1.Text = "Шаг 2: Выражение базисных переменных.";
                     break;
 
                 case 2:
@@ -484,11 +485,11 @@ namespace Simplex_Method
                     {
                         case 0:
                             step++;
-                            tabControl1.TabPages[0].Text = "Шаг 3: Симплекс-таблица.";
+                            label1.Text = "Шаг 3: Симплекс-таблица.";
                             break;
                         case 1:
                             // Если ответ готов сразу без выбора опорного элемента
-                            tabControl1.TabPages[0].Text = "Ответ готов!";
+                            label1.Text = "Ответ";
                             // Увиличиваем шаг. И делаем видимыми элементы
                             step++;
                             label_answer.Visible = true;
@@ -522,8 +523,7 @@ namespace Simplex_Method
                             break;
                         case -1:
                             step++;
-                            MessageBox.Show("Задача не разрешима!");
-                            tabControl1.TabPages[0].Text = "Задача не разрешима!";
+                            MessageBox.Show("Задача не разрешима");
                             buttonNext.Enabled = false;
                             break;
                     }
@@ -533,7 +533,7 @@ namespace Simplex_Method
                     //выбор опорного
                     SelectionOfTheSupportElement(simplextable);
                     step++;
-                    tabControl1.TabPages[0].Text = "Шаг" + step + ": Выбор опорного элемента";
+                    label1.Text = "Шаг" + step + ": Выбор опорного элемента";
                     break;
                 default:
                     try
@@ -558,12 +558,12 @@ namespace Simplex_Method
                         {
                             case 0:
                                 step++;
-                                tabControl1.TabPages[0].Text = "Шаг" + step + ": Выбор опорного элемента";
+                                label1.Text = "Шаг" + step + ": Выбор опорного элемента";
                                 //выбор опорного
                                 SelectionOfTheSupportElement(simplextable);
                                 break;
                             case 1:
-                                tabControl1.TabPages[0].Text = "Ответ готов!";
+                                label1.Text = "Ответ готов!";
                                 step++;
                                 label_answer.Visible = true;
                                 groupBoxCornerDot.Visible = true;
@@ -593,8 +593,7 @@ namespace Simplex_Method
                                 break;
                             case -1:
                                 step++;
-                                MessageBox.Show("Задача не разрешима!");
-                                tabControl1.TabPages[0].Text = "Задача не разрешима!";
+                                MessageBox.Show("Задача не разрешима");
                                 buttonNext.Enabled = false;
                                 break;
                         }
@@ -1263,7 +1262,7 @@ namespace Simplex_Method
                             addGridParam(ogr_with_radicals, dataGridView3);
                     }
                     step--;
-                    tabControl1.TabPages[0].Text = "Матрица коэффициентов системы ограничений равенств.";
+                 //   label1.Text = "Матрица коэффициентов системы ограничений равенств.";
                     break;
                 case 2:
                     if (Radical_or_Decimal)
@@ -1287,7 +1286,7 @@ namespace Simplex_Method
                             addGridParam(ogr_with_radicals, dataGridView3);
                     }
                     step--;
-                    tabControl1.TabPages[0].Text = "Шаг 1: Прямой ход метода Гаусса.";
+                  //  label1.Text = "Шаг 1: Прямой ход метода Гаусса.";
                     break;
                 case 3:
                     if (Radical_or_Decimal)
@@ -1313,7 +1312,7 @@ namespace Simplex_Method
 
                     simplex_table_was_draw = false;
                     step--;
-                    tabControl1.TabPages[0].Text = "Шаг 2: Выражение базисных переменных.";
+                   // tabControl1.TabPages[0].Text = "Шаг 2: Выражение базисных переменных.";
                     label_answer.Visible = false;
                     groupBoxCornerDot.Visible = false;
                     buttonNext.Enabled = true;
@@ -1322,7 +1321,7 @@ namespace Simplex_Method
                     // Делаем все ячейки без зелёного выделения
                     delete_green_grids();
                     step--;
-                    tabControl1.TabPages[0].Text = "Шаг 3: Симплекс-таблица.";
+                  //  tabControl1.TabPages[0].Text = "Шаг 3: Симплекс-таблица.";
                     break;
                 default:
                     // Делаем все ячейки без зелёного выделения
@@ -1343,7 +1342,7 @@ namespace Simplex_Method
                     //выбор опорного
                     SelectionOfTheSupportElement(simplextable);
                     step--;
-                    tabControl1.TabPages[0].Text = "Шаг" + step + ": Выбор опорного элемента";
+                 //   tabControl1.TabPages[0].Text = "Шаг" + step + ": Выбор опорного элемента";
                     label_answer.Visible = false;
                     groupBoxCornerDot.Visible = false;
                     buttonNext.Enabled = true;

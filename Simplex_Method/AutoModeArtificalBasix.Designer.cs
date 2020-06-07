@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoModeArtificalBasix));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.groupBoxCornerDot = new System.Windows.Forms.GroupBox();
@@ -57,8 +58,8 @@
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(3, 17);
             this.dataGridView3.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dataGridView3.Location = new System.Drawing.Point(3, 17);
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
@@ -112,6 +113,7 @@
             this.Controls.Add(this.label_answer);
             this.Controls.Add(this.groupBoxCornerDot);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AutoModeArtificalBasix";
             this.Text = "Искусственный базис, автоматически.";
             this.Load += new System.EventHandler(this.AutoModeArtificalBasix_Load);

@@ -550,11 +550,7 @@ namespace Simplex_Method
                                     step_1++;
                                     break;
                             }
-
-
-
                             break;
-
                         case 0:
                             if (simplextable.ResponseCheck() == 1)
                             {
