@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Simplex_Method
 {
-    public sealed class Fraction
+    public sealed class Fractions
     {
         private int numerator;              // Числитель
         private int denominator;            // Знаменатель
-        private int sign;
+        private int sign;                   // Знак перед дробью
 
-        public Fraction(int numerator, int denominator)
+        public Fractions(int numerator, int denominator)
         {
             if (denominator == 0)
             {
-                throw new DivideByZeroException("В знаменателе не может быть нуля");
+                throw new DivideByZeroException("Ошибка: деление на ноль.");
             }
             this.numerator = Math.Abs(numerator);
             this.denominator = Math.Abs(denominator);
@@ -31,7 +31,7 @@ namespace Simplex_Method
         }
 
         // Вызов первого конструктора со знаменателем равным единице
-        public Fraction(int number) : this(number, 1) { }
+        public Fractions(int number) : this(number, 1) { }
 
         // Возвращает наибольший общий делитель (Алгоритм Евклида)
         private static int getGreatestCommonDivisor(int a, int b)
@@ -61,7 +61,7 @@ namespace Simplex_Method
         // Возвращает дробь, которая является результатом сложения или вычитания дробей a и b,
         // В зависимости от того, какая операция передана в параметр operation.
         // P.S. использовать только для сложения и вычитания
-        private static Fraction performOperation(Fraction a, Fraction b, Func<int, int, int> operation)
+        private static Fractions performOperation(Fractions a, Fractions b, Func<int, int, int> operation)
         {
             // Наименьшее общее кратное знаменателей
             int leastCommonMultiple = getLeastCommonMultiple(a.denominator, b.denominator);
@@ -72,101 +72,101 @@ namespace Simplex_Method
             // Результат операции
             int operationResult = operation(a.numerator * additionalMultiplierFirst * a.sign,
             b.numerator * additionalMultiplierSecond * b.sign);
-            return new Fraction(operationResult, a.denominator * additionalMultiplierFirst);
+            return new Fractions(operationResult, a.denominator * additionalMultiplierFirst);
         }
 
         // Возвращает дробь, обратную данной
-        private Fraction GetReverse()
+        private Fractions GetReverse()
         {
-            return new Fraction(this.denominator * this.sign, this.numerator);
+            return new Fractions(this.denominator * this.sign, this.numerator);
         }
         // Возвращает дробь с противоположным знаком
-        private Fraction GetWithChangedSign()
+        private Fractions GetWithChangedSign()
         {
-            return new Fraction(-this.numerator * this.sign, this.denominator);
+            return new Fractions(-this.numerator * this.sign, this.denominator);
         }
 
         // Перегрузка оператора "+" для случая сложения двух дробей
-        public static Fraction operator +(Fraction a, Fraction b)
+        public static Fractions operator +(Fractions a, Fractions b)
         {
             return performOperation(a, b, (int x, int y) => x + y);
         }
         // Перегрузка оператора "+" для случая сложения дроби с числом
-        public static Fraction operator +(Fraction a, int b)
+        public static Fractions operator +(Fractions a, int b)
         {
-            return a + new Fraction(b);
+            return a + new Fractions(b);
         }
         // Перегрузка оператора "+" для случая сложения числа с дробью
-        public static Fraction operator +(int a, Fraction b)
+        public static Fractions operator +(int a, Fractions b)
         {
             return b + a;
         }
         // Перегрузка оператора "-" для случая вычитания двух дробей
-        public static Fraction operator -(Fraction a, Fraction b)
+        public static Fractions operator -(Fractions a, Fractions b)
         {
             return performOperation(a, b, (int x, int y) => x - y);
         }
         // Перегрузка оператора "-" для случая вычитания из дроби числа
-        public static Fraction operator -(Fraction a, int b)
+        public static Fractions operator -(Fractions a, int b)
         {
-            return a - new Fraction(b);
+            return a - new Fractions(b);
         }
         // Перегрузка оператора "-" для случая вычитания из числа дроби
-        public static Fraction operator -(int a, Fraction b)
+        public static Fractions operator -(int a, Fractions b)
         {
             return b - a;
         }
         // Перегрузка оператора "*" для случая произведения двух дробей
-        public static Fraction operator *(Fraction a, Fraction b)
+        public static Fractions operator *(Fractions a, Fractions b)
         {
-            return new Fraction(a.numerator * a.sign * b.numerator * b.sign, a.denominator * b.denominator);
+            return new Fractions(a.numerator * a.sign * b.numerator * b.sign, a.denominator * b.denominator);
         }
         // Перегрузка оператора "*" для случая произведения дроби и числа
-        public static Fraction operator *(Fraction a, int b)
+        public static Fractions operator *(Fractions a, int b)
         {
-            return a * new Fraction(b);
+            return a * new Fractions(b);
         }
         // Перегрузка оператора "*" для случая произведения числа и дроби
-        public static Fraction operator *(int a, Fraction b)
+        public static Fractions operator *(int a, Fractions b)
         {
             return b * a;
         }
         // Перегрузка оператора "/" для случая деления двух дробей
-        public static Fraction operator /(Fraction a, Fraction b)
+        public static Fractions operator /(Fractions a, Fractions b)
         {
             return a * b.GetReverse();
         }
         // Перегрузка оператора "/" для случая деления дроби на число
-        public static Fraction operator /(Fraction a, int b)
+        public static Fractions operator /(Fractions a, int b)
         {
-            return a / new Fraction(b);
+            return a / new Fractions(b);
         }
         // Перегрузка оператора "/" для случая деления числа на дробь
-        public static Fraction operator /(int a, Fraction b)
+        public static Fractions operator /(int a, Fractions b)
         {
-            return new Fraction(a) / b;
+            return new Fractions(a) / b;
         }
         // Перегрузка оператора "унарный минус"
-        public static Fraction operator -(Fraction a)
+        public static Fractions operator -(Fractions a)
         {
             return a.GetWithChangedSign();
         }
         // Перегрузка оператора "++"
-        public static Fraction operator ++(Fraction a)
+        public static Fractions operator ++(Fractions a)
         {
             return a + 1;
         }
         // Перегрузка оператора "--"
-        public static Fraction operator --(Fraction a)
+        public static Fractions operator --(Fractions a)
         {
             return a - 1;
         }
 
         // Мой метод Equals
-        public bool Equals(Fraction that)
+        public bool Equals(Fractions that)
         {
-            Fraction a = this.Reduce();
-            Fraction b = that.Reduce();
+            Fractions a = this.Reduce();
+            Fractions b = that.Reduce();
             return a.numerator == b.numerator &&
             a.denominator == b.denominator &&
             a.sign == b.sign;
@@ -175,9 +175,9 @@ namespace Simplex_Method
         public override bool Equals(object obj)
         {
             bool result = false;
-            if (obj is Fraction)
+            if (obj is Fractions)
             {
-                result = this.Equals(obj as Fraction);
+                result = this.Equals(obj as Fractions);
             }
             return result;
         }
@@ -191,14 +191,14 @@ namespace Simplex_Method
         // Возвращает	 0, если дроби равны
         //				 1, если this больше that
         //				-1, если this меньше that
-        private int CompareTo(Fraction that)
+        private int CompareTo(Fractions that)
         {
             if (this.Equals(that))
             {
                 return 0;
             }
-            Fraction a = this.Reduce();
-            Fraction b = that.Reduce();
+            Fractions a = this.Reduce();
+            Fractions b = that.Reduce();
             if (a.numerator * a.sign * b.denominator > b.numerator * b.sign * a.denominator)
             {
                 return 1;
@@ -207,7 +207,7 @@ namespace Simplex_Method
         }
 
         // Перегрузка оператора "Равенство" для двух дробей
-        public static bool operator ==(Fraction a, Fraction b)
+        public static bool operator ==(Fractions a, Fractions b)
         {
             // Приведение к Object необходимо для того, чтобы
             // можно было сравнивать дроби с null.
@@ -225,96 +225,96 @@ namespace Simplex_Method
             return a.Equals(b);
         }
         // Перегрузка оператора "Равенство" для дроби и числа
-        public static bool operator ==(Fraction a, int b)
+        public static bool operator ==(Fractions a, int b)
         {
-            return a == new Fraction(b);
+            return a == new Fractions(b);
         }
         // Перегрузка оператора "Равенство" для числа и дроби
-        public static bool operator ==(int a, Fraction b)
+        public static bool operator ==(int a, Fractions b)
         {
-            return new Fraction(a) == b;
+            return new Fractions(a) == b;
         }
         // Перегрузка оператора "Неравенство" для двух дробей
-        public static bool operator !=(Fraction a, Fraction b)
+        public static bool operator !=(Fractions a, Fractions b)
         {
             return !(a == b);
         }
         // Перегрузка оператора "Неравенство" для дроби и числа
-        public static bool operator !=(Fraction a, int b)
+        public static bool operator !=(Fractions a, int b)
         {
-            return a != new Fraction(b);
+            return a != new Fractions(b);
         }
         // Перегрузка оператора "Неравенство" для числа и дроби
-        public static bool operator !=(int a, Fraction b)
+        public static bool operator !=(int a, Fractions b)
         {
-            return new Fraction(a) != b;
+            return new Fractions(a) != b;
         }
 
         // Перегрузка оператора ">" для двух дробей
-        public static bool operator >(Fraction a, Fraction b)
+        public static bool operator >(Fractions a, Fractions b)
         {
             return a.CompareTo(b) > 0;
         }
         // Перегрузка оператора ">" для дроби и числа
-        public static bool operator >(Fraction a, int b)
+        public static bool operator >(Fractions a, int b)
         {
-            return a > new Fraction(b);
+            return a > new Fractions(b);
         }
         // Перегрузка оператора ">" для числа и дроби
-        public static bool operator >(int a, Fraction b)
+        public static bool operator >(int a, Fractions b)
         {
-            return new Fraction(a) > b;
+            return new Fractions(a) > b;
         }
         // Перегрузка оператора "<" для двух дробей
-        public static bool operator <(Fraction a, Fraction b)
+        public static bool operator <(Fractions a, Fractions b)
         {
             return a.CompareTo(b) < 0;
         }
         // Перегрузка оператора "<" для дроби и числа
-        public static bool operator <(Fraction a, int b)
+        public static bool operator <(Fractions a, int b)
         {
-            return a < new Fraction(b);
+            return a < new Fractions(b);
         }
         // Перегрузка оператора "<" для числа и дроби
-        public static bool operator <(int a, Fraction b)
+        public static bool operator <(int a, Fractions b)
         {
-            return new Fraction(a) < b;
+            return new Fractions(a) < b;
         }
         // Перегрузка оператора ">=" для двух дробей
-        public static bool operator >=(Fraction a, Fraction b)
+        public static bool operator >=(Fractions a, Fractions b)
         {
             return a.CompareTo(b) >= 0;
         }
         // Перегрузка оператора ">=" для дроби и числа
-        public static bool operator >=(Fraction a, int b)
+        public static bool operator >=(Fractions a, int b)
         {
-            return a >= new Fraction(b);
+            return a >= new Fractions(b);
         }
         // Перегрузка оператора ">=" для числа и дроби
-        public static bool operator >=(int a, Fraction b)
+        public static bool operator >=(int a, Fractions b)
         {
-            return new Fraction(a) >= b;
+            return new Fractions(a) >= b;
         }
         // Перегрузка оператора "<=" для двух дробей
-        public static bool operator <=(Fraction a, Fraction b)
+        public static bool operator <=(Fractions a, Fractions b)
         {
             return a.CompareTo(b) <= 0;
         }
         // Перегрузка оператора "<=" для дроби и числа
-        public static bool operator <=(Fraction a, int b)
+        public static bool operator <=(Fractions a, int b)
         {
-            return a <= new Fraction(b);
+            return a <= new Fractions(b);
         }
         // Перегрузка оператора "<=" для числа и дроби
-        public static bool operator <=(int a, Fraction b)
+        public static bool operator <=(int a, Fractions b)
         {
-            return new Fraction(a) <= b;
+            return new Fractions(a) <= b;
         }
 
         // Возвращает сокращенную дробь
-        public Fraction Reduce()
+        public Fractions Reduce()
         {
-            Fraction result = this;
+            Fractions result = this;
             int greatestCommonDivisor = getGreatestCommonDivisor(this.numerator, this.denominator);
             result.numerator /= greatestCommonDivisor;
             result.denominator /= greatestCommonDivisor;
@@ -347,7 +347,7 @@ namespace Simplex_Method
             return result + this.numerator + "/" + this.denominator;
         }
 
-        internal Fraction Reduction()
+        internal Fractions Reduction()
         {
             int nod = 0;
 

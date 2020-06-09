@@ -59,7 +59,7 @@ namespace Simplex_Method
             non_sort_for_columns();
 
             radioButton_min.Checked = true;
-            radioButton_symplex.Checked = true;
+            radioButton_symplex.Checked = false;
             radioButton_default_drob.Checked = true;
             radioButton_step_by_step.Checked = true;
 
@@ -194,11 +194,11 @@ namespace Simplex_Method
             }
         }
 
-        public void read_grids(DataGridView Grid, List<List<Fraction>> N)
+        public void read_grids(DataGridView Grid, List<List<Fractions>> N)
         {
             for (int i = 0; i < Grid.Rows.Count; i++)
             {
-                N.Add(new List<Fraction>());
+                N.Add(new List<Fractions>());
                 for (int j = 0; j < Grid.Columns.Count; j++)
                 {
                     string[] tmp_fraction = new string[2];
@@ -210,7 +210,7 @@ namespace Simplex_Method
                     if (tmp_fraction.Length == 1)
                         tmp_fraction = new string[] { tmp_fraction[0], "1" };
 
-                    N[i].Add(new Fraction(Int32.Parse(tmp_fraction[0]), Int32.Parse(tmp_fraction[1])));
+                    N[i].Add(new Fractions(Int32.Parse(tmp_fraction[0]), Int32.Parse(tmp_fraction[1])));
                 }
             }
         }
@@ -221,11 +221,11 @@ namespace Simplex_Method
         /// </summary>
         /// <param name="Grid"></param>
         /// <param name="N"></param>
-        public void read_grids_with_DisplayIndex(DataGridView Grid, List<List<Fraction>> N, List<int> variable_visualization)
+        public void read_grids_with_DisplayIndex(DataGridView Grid, List<List<Fractions>> N, List<int> variable_visualization)
         {
             for (int i = 0; i < Grid.Rows.Count; i++)
             {
-                N.Add(new List<Fraction>());
+                N.Add(new List<Fractions>());
                 for (int j = 0; j < Grid.Columns.Count; j++)
                 {
                     string[] tmp_fraction = new string[2];
@@ -240,9 +240,15 @@ namespace Simplex_Method
                     if (tmp_fraction.Length == 1)
                         tmp_fraction = new string[] { tmp_fraction[0], "1" };
 
-                    N[i].Add(new Fraction(Int32.Parse(tmp_fraction[0]), Int32.Parse(tmp_fraction[1])));
+                    N[i].Add(new Fractions(Int32.Parse(tmp_fraction[0]), Int32.Parse(tmp_fraction[1])));
                 }
             }
+        }
+
+        private void spravka_click(object sender, EventArgs e)
+        {
+            Spravka spravka = new Spravka();
+            spravka.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -251,8 +257,8 @@ namespace Simplex_Method
             List<List<double>> ogr = new List<List<double>>();
             List<List<double>> cel_function = new List<List<double>>();
             // Для работы с обыкновенными дробями
-            List<List<Fraction>> ogr_with_radicals = new List<List<Fraction>>();
-            List<List<Fraction>> cel_function_with_radicals = new List<List<Fraction>>();
+            List<List<Fractions>> ogr_with_radicals = new List<List<Fractions>>();
+            List<List<Fractions>> cel_function_with_radicals = new List<List<Fractions>>();
 
             // Если выбраны десятичные дроби
             if (decimal_or_radical_drob)
@@ -289,7 +295,7 @@ namespace Simplex_Method
             //вспомогательный массив для подсчёта ранга для десятичных
             List<List<double>> copy_elements = new List<List<double>>();
             //вспомогательный массив для подсчёта ранга для обыкновенных дробей
-            List<List<Fraction>> copy_elements_with_radicals = new List<List<Fraction>>();
+            List<List<Fractions>> copy_elements_with_radicals = new List<List<Fractions>>();
             // Высчитываем ранг матрицы, но по копированной матрице
             int rang = 0;
 
@@ -311,7 +317,7 @@ namespace Simplex_Method
                 // Копируем элементы если выбраны дроби
                 for (int i = 0; i < ogr_with_radicals.Count; i++)
                 {
-                    copy_elements_with_radicals.Add(new List<Fraction>());
+                    copy_elements_with_radicals.Add(new List<Fractions>());
                     for (int j = 0; j < ogr_with_radicals[0].Count; j++)
                     {
                         copy_elements_with_radicals[i].Add(ogr_with_radicals[i][j]);
@@ -336,7 +342,7 @@ namespace Simplex_Method
                 ///
 
                 List<List<double>> corner_dot = new List<List<double>>();
-                List<List<Fraction>> corner_dot_with_radicals = new List<List<Fraction>>();
+                List<List<Fractions>> corner_dot_with_radicals = new List<List<Fractions>>();
                 if (decimal_or_radical_drob) {
                     read_grids(dataGridView_CornerDot, corner_dot);
 
@@ -381,7 +387,7 @@ namespace Simplex_Method
                 //проверяем совпадает ли число базисных переменных с рангом матрицы
                 if (rang != count_basix_var)
                 {
-                    MessageBox.Show("Ранг матрицы (ранг=" + rang + ") не равен числу заданных базисных переменных (кол-во=" + count_basix_var + ").");
+                    MessageBox.Show("Ранг матрицы (" + rang + ") не равен числу базисных переменных (" + count_basix_var + ").");
                     return;
                 }
 
@@ -441,7 +447,7 @@ namespace Simplex_Method
                 List<List<double>> corner_dot = new List<List<double>>();
                 read_grids(dataGridView_CornerDot, corner_dot);
 
-                List<List<Fraction>> corner_dot_with_radicals = new List<List<Fraction>>();
+                List<List<Fractions>> corner_dot_with_radicals = new List<List<Fractions>>();
                 read_grids(dataGridView_CornerDot, corner_dot_with_radicals);
 
                 int index = 0;//индекс переменной, которая является базисной
@@ -479,7 +485,7 @@ namespace Simplex_Method
                 //проверяем совпадает ли число базисных переменных с рангом матрицы
                 if (rang != count_basix_var)
                 {
-                    MessageBox.Show("Ранг матрицы (ранг=" + rang + ") не равен числу заданных базисных переменных (кол-во=" + count_basix_var + ").");
+                    MessageBox.Show("Ранг матрицы (" + rang + ") не равен числу базисных переменных (" + count_basix_var + ").");
                     return;
                 }
 
@@ -592,7 +598,7 @@ namespace Simplex_Method
         /// </summary>
         /// <param name="dataGridView2"></param>
         /// <param name="corner_dot"></param>
-        private void ChangeColumnsForGauss(List<List<Fraction>> ogr_with_radicals, List<List<Fraction>> corner_dot, List<int> variable_visualization)
+        private void ChangeColumnsForGauss(List<List<Fractions>> ogr_with_radicals, List<List<Fractions>> corner_dot, List<int> variable_visualization)
         {
             int column_index = 0;
             int tmp_variable = 0;
@@ -602,7 +608,7 @@ namespace Simplex_Method
                 // Еесли встретили ненулевой элемент корневой точки
                 if (corner_dot[0][j] != 0)
                 {
-                    Fraction[] tmp_fractions = new Fraction[ogr_with_radicals.Count];
+                    Fractions[] tmp_fractions = new Fractions[ogr_with_radicals.Count];
 
                     // Меняем местами столбцы
                     for (int i = 0; i < ogr_with_radicals.Count; i++)
@@ -689,20 +695,20 @@ namespace Simplex_Method
                 if (ogr[i][index] != 0)
                     isnull = false;
             if (isnull)
-                throw new Exception("Невозможно выразить базисную переменную x" + (index + 1) + ", так как в соответствующем столбце №" + (index + 1) + " имеются только нули!");
+                throw new Exception("Невозможно выразить базисную переменную x" + (index + 1));
         }
 
         /// <summary>
         /// Проверка возможности выражения базисной переменной.
         /// </summary>
-        private void CheckCanBeBasix(List<List<Fraction>> ogr, int index)
+        private void CheckCanBeBasix(List<List<Fractions>> ogr, int index)
         {
             bool isnull = true;
             for (int i = 0; i < ogr.Count; i++)
                 if (ogr[i][index] != 0)
                     isnull = false;
             if (isnull)
-                throw new Exception("Невозможно выразить базисную переменную x" + (index + 1) + ", так как в соответствующем столбце №" + (index + 1) + " имеются только нули!");
+                throw new Exception("Невозможно выразить базисную переменную x" + (index + 1));
         }
 
         /// <summary>
@@ -710,14 +716,14 @@ namespace Simplex_Method
         /// </summary>
         /// <param name="function"></param>
         /// <param name="function_with_radicals"></param>
-        public void grid_to_radical(List<List<double>> function, List<List<Fraction>> function_with_radicals)
+        public void grid_to_radical(List<List<double>> function, List<List<Fractions>> function_with_radicals)
         {
             for (int i = 0; i < function.Count; i++)
             {
-                function_with_radicals.Add(new List<Fraction>());
+                function_with_radicals.Add(new List<Fractions>());
                 for (int j = 0; j < function[i].Count; j++)
                 {
-                    function_with_radicals[i].Add(new Fraction(Int32.Parse(function[i][j].ToString())));
+                    function_with_radicals[i].Add(new Fractions(Int32.Parse(function[i][j].ToString())));
                 }
             }
         }
@@ -753,7 +759,7 @@ namespace Simplex_Method
 
             if (fileText == "")
             {
-                MessageBox.Show("Программа ничего не считала. Вероятно - файл пуст.\nПожалуйста, проверьте файл и попробуйте ещё раз.", "Ошибка считывания файла!");
+                MessageBox.Show("Ошибка считывания файла", "");
                 return;
             }
 
@@ -788,7 +794,7 @@ namespace Simplex_Method
                 }
                 else
                 {
-                    MessageBox.Show("В файле отсутствует условие максимизации или минимизации. Пожалуйста, установите это условие вручную.");
+                    MessageBox.Show("Ошибка считывания файла");
                 }
             }
 
@@ -898,9 +904,9 @@ namespace Simplex_Method
         /// Ищем ранг матрицы для дробей. Вместе с этим в функции уже удаляются "ненужные" строки.
         /// </summary>
         /// <returns>Возвращает ранг матрицы.</returns>
-        private int RangOfMatrix(List<List<Fraction>> elements_1)
+        private int RangOfMatrix(List<List<Fractions>> elements_1)
         {
-            Fraction first_elem = new Fraction(0);
+            Fractions first_elem = new Fractions(0);
             for (int i = 0; i < elements_1.Count; i++)
             {
                 int j = 0;
@@ -933,7 +939,7 @@ namespace Simplex_Method
                     {
                         if (elements_1[k][j] != 0)
                         {
-                            Fraction first_elem_1 = elements_1[k][j];
+                            Fractions first_elem_1 = elements_1[k][j];
                             for (int m = 0; m < elements_1[0].Count; m++)
                             {
                                 elements_1[k][m] = elements_1[k][m] - elements_1[i][m] * first_elem_1;
@@ -980,8 +986,8 @@ namespace Simplex_Method
             List<List<double>> cel_function = new List<List<double>>();
             // Для работы с обыкновенными дробями
             List<List<string>> general_with_radicals = new List<List<string>>(); // общая
-            List<List<Fraction>> ogr_with_radicals = new List<List<Fraction>>();
-            List<List<Fraction>> cel_function_with_radicals = new List<List<Fraction>>();
+            List<List<Fractions>> ogr_with_radicals = new List<List<Fractions>>();
+            List<List<Fractions>> cel_function_with_radicals = new List<List<Fractions>>();
 
             // Если выбраны десятичные дроби
             if (decimal_or_radical_drob)
@@ -993,10 +999,7 @@ namespace Simplex_Method
                 }
                 catch (Exception d)
                 {
-                    MessageBox.Show("Следующая ошибка возникает при:\n\n1) " + d.Message + "\n\n2) Возможно, при заполнении ячеек, последнее значение не было сохранено. " +
-                        "Обратите внимание, ни одна из ячеек не должна быть в состоянии редактирования. " +
-                        "Если вы изменяете какую-либо ячейку, сохраняйте её значение с помощью клавиши Enter" +
-                        "\n\n3) Так же следует помнить, что на месте отсутствуещего коэффициента должен стоять 0, а не пустое значение.", "Ошибка при считывании коэффициентов.");
+                    MessageBox.Show("Ошибка, попробуйте ещё раз", "");
                     return;
                 }
 
@@ -1044,7 +1047,7 @@ namespace Simplex_Method
                 }
                 tw.Close();
 
-                MessageBox.Show("Файл успешно сохранён.", "Сохранение задачи");
+                MessageBox.Show("Файл сохранён", "");
             }
             // Если выбраны обыкновенные дроби
             else
@@ -1056,10 +1059,7 @@ namespace Simplex_Method
                 }
                 catch (Exception d)
                 {
-                    MessageBox.Show("Следующая ошибка возникает при:\n\n1) " + d.Message + "\n\n2) Возможно, при заполнении ячеек, последнее значение не было сохранено. " +
-                        "Обратите внимание, ни одна из ячеек не должна быть в состоянии редактирования. " +
-                        "Если вы изменяете какую-либо ячейку, сохраняйте её значение с помощью клавиши Enter" +
-                        "\n\n3) Так же следует помнить, что на месте отсутствуещего коэффициента должен стоять 0, а не пустое значение.", "Ошибка при считывании коэффициентов.");
+                    MessageBox.Show("Ошибка, попробуйте ещё раз", "");
                     return;
                 }
 
@@ -1108,7 +1108,7 @@ namespace Simplex_Method
                 }
                 tw.Close();
 
-                MessageBox.Show("Файл успешно сохранён.", "Сохранение задачи");
+                MessageBox.Show("Файл сохранён", "");
             }
         }
 
@@ -1129,11 +1129,6 @@ namespace Simplex_Method
                 checkBoxCornerDot.Visible = true;
 
             }
-        }
-
-        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("{F1}");
         }
     }
 }

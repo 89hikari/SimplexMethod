@@ -19,7 +19,7 @@ namespace Simplex_Method
         /// <summary>
         /// Матрица коэффициентов системы ограничений-равенств для обыкновенных дробей
         /// </summary>
-        List<List<Fraction>> ogr_with_radicals = new List<List<Fraction>>();
+        List<List<Fractions>> ogr_with_radicals = new List<List<Fractions>>();
         /// <summary>
         /// Целевая функция.
         /// </summary>
@@ -27,7 +27,7 @@ namespace Simplex_Method
         /// <summary>
         /// Целевая функция для обыкновенных дробей
         /// </summary>
-        List<List<Fraction>> cel_function_with_radicals = new List<List<Fraction>>();
+        List<List<Fractions>> cel_function_with_radicals = new List<List<Fractions>>();
         /// <summary>
         /// Количество базисных переменных.
         /// </summary>
@@ -59,7 +59,7 @@ namespace Simplex_Method
         ///<summary>
         ///Корневая точка для дробей
         ///</summary>
-        List<List<Fraction>> corner_dot_with_radicals = new List<List<Fraction>>();
+        List<List<Fractions>> corner_dot_with_radicals = new List<List<Fractions>>();
         /// <summary>
         /// Определитель - какой режим работы с дробями выбран. false - обыкновенные. true - десятичные
         /// </summary>
@@ -95,7 +95,7 @@ namespace Simplex_Method
             Implementation();
         }
 
-        public Auto(List<List<Fraction>> cel_function_with_radicals, List<List<Fraction>> ogr_with_radicals, int MinMax, bool CornerDot, int number_of_basix, bool decimal_or_radical_drob, List<int> variable_visualization)
+        public Auto(List<List<Fractions>> cel_function_with_radicals, List<List<Fractions>> ogr_with_radicals, int MinMax, bool CornerDot, int number_of_basix, bool decimal_or_radical_drob, List<int> variable_visualization)
         {
             InitializeComponent();
 
@@ -146,7 +146,7 @@ namespace Simplex_Method
             Implementation();
         }
 
-        public Auto(List<List<Fraction>> cel_function_with_radicals, List<List<Fraction>> ogr_with_radicals, int minMax, int rang, bool decimal_or_radical_drob)
+        public Auto(List<List<Fractions>> cel_function_with_radicals, List<List<Fractions>> ogr_with_radicals, int minMax, int rang, bool decimal_or_radical_drob)
         {
             InitializeComponent();
             // Переносим заполненный массив с главного окна
@@ -227,8 +227,6 @@ namespace Simplex_Method
                 }
                 else if (responce == 1)
                 {
-                   // tabControl1.TabPages[0].Text = "Ответ готов!";
-                    // Подставляем ответ
                     if (MinMax == 0)
                     {
                         if (Radical_or_Decimal)
@@ -254,7 +252,7 @@ namespace Simplex_Method
                 }
                 else if (responce == -1)
                 {
-                    MessageBox.Show("Задача не разрешима!");
+                    MessageBox.Show("Задача не разрешима");
                   //  tabControl1.TabPages[0].Text = "Задача не разрешима!";
                     break;
                 }
@@ -348,7 +346,7 @@ namespace Simplex_Method
         /// <summary>
         /// Добавляем данные симплекс таблицы в ячейки и отрисовываем их - из List - двумерного списка
         /// </summary>
-        public void addGridParam_for_simplex_elements(List<List<Fraction>> N, DataGridView Grid)
+        public void addGridParam_for_simplex_elements(List<List<Fractions>> N, DataGridView Grid)
         {
             for (int i = 0; i < N.Count; i++)
             {
@@ -364,13 +362,13 @@ namespace Simplex_Method
         /// Преобразование матрицы в симплекс таблицу для дробей
         /// </summary>
         /// <param name="ogr"></param>
-        public void DrawSimplexTable(List<List<Fraction>> ogr)
+        public void DrawSimplexTable(List<List<Fractions>> ogr)
         {
             //для сиплекс метода
             if (simplextable.simplex_or_artificial == true)
             {
 
-                Fraction a;
+                Fractions a;
                 //счёт столбца
                 int column_index = 1;
 
@@ -380,23 +378,23 @@ namespace Simplex_Method
                 // Алгоритм определяющий единственные единицы в столбцах
                 for (int j = 0; j < dataGridView3.Columns.Count - 1; j++) // Проходимся по всем колонкам
                 {
-                    a = new Fraction(0);
+                    a = new Fractions(0);
                     column_index = 0;
                     bool only_one_in_column = false; // Единственная единица в столбце
 
                     for (int i = 0; i < dataGridView3.Rows.Count; i++) // Проходимся по всем элементам в колонке, кроме последнего(т.е. кроме целевой функции)
                     {
-                        a += (Fraction)dataGridView3.Rows[i].Cells[j].Value;
+                        a += (Fractions)dataGridView3.Rows[i].Cells[j].Value;
 
                         // Если нам встречается единица, считаем, что колонка базисная
-                        if ((Fraction)dataGridView3.Rows[i].Cells[j].Value == new Fraction(1))
+                        if ((Fractions)dataGridView3.Rows[i].Cells[j].Value == new Fractions(1))
                         {
                             now_basix_name = dataGridView3.Columns[j].Name;
                             column_index = i;
                             only_one_in_column = true;
                         }
                         // Если встретили отличное от единицы и это не ноль, смотрим, встречалась ли нам единица раньше. Если встречалась - значит считаем колонку НЕ базисной
-                        else if (only_one_in_column == true && !((Fraction)dataGridView3.Rows[i].Cells[j].Value == new Fraction(0)))
+                        else if (only_one_in_column == true && !((Fractions)dataGridView3.Rows[i].Cells[j].Value == new Fractions(0)))
                         {
                             only_one_in_column = false;
                             break;
@@ -420,11 +418,11 @@ namespace Simplex_Method
                 column_index = 0;
                 // считаем коэффициенты последней строки
                 dataGridView3.Rows.Add();
-                dataGridView3.Rows[simplextable.number_of_permutations].HeaderCell.Value = "f(x)";
-                for (int j = simplextable.number_of_permutations; j < simplextable.ogr_with_radicals[0].Count - 1; j++)
+                dataGridView3.Rows[simplextable.count_of_permutations].HeaderCell.Value = "f(x)";
+                for (int j = simplextable.count_of_permutations; j < simplextable.ogr_with_radicals[0].Count - 1; j++)
                 {
                     //логика
-                    a = new Fraction(0);
+                    a = new Fractions(0);
                     for (int i = 0; i < simplextable.ogr_with_radicals.Count; i++)
                     {
                         a += simplextable.ogr_with_radicals[i][j] * cel_function_with_radicals[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
@@ -433,12 +431,12 @@ namespace Simplex_Method
 
                     ////отображение
 
-                    dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a;
+                    dataGridView3.Rows[simplextable.count_of_permutations].Cells[column_index].Value = a;
                     column_index++;
                 }
 
                 //коэффициент в нижнем правом углу симплекс таблицы
-                a = new Fraction(0);
+                a = new Fractions(0);
                 for (int i = 0; i < simplextable.ogr_with_radicals.Count; i++)
                     a += simplextable.ogr_with_radicals[i][simplextable.ogr_with_radicals[0].Count - 1] * cel_function_with_radicals[0][Int32.Parse(dataGridView3.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
 
@@ -446,11 +444,11 @@ namespace Simplex_Method
                 //заполняем рабочий массив
                 for (int i = 0; i < dataGridView3.Rows.Count; i++)
                 {
-                    simplextable.simplex_elements_with_radicals.Add(new List<Fraction>());
+                    simplextable.simplex_elements_with_radicals.Add(new List<Fractions>());
                     for (int j = 0; j < dataGridView3.Columns.Count; j++)
                     {
                         //добавляем в массив число
-                        simplextable.simplex_elements_with_radicals[i].Add((Fraction)dataGridView3.Rows[i].Cells[j].Value);
+                        simplextable.simplex_elements_with_radicals[i].Add((Fractions)dataGridView3.Rows[i].Cells[j].Value);
                     }
                 }
 
@@ -517,8 +515,8 @@ namespace Simplex_Method
                 column_index = 0;
                 // считаем коэффициенты последней строки
                 dataGridView3.Rows.Add();
-                dataGridView3.Rows[simplextable.number_of_permutations].HeaderCell.Value = "f(x)";
-                for (int j = simplextable.number_of_permutations; j < simplextable.ogr[0].Count - 1; j++)
+                dataGridView3.Rows[simplextable.count_of_permutations].HeaderCell.Value = "f(x)";
+                for (int j = simplextable.count_of_permutations; j < simplextable.ogr[0].Count - 1; j++)
                 {
                     //логика
                     a = 0;
@@ -528,7 +526,7 @@ namespace Simplex_Method
                     }
                     a -= simplextable.cel_function[0][Int32.Parse(dataGridView3.Columns[column_index].HeaderCell.Value.ToString().Replace("Своб.", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
                     ////отображение
-                    dataGridView3.Rows[simplextable.number_of_permutations].Cells[column_index].Value = a;
+                    dataGridView3.Rows[simplextable.count_of_permutations].Cells[column_index].Value = a;
                     column_index++;
                 }
 
@@ -579,7 +577,7 @@ namespace Simplex_Method
         /// <summary>
         /// Добавляем данные в ячейки и отрисовываем их для дробей - из List - двумерного списка
         /// </summary>
-        public void addGridParam(List<List<Fraction>> N, DataGridView Grid)
+        public void addGridParam(List<List<Fractions>> N, DataGridView Grid)
 
         {
             dataGridView3.Rows.Clear();
@@ -602,7 +600,7 @@ namespace Simplex_Method
         /// <summary>
         /// Добавляем данные в ячейки и отрисовываем их для дробей - из List - двумерного списка по списку визуализации
         /// </summary>
-        public void addGridParam(List<List<Fraction>> N, DataGridView Grid, List<int> variable_visualization)
+        public void addGridParam(List<List<Fractions>> N, DataGridView Grid, List<int> variable_visualization)
 
         {
             dataGridView3.Rows.Clear();

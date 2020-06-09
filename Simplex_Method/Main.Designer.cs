@@ -30,13 +30,15 @@ namespace Simplex_Method
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileActions = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramm = new System.Windows.Forms.ToolStripMenuItem();
-            this.Spravka = new System.Windows.Forms.ToolStripMenuItem();
             this.solve_Button = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.radioButton_auto_answer = new System.Windows.Forms.RadioButton();
@@ -64,6 +66,8 @@ namespace Simplex_Method
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -81,14 +85,14 @@ namespace Simplex_Method
             // 
             // menuStrip1
             // 
+            this.menuStrip1.AutoSize = false;
             this.menuStrip1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileActions,
-            this.AboutProgramm,
-            this.Spravka});
+            this.AboutProgramm});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1191, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1191, 39);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -98,7 +102,7 @@ namespace Simplex_Method
             this.OpenFile,
             this.SaveFile});
             this.FileActions.Name = "FileActions";
-            this.FileActions.Size = new System.Drawing.Size(52, 20);
+            this.FileActions.Size = new System.Drawing.Size(52, 35);
             this.FileActions.Text = "Файл";
             // 
             // OpenFile
@@ -118,20 +122,14 @@ namespace Simplex_Method
             // AboutProgramm
             // 
             this.AboutProgramm.Name = "AboutProgramm";
-            this.AboutProgramm.Size = new System.Drawing.Size(99, 20);
+            this.AboutProgramm.Size = new System.Drawing.Size(99, 35);
             this.AboutProgramm.Text = "О программе";
-            // 
-            // Spravka
-            // 
-            this.Spravka.Name = "Spravka";
-            this.Spravka.Size = new System.Drawing.Size(70, 20);
-            this.Spravka.Text = "Справка";
             // 
             // solve_Button
             // 
             this.solve_Button.BackColor = System.Drawing.Color.LightGreen;
             this.solve_Button.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.solve_Button.Location = new System.Drawing.Point(944, 201);
+            this.solve_Button.Location = new System.Drawing.Point(945, 216);
             this.solve_Button.Name = "solve_Button";
             this.solve_Button.Size = new System.Drawing.Size(192, 62);
             this.solve_Button.TabIndex = 9;
@@ -144,7 +142,7 @@ namespace Simplex_Method
             this.groupBox7.Controls.Add(this.radioButton_auto_answer);
             this.groupBox7.Controls.Add(this.radioButton_step_by_step);
             this.groupBox7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox7.Location = new System.Drawing.Point(912, 27);
+            this.groupBox7.Location = new System.Drawing.Point(913, 42);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(277, 72);
             this.groupBox7.TabIndex = 8;
@@ -177,7 +175,7 @@ namespace Simplex_Method
             // 
             this.groupBox6.Controls.Add(this.radioButton_decimal_drob);
             this.groupBox6.Controls.Add(this.radioButton_default_drob);
-            this.groupBox6.Location = new System.Drawing.Point(627, 27);
+            this.groupBox6.Location = new System.Drawing.Point(628, 42);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(279, 72);
             this.groupBox6.TabIndex = 7;
@@ -213,7 +211,7 @@ namespace Simplex_Method
             this.groupBox5.Controls.Add(this.radioButton_imagine_b);
             this.groupBox5.Controls.Add(this.radioButton_symplex);
             this.groupBox5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox5.Location = new System.Drawing.Point(344, 27);
+            this.groupBox5.Location = new System.Drawing.Point(345, 42);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(279, 72);
             this.groupBox5.TabIndex = 6;
@@ -223,6 +221,7 @@ namespace Simplex_Method
             // radioButton_imagine_b
             // 
             this.radioButton_imagine_b.AutoSize = true;
+            this.radioButton_imagine_b.Checked = true;
             this.radioButton_imagine_b.Location = new System.Drawing.Point(6, 42);
             this.radioButton_imagine_b.Name = "radioButton_imagine_b";
             this.radioButton_imagine_b.Size = new System.Drawing.Size(192, 19);
@@ -239,7 +238,6 @@ namespace Simplex_Method
             this.radioButton_symplex.Name = "radioButton_symplex";
             this.radioButton_symplex.Size = new System.Drawing.Size(121, 19);
             this.radioButton_symplex.TabIndex = 2;
-            this.radioButton_symplex.TabStop = true;
             this.radioButton_symplex.Text = "Симплекс метод";
             this.radioButton_symplex.UseVisualStyleBackColor = true;
             // 
@@ -248,7 +246,7 @@ namespace Simplex_Method
             this.groupBox4.Controls.Add(this.radioButton_max);
             this.groupBox4.Controls.Add(this.radioButton_min);
             this.groupBox4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox4.Location = new System.Drawing.Point(218, 27);
+            this.groupBox4.Location = new System.Drawing.Point(219, 42);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(123, 72);
             this.groupBox4.TabIndex = 5;
@@ -282,7 +280,7 @@ namespace Simplex_Method
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(168, 70);
+            this.numericUpDown2.Location = new System.Drawing.Point(169, 85);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             16,
             0,
@@ -307,7 +305,7 @@ namespace Simplex_Method
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 71);
+            this.label2.Location = new System.Drawing.Point(13, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(151, 15);
             this.label2.TabIndex = 3;
@@ -316,7 +314,7 @@ namespace Simplex_Method
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(168, 33);
+            this.numericUpDown1.Location = new System.Drawing.Point(169, 48);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             16,
             0,
@@ -341,7 +339,7 @@ namespace Simplex_Method
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 33);
+            this.label1.Location = new System.Drawing.Point(13, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(150, 15);
             this.label1.TabIndex = 1;
@@ -352,7 +350,7 @@ namespace Simplex_Method
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(15, 107);
+            this.groupBox2.Location = new System.Drawing.Point(16, 122);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(881, 75);
             this.groupBox2.TabIndex = 10;
@@ -364,22 +362,28 @@ namespace Simplex_Method
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dataGridView1.Location = new System.Drawing.Point(3, 17);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(875, 55);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.Font = new Font("Tahoma", 10);
-            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.DefaultCellStyle.SelectionBackColor = Color.PaleGreen;
-       
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dataGridView2);
             this.groupBox3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox3.Location = new System.Drawing.Point(15, 184);
+            this.groupBox3.Location = new System.Drawing.Point(16, 199);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(881, 276);
             this.groupBox3.TabIndex = 11;
@@ -391,20 +395,27 @@ namespace Simplex_Method
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dataGridView2.Location = new System.Drawing.Point(3, 17);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.Size = new System.Drawing.Size(875, 256);
             this.dataGridView2.TabIndex = 0;
-            this.dataGridView2.Font = new Font("Tahoma", 10);
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.DefaultCellStyle.SelectionBackColor = Color.PaleGreen;
             // 
             // checkBoxCornerDot
             // 
             this.checkBoxCornerDot.AutoSize = true;
             this.checkBoxCornerDot.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxCornerDot.Location = new System.Drawing.Point(922, 124);
+            this.checkBoxCornerDot.Location = new System.Drawing.Point(923, 139);
             this.checkBoxCornerDot.Name = "checkBoxCornerDot";
             this.checkBoxCornerDot.Size = new System.Drawing.Size(224, 19);
             this.checkBoxCornerDot.TabIndex = 12;
@@ -417,14 +428,21 @@ namespace Simplex_Method
             this.dataGridView_CornerDot.AllowUserToAddRows = false;
             this.dataGridView_CornerDot.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView_CornerDot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_CornerDot.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView_CornerDot.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dataGridView_CornerDot.Location = new System.Drawing.Point(0, 16);
             this.dataGridView_CornerDot.Name = "dataGridView_CornerDot";
+            this.dataGridView_CornerDot.RowHeadersVisible = false;
             this.dataGridView_CornerDot.Size = new System.Drawing.Size(875, 73);
             this.dataGridView_CornerDot.TabIndex = 13;
-            this.dataGridView_CornerDot.Font = new Font("Tahoma", 10);
             this.dataGridView_CornerDot.Visible = false;
-            this.dataGridView_CornerDot.RowHeadersVisible = false;
-            this.dataGridView_CornerDot.DefaultCellStyle.SelectionBackColor = Color.PaleGreen;
             // 
             // openFileDialog1
             // 
@@ -440,7 +458,7 @@ namespace Simplex_Method
             // 
             this.groupBox1.Controls.Add(this.dataGridView_CornerDot);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(18, 466);
+            this.groupBox1.Location = new System.Drawing.Point(19, 481);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(878, 89);
             this.groupBox1.TabIndex = 14;
@@ -451,7 +469,7 @@ namespace Simplex_Method
             // 
             this.ExitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ExitButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ExitButton.Location = new System.Drawing.Point(944, 329);
+            this.ExitButton.Location = new System.Drawing.Point(945, 344);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(192, 62);
             this.ExitButton.TabIndex = 15;
@@ -459,12 +477,35 @@ namespace Simplex_Method
             this.ExitButton.UseVisualStyleBackColor = false;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
-            // Form1
+            // button1
+            // 
+            this.button1.BackgroundImage = global::Simplex_Method.Properties.Resources.help;
+            this.button1.Location = new System.Drawing.Point(1136, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 32);
+            this.button1.TabIndex = 16;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.spravka_click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.label3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(1015, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 18);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Справка (тык):";
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1191, 564);
+            this.ClientSize = new System.Drawing.Size(1191, 587);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.checkBoxCornerDot);
@@ -481,7 +522,7 @@ namespace Simplex_Method
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Симплекс Метод";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -514,7 +555,6 @@ namespace Simplex_Method
         private System.Windows.Forms.ToolStripMenuItem OpenFile;
         private System.Windows.Forms.ToolStripMenuItem SaveFile;
         private System.Windows.Forms.ToolStripMenuItem AboutProgramm;
-        private System.Windows.Forms.ToolStripMenuItem Spravka;
         private System.Windows.Forms.Button solve_Button;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.RadioButton radioButton_auto_answer;
@@ -542,6 +582,8 @@ namespace Simplex_Method
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
     }
 }
 

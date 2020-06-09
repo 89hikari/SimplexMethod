@@ -27,15 +27,15 @@ namespace Simplex_Method
         /// <summary>
         /// Матрица коэффициентов системы ограничений-равенств для обыкновенных дробей
         /// </summary>
-        List<List<Fraction>> ogr_with_radicals = new List<List<Fraction>>();
+        List<List<Fractions>> ogr_with_radicals = new List<List<Fractions>>();
         /// <summary>
         /// Целевая функция для обыкновенных дробей
         /// </summary>
-        List<List<Fraction>> cel_function_with_radicals = new List<List<Fraction>>();
+        List<List<Fractions>> cel_function_with_radicals = new List<List<Fractions>>();
         /// <summary>
         /// Буфер для матрицы коэффициентов системы ограничений-равенств для обыкновенных дробей
         /// </summary>
-        List<List<List<Fraction>>> buffer_elements_for_radicals = new List<List<List<Fraction>>>();
+        List<List<List<Fractions>>> buffer_elements_for_radicals = new List<List<List<Fractions>>>();
         /// <summary>
         /// Текущий шаг.
         /// </summary>
@@ -134,7 +134,7 @@ namespace Simplex_Method
         }
 
         // для работы с обыкновенными дробями
-        public AutoIskBasis(List<List<Fraction>> ogr_with_radicals, List<List<Fraction>> cel_function_with_radicals, int rang, List<int> variable_visualization, int MinMax, bool decimal_or_radical_drob)
+        public AutoIskBasis(List<List<Fractions>> ogr_with_radicals, List<List<Fractions>> cel_function_with_radicals, int rang, List<int> variable_visualization, int MinMax, bool decimal_or_radical_drob)
         {
             InitializeComponent();
 
@@ -243,7 +243,7 @@ namespace Simplex_Method
 
                             else
                             {
-                                ogr_with_radicals = new List<List<Fraction>>();
+                                ogr_with_radicals = new List<List<Fractions>>();
                                 read_grids(dataGridView3, ogr_with_radicals);
                                 simplextable.simplex_elements_with_radicals = ogr_with_radicals;
                                 // удаляем строку с нулями из элементов симплекс таблицы
@@ -268,8 +268,6 @@ namespace Simplex_Method
                                 simplextable.SelectionRandomSupportElement();
                                 break;
                             case 1:
-                                // Подставляем ответ
-                           //     tabControl1.TabPages[0].Text = "Ответ готов!";
                                 if (MinMax == 0)
                                 {
                                     if (Radical_or_Decimal)
@@ -297,7 +295,7 @@ namespace Simplex_Method
                             case -1:
                              //   tabControl1.TabPages[0].Text = "Линейная форма не ограничена сверху на множествен планов задачи.";
 
-                                MessageBox.Show("Линейная форма не ограничена сверху на множествен планов задачи.", "Ответ готов!");
+                                MessageBox.Show("Линейная форма не ограничена сверху на множествен планов задачи", "");
 
                                 break;
                         }
@@ -307,9 +305,6 @@ namespace Simplex_Method
                         if (simplextable.ResponseCheck() == 1)
                         {
                             // Если симплекс таблица решена
-
-                            // Подставляем ответ
-                          //  tabControl1.TabPages[0].Text = "Ответ готов!";
                             if (MinMax == 0)
                             {
                                 if (Radical_or_Decimal)
@@ -395,7 +390,7 @@ namespace Simplex_Method
                         break;
                     case -1:
                       //  tabControl1.TabPages[0].Text = "Линейная форма не ограничена сверху на множествен планов задачи.";
-                        MessageBox.Show("Линейная форма не ограничена сверху на множествен планов задачи.", "Ответ готов!");
+                        MessageBox.Show("Линейная форма не ограничена сверху на множествен планов задачи.", "");
                         break;
                 }
             }
@@ -446,7 +441,7 @@ namespace Simplex_Method
         /// <summary>
         /// Добавляем данные в ячейки и отрисовываем их для дробей - из List - двумерного списка
         /// </summary>
-        public void addGridParam(List<List<Fraction>> N, DataGridView Grid)
+        public void addGridParam(List<List<Fractions>> N, DataGridView Grid)
 
         {
             dataGridView3.Rows.Clear();
@@ -470,7 +465,7 @@ namespace Simplex_Method
         /// <summary>
         /// Добавляем данные в ячейки и отрисовываем их для дробей - из List - двумерного списка по списку визуализации
         /// </summary>
-        public void addGridParam(List<List<Fraction>> N, DataGridView Grid, List<int> variable_visualization)
+        public void addGridParam(List<List<Fractions>> N, DataGridView Grid, List<int> variable_visualization)
 
         {
             dataGridView3.Rows.Clear();
@@ -518,7 +513,7 @@ namespace Simplex_Method
         /// <summary>
         /// Добавляем данные в ячейки и отрисовываем их для дробей - из List - двумерного списка по списку визуализации
         /// </summary>
-        public void addGridParam_for_simplex_elements(List<List<Fraction>> N, DataGridView Grid, List<int> variable_visualization, List<int> basix_variable_visualization)
+        public void addGridParam_for_simplex_elements(List<List<Fractions>> N, DataGridView Grid, List<int> variable_visualization, List<int> basix_variable_visualization)
 
         {
             dataGridView3.Columns.Clear();
@@ -584,7 +579,7 @@ namespace Simplex_Method
         /// <summary>
         /// Добавляем данные симплекс таблицы в ячейки и отрисовываем их - из List - двумерного списка
         /// </summary>
-        public void addGridParam_for_simplex_elements(List<List<Fraction>> N, DataGridView Grid)
+        public void addGridParam_for_simplex_elements(List<List<Fractions>> N, DataGridView Grid)
         {
             for (int i = 0; i < N.Count; i++)
             {
@@ -616,32 +611,32 @@ namespace Simplex_Method
                 for (int j = 0; j < Grid.Columns.Count; j++)
                 {
                     if (Grid.Rows[i].Cells[j].Value == null)
-                        throw new Exception("Какой-то из элементов не заполнен. Пожалуйста попробуйте ещё раз");
+                        throw new Exception("Где-то есть незаполненные элементы.");
 
                     N[i].Add(Convert.ToDouble(Grid.Rows[i].Cells[j].Value.ToString().Trim()));
                 }
             }
         }
 
-        public void read_grids(DataGridView Grid, List<List<Fraction>> N)
+        public void read_grids(DataGridView Grid, List<List<Fractions>> N)
         {
 
 
             for (int i = 0; i < Grid.Rows.Count; i++)
             {
-                N.Add(new List<Fraction>());
+                N.Add(new List<Fractions>());
                 for (int j = 0; j < Grid.Columns.Count; j++)
                 {
                     string[] tmp_fraction = new string[2];
 
                     if (Grid.Rows[i].Cells[j].Value == null)
-                        throw new Exception("Какой-то из элементов не заполнен. Пожалуйста попробуйте ещё раз");
+                        throw new Exception("Где-то есть незаполненные элементы.");
 
                     tmp_fraction = (Grid.Rows[i].Cells[j].Value.ToString().Split('/'));
                     if (tmp_fraction.Length == 1)
                         tmp_fraction = new string[] { tmp_fraction[0], "1" };
 
-                    N[i].Add(new Fraction(Int32.Parse(tmp_fraction[0]), Int32.Parse(tmp_fraction[1])));
+                    N[i].Add(new Fractions(Int32.Parse(tmp_fraction[0]), Int32.Parse(tmp_fraction[1])));
                 }
             }
         }
