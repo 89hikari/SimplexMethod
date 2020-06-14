@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Simplex_Method
 {
-    public partial class About : Form
+    public partial class WhatIsThisProgramm : Form
     {
-        public About()
+        public WhatIsThisProgramm()
         {
             InitializeComponent();
         }

@@ -36,12 +36,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.radioButton_max = new System.Windows.Forms.RadioButton();
             this.radioButton_min = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.radioButton_imagine_b = new System.Windows.Forms.RadioButton();
             this.radioButton_symplex = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -70,6 +70,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -182,6 +183,15 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(212, 70);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(226, 23);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "----- Выбираем кол-во ограничений";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label6);
@@ -192,14 +202,26 @@
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             // 
-            // label5
+            // label6
             // 
-            this.label5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(212, 70);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(226, 23);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "----- Выбираем кол-во ограничений";
+            this.label6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(176, 51);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(198, 32);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "----- Выбор решения задачи \r\nна минимум или на максимум\r\n";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radioButton_max);
+            this.groupBox4.Controls.Add(this.radioButton_min);
+            this.groupBox4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox4.Location = new System.Drawing.Point(19, 29);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(123, 72);
+            this.groupBox4.TabIndex = 12;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Решать задачу на";
             // 
             // radioButton_max
             // 
@@ -224,27 +246,6 @@
             this.radioButton_min.TabStop = true;
             this.radioButton_min.Text = "Минимум";
             this.radioButton_min.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.radioButton_max);
-            this.groupBox4.Controls.Add(this.radioButton_min);
-            this.groupBox4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox4.Location = new System.Drawing.Point(19, 29);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(123, 72);
-            this.groupBox4.TabIndex = 12;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Решать задачу на";
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(176, 51);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(198, 32);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "----- Выбор решения задачи \r\nна минимум или на максимум\r\n";
             // 
             // radioButton_imagine_b
             // 
@@ -468,6 +469,7 @@
             this.checkBoxCornerDot.TabIndex = 17;
             this.checkBoxCornerDot.Text = "Задать начальную угловую точку x0";
             this.checkBoxCornerDot.UseVisualStyleBackColor = true;
+            this.checkBoxCornerDot.CheckedChanged += new System.EventHandler(this.checkBoxCornerDot_CheckedChanged);
             // 
             // label11
             // 
@@ -538,6 +540,15 @@
             this.ExitButton.Text = "Выход";
             this.ExitButton.UseVisualStyleBackColor = false;
             // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Arial Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label16.Location = new System.Drawing.Point(596, 971);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(200, 87);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "Далее вы сможете получить информацию по использованию в окнах решения задач.\r\n";
+            // 
             // Spravka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -545,6 +556,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(854, 699);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -631,5 +643,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Label label16;
     }
 }

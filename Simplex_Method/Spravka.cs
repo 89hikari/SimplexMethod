@@ -26,5 +26,10 @@ namespace Simplex_Method
         {
 
         }
+
+        private void checkBoxCornerDot_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

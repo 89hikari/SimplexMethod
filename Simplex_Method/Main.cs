@@ -26,11 +26,17 @@ namespace Simplex_Method
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-
+            decimal_or_radical_drob = radioButton_decimal_drob.Checked;
+            drawing_function();
+            drawing_org();
+            non_sort_for_columns();
+            radioButton_min.Checked = true;
+            radioButton_symplex.Checked = false;
+            radioButton_default_drob.Checked = true;
+            radioButton_step_by_step.Checked = true;
         }
-
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             clearGrids();
@@ -39,37 +45,12 @@ namespace Simplex_Method
             drawing_corner_dot();
             non_sort_for_columns();
         }
-
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            decimal_or_radical_drob = radioButton_decimal_drob.Checked;
-
+            clearGrids();
             drawing_function();
             drawing_org();
             non_sort_for_columns();
-
-            radioButton_min.Checked = true;
-            radioButton_symplex.Checked = false;
-            radioButton_default_drob.Checked = true;
-            radioButton_step_by_step.Checked = true;
-
-            var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            var filePath = Path.Combine(outPutDirectory, "data\\Help\\MainPageHelp.rtf");
-
-            string file_path = new Uri(filePath).LocalPath; // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug
-                                                            // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug\data\Help\MainPageHelp.rtf
-
-   //         helpProvider1.HelpNamespace = file_path;
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -85,13 +66,23 @@ namespace Simplex_Method
         {
 
         }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            clearGrids();
-            drawing_function();
-            drawing_org();
-            non_sort_for_columns();
+
+        }
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void drawing_org()
@@ -100,7 +91,7 @@ namespace Simplex_Method
             {
                 dataGridView2.Columns.Add($"ogr_x{i + 1}", $"x{i + 1}");
 
-                if (i == Decimal.ToInt32(numericUpDown1.Value)) // именуем последний эл
+                if (i == Decimal.ToInt32(numericUpDown1.Value)) // последний элемент
                 {
                     dataGridView2.Columns[i].HeaderText = "Своб.";
                 }
@@ -165,11 +156,6 @@ namespace Simplex_Method
                 dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         } //Делаем колонки несортируемыми
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         public void read_grids(DataGridView Grid, List<List<double>> N)
         {
@@ -591,8 +577,6 @@ namespace Simplex_Method
             }
         }
 
-
-
         /// <summary>
         /// Меняем колонки местами для дробей
         /// </summary>
@@ -737,24 +721,24 @@ namespace Simplex_Method
             return -1;
         }
 
-        private void оПрограммеToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void About_click(object sender, EventArgs e)
         {
-            About About = new About();
+            WhatIsThisProgramm About = new WhatIsThisProgramm();
             About.ShowDialog();
         }
 
         private void OpenFile_Click(object sender, EventArgs e)
         {
             var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            var filePath = Path.Combine(outPutDirectory, "data");
+            var filePath = Path.Combine(outPutDirectory, "tasks");
 
-            string file_path = new Uri(filePath).LocalPath; // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug
+            string file_path = new Uri(filePath).LocalPath;
 
-            openFileDialog1.InitialDirectory = file_path;
-            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+            OpenFile_.InitialDirectory = file_path;
+            if (OpenFile_.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            string filename = openFileDialog1.FileName;
+            string filename = OpenFile_.FileName;
             string fileText = System.IO.File.ReadAllText(filename);
 
             if (fileText == "")
@@ -778,19 +762,19 @@ namespace Simplex_Method
 
 
             // Определяем макс или мин и очищаем от этого строку
-            if (fileText.Contains("->max") || fileText.Contains("-> max"))
+            if (fileText.Contains("max") || fileText.Contains(" max"))
             {
                 radioButton_max.Checked = true;
-                fileText = fileText.Replace(" ->max", "");
-                fileText = fileText.Replace(" -> max", "");
+                fileText = fileText.Replace(" max", "");
+                fileText = fileText.Replace("  max", "");
             }
             else
             {
-                if (fileText.Contains("->min") || fileText.Contains("-> min"))
+                if (fileText.Contains("min") || fileText.Contains(" min"))
                 {
                     radioButton_min.Checked = true;
-                    fileText = fileText.Replace(" ->min", "");
-                    fileText = fileText.Replace(" -> min", "");
+                    fileText = fileText.Replace(" min", "");
+                    fileText = fileText.Replace("  min", "");
                 }
                 else
                 {
@@ -812,8 +796,6 @@ namespace Simplex_Method
                 _text[i] = tmpText[i].Split(' ');
             }
 
-
-
             //Очищаем клетки
             clearGrids();
 
@@ -828,7 +810,6 @@ namespace Simplex_Method
 
             drawing_corner_dot();
         }
-
 
         public void addGridParam(string[] N, DataGridView Grid)
 
@@ -980,6 +961,15 @@ namespace Simplex_Method
 
         private void SaveFile_Click(object sender, EventArgs e)
         {
+            var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
+            var filePath = Path.Combine(outPutDirectory, "tasks");
+
+            string file_path = new Uri(filePath).LocalPath;
+
+            saveFileDialog1.InitialDirectory = file_path;
+            if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+
             // Для работы с десятичными
             List<List<string>> general = new List<List<string>>(); // общая
             List<List<double>> ogr = new List<List<double>>();
@@ -999,7 +989,7 @@ namespace Simplex_Method
                 }
                 catch (Exception d)
                 {
-                    MessageBox.Show("Ошибка, попробуйте ещё раз", "");
+                    MessageBox.Show("Ошибка, попробуйте ещё раз (возможно, неверно введены данные)", "");
                     return;
                 }
 
@@ -1011,11 +1001,11 @@ namespace Simplex_Method
 
                 if (radioButton_max.Checked)
                 {
-                    general[0].Add("->max");
+                    general[0].Add("max");
                 }
                 else
                 {
-                    general[0].Add("->min");
+                    general[0].Add("min");
                 }
 
                 for (int i = 0; i < ogr.Count; i++)
@@ -1059,7 +1049,7 @@ namespace Simplex_Method
                 }
                 catch (Exception d)
                 {
-                    MessageBox.Show("Ошибка, попробуйте ещё раз", "");
+                    MessageBox.Show("Ошибка, попробуйте ещё раз (возможно есть незаполненные поля в задаче)", "");
                     return;
                 }
 
@@ -1072,11 +1062,11 @@ namespace Simplex_Method
 
                 if (radioButton_max.Checked)
                 {
-                    general_with_radicals[0].Add("->max");
+                    general_with_radicals[0].Add("max");
                 }
                 else
                 {
-                    general_with_radicals[0].Add("->min");
+                    general_with_radicals[0].Add("min");
                 }
 
                 for (int i = 0; i < ogr_with_radicals.Count; i++)

@@ -62,7 +62,7 @@ namespace Simplex_Method
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.checkBoxCornerDot = new System.Windows.Forms.CheckBox();
             this.dataGridView_CornerDot = new System.Windows.Forms.DataGridView();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.OpenFile_ = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ExitButton = new System.Windows.Forms.Button();
@@ -124,6 +124,7 @@ namespace Simplex_Method
             this.AboutProgramm.Name = "AboutProgramm";
             this.AboutProgramm.Size = new System.Drawing.Size(99, 35);
             this.AboutProgramm.Text = "О программе";
+            this.AboutProgramm.Click += new System.EventHandler(this.About_click);
             // 
             // solve_Button
             // 
@@ -444,11 +445,11 @@ namespace Simplex_Method
             this.dataGridView_CornerDot.TabIndex = 13;
             this.dataGridView_CornerDot.Visible = false;
             // 
-            // openFileDialog1
+            // OpenFile_
             // 
-            this.openFileDialog1.DefaultExt = "txt";
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Текстовые файлы(*.txt)|*.txt";
+            this.OpenFile_.DefaultExt = "txt";
+            this.OpenFile_.FileName = "OPENFILE";
+            this.OpenFile_.Filter = "Текстовые файлы(*.txt)|*.txt";
             // 
             // saveFileDialog1
             // 
@@ -578,7 +579,7 @@ namespace Simplex_Method
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.CheckBox checkBoxCornerDot;
         private System.Windows.Forms.DataGridView dataGridView_CornerDot;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog OpenFile_;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button ExitButton;
