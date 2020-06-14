@@ -37,6 +37,7 @@
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonNext = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.groupBoxCornerDot.SuspendLayout();
@@ -61,8 +62,8 @@
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(3, 17);
             this.dataGridView3.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dataGridView3.Location = new System.Drawing.Point(3, 17);
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
@@ -136,6 +137,17 @@
             this.label1.Size = new System.Drawing.Size(880, 45);
             this.label1.TabIndex = 11;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::Simplex_Method.Properties.Resources.help;
+            this.button1.Location = new System.Drawing.Point(646, 74);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(33, 34);
+            this.button1.TabIndex = 12;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // StepsSolve
             // 
@@ -143,6 +155,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(881, 534);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonBack);
@@ -176,5 +189,6 @@
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

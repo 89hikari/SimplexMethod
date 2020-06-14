@@ -40,6 +40,7 @@ namespace Simplex_Method
             this.label_answer = new System.Windows.Forms.Label();
             this.buttonNext = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.groupBoxCornerDot.SuspendLayout();
@@ -142,12 +143,23 @@ namespace Simplex_Method
             this.label1.TabIndex = 10;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // StepsArtificial
+            // button1
+            // 
+            this.button1.BackgroundImage = global::Simplex_Method.Properties.Resources.help;
+            this.button1.Location = new System.Drawing.Point(649, 74);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(34, 33);
+            this.button1.TabIndex = 11;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // StepsIskBasis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(881, 534);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonNext);
@@ -155,11 +167,10 @@ namespace Simplex_Method
             this.Controls.Add(this.groupBoxCornerDot);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "StepsArtificial";
+            this.Name = "StepsIskBasis";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Метод искусственного базиса, пошаговый режим.";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StepsArtificial_FormClosed);
-            this.Load += new System.EventHandler(this.StepsArtificial_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBoxCornerDot.ResumeLayout(false);
@@ -179,5 +190,6 @@ namespace Simplex_Method
         private System.Windows.Forms.Label label_answer;
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.Label label1;
+        private Button button1;
     }
 }

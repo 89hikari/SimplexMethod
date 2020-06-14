@@ -190,14 +190,10 @@ namespace Simplex_Method
             if (simplextable.ResponseCheck() == 1)
             {
                 label1.Text = "Метод искусственного базиса. Выбор опорного элемента.";
-             //   tabControl1.TabPages[0].Text = "Холостой шаг: Метод искусственного базиса. Выбор опорного элемента.";
-                //холостой шаг
-                //simplextable.IdleStep();
             }
             else
             {
                 label1.Text = "Метод искусственного базиса. Выбор опорного элемента.";
-             //   tabControl1.TabPages[0].Text = "Шаг " + step + ": Метод искусственного базиса. Выбор опорного элемента.";
                 //выбор опорного
                 simplextable.SelectionOfTheSupportElement(dataGridView3);
             }
@@ -458,7 +454,6 @@ namespace Simplex_Method
                     switch (simplextable1.ArtificialResponseCheck(variable_visualization, dataGridView3))
                     {
                         case 1:
-                            //MessageBox.Show("Таблица пришла в ноль!");
 
                             step++;
 
@@ -508,13 +503,10 @@ namespace Simplex_Method
                                     //выбор опорного
                                     simplextable.SelectionOfTheSupportElement(dataGridView3);
                                     label1.Text = "Симплекс таблица";
-                              //      tabControl1.TabPages[0].Text = "Шаг " + step + ": Симплекс-таблица.";
                                     step_1++;
                                     break;
                                 case 1:
                                     // Подставляем ответ
-                                    label1.Text = "Ответ готов!";
-                                  //  tabControl1.TabPages[0].Text = "Ответ готов!";
                                     if (MinMax == 0)
                                     {
                                         if (Radical_or_Decimal)
@@ -543,10 +535,9 @@ namespace Simplex_Method
                                     step_1++;
                                     break;
                                 case -1:
-                                    label1.Text = "Линейная форма не ограничена сверху на множествен планов задачи.";
-                                 //   tabControl1.TabPages[0].Text = "Линейная форма не ограничена сверху на множествен планов задачи.";
+                                    label1.Text = "Линейная форма не ограничена на множестве планов задачи.";
                                     buttonNext.Enabled = false;
-                                    MessageBox.Show("Линейная форма не ограничена сверху на множествен планов задачи.", "");
+                                    MessageBox.Show("Линейная форма не ограничена на множестве планов задачи.", "");
                                     step_1++;
                                     break;
                             }
@@ -556,8 +547,6 @@ namespace Simplex_Method
                             {
                                 // Если симплекс таблица решена
                                 step++;
-                                // Подставляем ответ
-                             //   tabControl1.TabPages[0].Text = "Ответ готов!";
                                 if (MinMax == 0)
                                 {
                                     if (Radical_or_Decimal)
@@ -589,7 +578,6 @@ namespace Simplex_Method
                             {
                                 step++;
                                 label1.Text = "Метод искусственного базиса. Выбор опорного элемента.";
-                              //  tabControl1.TabPages[0].Text = "Шаг " + step + ": Метод искусственного базиса. Выбор опорного элемента.";
                                 //выбор опорного
                                 simplextable.SelectionOfTheSupportElement(dataGridView3);
                             }
@@ -607,7 +595,6 @@ namespace Simplex_Method
                             //выбор опорного
                             simplextable.SelectionOfTheSupportElement(dataGridView3);
                             label1.Text = "Симплекс таблица";
-                        //    tabControl1.TabPages[0].Text = "Шаг " + step + ": Симплекс-таблица.";
                             step_1++;
                             break;
                         case 1:
@@ -631,7 +618,7 @@ namespace Simplex_Method
                             if (corner_dot_was_added == false)
                             {
                                 corner_dot_was_added = true;
-                                //добавляем точку
+                                //добавляем
                                 addGridParam(simplextable.ResponseDot(dataGridView3), dataGridViewCornerDot);
                             }
                             groupBoxCornerDot.Visible = true;
@@ -640,8 +627,8 @@ namespace Simplex_Method
                             step_1++;
                             break;
                         case -1:
-                            label1.Text = "Линейная форма не ограничена сверху на множествен планов задачи.";
-                            MessageBox.Show("Линейная форма не ограничена сверху на множествен планов задачи.", "");
+                            label1.Text = "Линейная форма не ограничена на множестве планов задачи.";
+                            MessageBox.Show("Линейная форма не ограничена на множестве планов задачи.", "");
                             buttonNext.Enabled = false;
                             step_1++;
                             break;
@@ -669,7 +656,7 @@ namespace Simplex_Method
 
                 if (result == DialogResult.Yes)
                 {
-                    // cancel the closure of the form.
+                
                     Cancel = false;
                 }
 
@@ -704,7 +691,6 @@ namespace Simplex_Method
                     step--;
                     step_1--;
                     label1.Text = "Метод искусственного базиса. Выбор опорного элемента.";
-                  //  tabControl1.TabPages[0].Text = "Шаг " + step + ": Метод искусственного базиса. Выбор опорного элемента.";
                     //меняем местами переменные обратно
                     simplextable.ChangeOfVisualizationVariables_GetOutTheBuffer(dataGridView3);
 
@@ -734,7 +720,6 @@ namespace Simplex_Method
 
                     step_1--;
                     label1.Text = "Метод искусственного базиса. Выбор опорного элемента.";
-                 //   tabControl1.TabPages[0].Text = "Шаг " + step + ": Метод искусственного базиса. Выбор опорного элемента.";
                     simplextable.SelectionOfTheSupportElement(dataGridView3);
 
                     // очищаем буфер на один шаг
@@ -760,9 +745,14 @@ namespace Simplex_Method
 
                 step--;
                 label1.Text = "Метод искусственного базиса. Выбор опорного элемента";
-              //  tabControl1.TabPages[0].Text = "Шаг " + step + ": Метод искусственного базиса. Выбор опорного элемента.";
                 simplextable.SelectionOfTheSupportElement(dataGridView3);
             }
+        }
+        private void StepsArtificial_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            corner_dot_was_added = false;
+            simplex_table_was_draw = false;
+            ArtificalBasixGoToNull = false;
         }
 
         public void read_grids(DataGridView Grid, List<List<double>> N)
@@ -803,22 +793,10 @@ namespace Simplex_Method
             }
         }
 
-        private void StepsArtificial_FormClosed(object sender, FormClosedEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            corner_dot_was_added = false;
-            simplex_table_was_draw = false;
-            ArtificalBasixGoToNull = false;
-        }
-
-        private void StepsArtificial_Load(object sender, EventArgs e)
-        {
-            var outPutDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-            var filePath = System.IO.Path.Combine(outPutDirectory, "data\\Help\\StepByStepForArtificalHelp.rtf");
-
-            string file_path = new Uri(filePath).LocalPath; // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug
-                                                            // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug\data\Help\MainPageHelp.rtf
-
-    //        helpProvider1.HelpNamespace = file_path;
+            Spravka_basis spravka = new Spravka_basis();
+            spravka.ShowDialog();
         }
     }
 }

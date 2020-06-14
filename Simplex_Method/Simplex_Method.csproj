@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Spravka_basis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Spravka_basis.Designer.cs">
+      <DependentUpon>Spravka_basis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Spravka_simplex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Spravka_simplex.Designer.cs">
+      <DependentUpon>Spravka_simplex.cs</DependentUpon>
+    </Compile>
     <Compile Include="WhatIsThisProgramm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +126,12 @@
     <EmbeddedResource Include="Spravka.resx">
       <DependentUpon>Spravka.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Spravka_basis.resx">
+      <DependentUpon>Spravka_basis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Spravka_simplex.resx">
+      <DependentUpon>Spravka_simplex.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StepsIskBasis.resx">
       <DependentUpon>StepsIskBasis.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="help.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\симплекс.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

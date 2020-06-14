@@ -40,3 +40,5 @@ C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simp
 C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.StepsIskBasis.resources
 C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.Spravka.resources
 C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.WhatIsThisProgramm.resources
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.Spravka_simplex.resources
+C:\Users\Vladislav\source\repos\simp\SimplexMethod\Simplex_Method\obj\Debug\Simplex_Method.Spravka_basis.resources

@@ -1448,5 +1448,16 @@ namespace Simplex_Method
             simplex_table_was_draw = false;
             corner_dot_was_added = false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Spravka_simplex spravka = new Spravka_simplex();
+            spravka.ShowDialog();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -33,9 +33,10 @@ namespace Simplex_Method
             drawing_org();
             non_sort_for_columns();
             radioButton_min.Checked = true;
-            radioButton_symplex.Checked = false;
+            radioButton_symplex.Checked = true;
             radioButton_default_drob.Checked = true;
-            radioButton_step_by_step.Checked = true;
+            radioButton_step_by_step.Checked = false;
+            radioButton_auto_answer.Checked = true;
         }
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
@@ -961,14 +962,6 @@ namespace Simplex_Method
 
         private void SaveFile_Click(object sender, EventArgs e)
         {
-            var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            var filePath = Path.Combine(outPutDirectory, "tasks");
-
-            string file_path = new Uri(filePath).LocalPath;
-
-            saveFileDialog1.InitialDirectory = file_path;
-            if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
-                return;
 
             // Для работы с десятичными
             List<List<string>> general = new List<List<string>>(); // общая
@@ -1077,6 +1070,13 @@ namespace Simplex_Method
                         general_with_radicals[i + 1].Add(ogr_with_radicals[i][j].ToString());
                     }
                 }
+
+                var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
+                var filePath = Path.Combine(outPutDirectory, "tasks");
+
+                string file_path = new Uri(filePath).LocalPath;
+
+                saveFileDialog1.InitialDirectory = file_path;
 
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
