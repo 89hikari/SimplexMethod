@@ -740,9 +740,6 @@ namespace Simplex_Method
                 else
                     addGridParam_for_simplex_elements(simplextable.simplex_elements_with_radicals, dataGridView3);
 
-                //simplextable.buffer_delete_artifical_columns.RemoveAt(simplextable.buffer_delete_artifical_columns.Count - 1);
-                //simplextable.buffer_delete_artifical_rows.RemoveAt(simplextable.buffer_delete_artifical_rows.Count - 1);
-
                 step--;
                 label1.Text = "Метод искусственного базиса. Выбор опорного элемента";
                 simplextable.SelectionOfTheSupportElement(dataGridView3);
@@ -772,8 +769,6 @@ namespace Simplex_Method
 
         public void read_grids(DataGridView Grid, List<List<Fractions>> N)
         {
-
-
             for (int i = 0; i < Grid.Rows.Count; i++)
             {
                 N.Add(new List<Fractions>());

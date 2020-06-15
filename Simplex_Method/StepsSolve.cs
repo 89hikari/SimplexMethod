@@ -199,17 +199,6 @@ namespace Simplex_Method
             addGridParam(ogr, dataGridView3, variable_visualization);
         }
 
-        private void StepByStep_Load(object sender, EventArgs e)
-        {
-            var outPutDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            var filePath = System.IO.Path.Combine(outPutDirectory, "data\\Help\\StepByStepHelp.rtf");
-
-            string file_path = new Uri(filePath).LocalPath; // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug
-                                                            // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug\data\Help\MainPageHelp.rtf
-
-   //         helpProvider1.HelpNamespace = file_path;
-        }
-
         /// <summary>
         /// Добавляем данные в ячейки и отрисовываем их - из String - двумерного массива
         /// </summary>
@@ -649,8 +638,6 @@ namespace Simplex_Method
                 return finish_corner_dot;
             }
         }
-
-
 
         private void ChangeOfVisualizationVariables(Simplex simplextable)
         {

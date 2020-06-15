@@ -30,9 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Spravka));
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -40,8 +38,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButton_max = new System.Windows.Forms.RadioButton();
-            this.radioButton_min = new System.Windows.Forms.RadioButton();
             this.radioButton_imagine_b = new System.Windows.Forms.RadioButton();
             this.radioButton_symplex = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -71,8 +67,11 @@
             this.label15 = new System.Windows.Forms.Label();
             this.ExitButton = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -96,28 +95,6 @@
             this.label1.Text = resources.GetString("label1.Text");
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(162, 68);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(44, 20);
-            this.numericUpDown2.TabIndex = 8;
-            this.numericUpDown2.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -127,28 +104,6 @@
             this.label2.Size = new System.Drawing.Size(151, 15);
             this.label2.TabIndex = 7;
             this.label2.Text = "Количество ограничений:";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(162, 32);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(44, 20);
-            this.numericUpDown1.TabIndex = 6;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // label3
             // 
@@ -171,11 +126,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Controls.Add(this.numericUpDown2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(46, 165);
             this.groupBox1.Name = "groupBox1";
@@ -194,6 +150,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Location = new System.Drawing.Point(46, 288);
@@ -213,8 +170,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.radioButton_max);
-            this.groupBox4.Controls.Add(this.radioButton_min);
+            this.groupBox4.Controls.Add(this.comboBox3);
             this.groupBox4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.Location = new System.Drawing.Point(19, 29);
             this.groupBox4.Name = "groupBox4";
@@ -222,30 +178,6 @@
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Решать задачу на";
-            // 
-            // radioButton_max
-            // 
-            this.radioButton_max.AutoSize = true;
-            this.radioButton_max.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButton_max.Location = new System.Drawing.Point(8, 44);
-            this.radioButton_max.Name = "radioButton_max";
-            this.radioButton_max.Size = new System.Drawing.Size(83, 19);
-            this.radioButton_max.TabIndex = 1;
-            this.radioButton_max.TabStop = true;
-            this.radioButton_max.Text = "Максимум";
-            this.radioButton_max.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_min
-            // 
-            this.radioButton_min.AutoSize = true;
-            this.radioButton_min.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButton_min.Location = new System.Drawing.Point(8, 19);
-            this.radioButton_min.Name = "radioButton_min";
-            this.radioButton_min.Size = new System.Drawing.Size(78, 19);
-            this.radioButton_min.TabIndex = 0;
-            this.radioButton_min.TabStop = true;
-            this.radioButton_min.Text = "Минимум";
-            this.radioButton_min.UseVisualStyleBackColor = true;
             // 
             // radioButton_imagine_b
             // 
@@ -549,6 +481,86 @@
             this.label16.TabIndex = 24;
             this.label16.Text = "Далее вы сможете получить информацию по использованию в окнах решения задач.\r\n";
             // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox3.Items.AddRange(new object[] {
+            "min",
+            "max"});
+            this.comboBox3.Location = new System.Drawing.Point(23, 30);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(71, 24);
+            this.comboBox3.TabIndex = 25;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16"});
+            this.comboBox1.Location = new System.Drawing.Point(162, 30);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(39, 21);
+            this.comboBox1.TabIndex = 19;
+            this.comboBox1.Text = "1";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16"});
+            this.comboBox2.Location = new System.Drawing.Point(162, 64);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(39, 21);
+            this.comboBox2.TabIndex = 20;
+            this.comboBox2.Text = "1";
+            // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.Location = new System.Drawing.Point(63, 94);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(323, 20);
+            this.label17.TabIndex = 21;
+            this.label17.Text = "Изменять значения удобно с помощью колёсика мыши.\r\n\r\n";
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(63, 104);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(323, 20);
+            this.label18.TabIndex = 22;
+            this.label18.Text = "Изменять значения удобно с помощью колёсика мыши.\r\n\r\n";
+            // 
             // Spravka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,13 +588,10 @@
             this.Name = "Spravka";
             this.Text = "Справка";
             this.Load += new System.EventHandler(this.Spravka_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -603,9 +612,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -613,8 +620,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton_max;
-        private System.Windows.Forms.RadioButton radioButton_min;
         private System.Windows.Forms.RadioButton radioButton_imagine_b;
         private System.Windows.Forms.RadioButton radioButton_symplex;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -644,5 +649,10 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }

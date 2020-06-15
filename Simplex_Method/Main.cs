@@ -15,10 +15,6 @@ namespace Simplex_Method
 {
     public partial class Main : Form
     {
-        /// <summary>
-        /// Определитель - какой режим работы с дробями выбран. false - обыкновенные. true - десятичные
-        /// </summary>
-        bool decimal_or_radical_drob = false;
 
         public Main()
         {
@@ -28,17 +24,17 @@ namespace Simplex_Method
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            decimal_or_radical_drob = radioButton_decimal_drob.Checked;
+            desyat_ili_obikn = radioButton_decimal_drob.Checked;
             drawing_function();
             drawing_org();
             non_sort_for_columns();
-            radioButton_min.Checked = true;
             radioButton_symplex.Checked = true;
             radioButton_default_drob.Checked = true;
             radioButton_step_by_step.Checked = false;
             radioButton_auto_answer.Checked = true;
         }
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             clearGrids();
             drawing_function();
@@ -46,11 +42,13 @@ namespace Simplex_Method
             drawing_corner_dot();
             non_sort_for_columns();
         }
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             clearGrids();
             drawing_function();
             drawing_org();
+            drawing_corner_dot();
             non_sort_for_columns();
         }
 
@@ -86,47 +84,51 @@ namespace Simplex_Method
 
         }
 
+        /// <summary>
+        /// Определитель - какой режим работы с дробями выбран. false - обыкновенные. true - десятичные
+        /// </summary>
+        bool desyat_ili_obikn = false;
+
         private void drawing_org()
         {
-            for (int i = 0; i < Decimal.ToInt32(numericUpDown1.Value + 1); i++)
+            for (int i = 0; i < Decimal.ToInt32(Int32.Parse(comboBox1.SelectedItem.ToString()) + 1); i++)
             {
                 dataGridView2.Columns.Add($"ogr_x{i + 1}", $"x{i + 1}");
 
-                if (i == Decimal.ToInt32(numericUpDown1.Value)) // последний элемент
+                if (i == Decimal.ToInt32(Int32.Parse(comboBox1.SelectedItem.ToString()))) // последний элемент
                 {
                     dataGridView2.Columns[i].HeaderText = "Своб.";
                 }
             } // Создаём столбцы
 
-            for (int i = 1; i < Decimal.ToInt32(numericUpDown2.Value + 1); i++)
+            for (int i = 1; i < Decimal.ToInt32(Int32.Parse(comboBox2.SelectedItem.ToString()) + 1); i++)
             {
                 dataGridView2.Rows.Insert(0, "0");
             } // Создаём строки
 
-            for (int i = 0; i < Decimal.ToInt32(numericUpDown1.Value); i++)
+            for (int i = 0; i < Decimal.ToInt32(Int32.Parse(comboBox1.SelectedItem.ToString())); i++)
             {
-                for (int j = 0; j < Decimal.ToInt32(numericUpDown2.Value); j++)
+                for (int j = 0; j < Decimal.ToInt32(Int32.Parse(comboBox2.SelectedItem.ToString())); j++)
                     dataGridView2.Rows[j].Cells[i].Value = "0";
             }
         }
 
         private void drawing_function()
         {
-            for (int i = 1; i < Decimal.ToInt32(numericUpDown1.Value + 1); i++)
+            for (int i = 1; i < Decimal.ToInt32(Int32.Parse(comboBox1.SelectedItem.ToString()) + 1); i++)
             {
                 dataGridView1.Columns.Add($"function_x{i}", $"x{i}");
             } // Создаём столбцы
 
             dataGridView1.Rows.Insert(0, "0");
 
-            for (int i = 0; i < Decimal.ToInt32(numericUpDown1.Value); i++)
+            for (int i = 0; i < Decimal.ToInt32(Int32.Parse(comboBox1.SelectedItem.ToString())); i++)
             {
                 dataGridView1.Rows[0].Cells[i].Value = "0";
             }
-
         }
 
-        private void drawing_corner_dot()
+        private void drawing_corner_dot() // отрисовка нач. точки
         {
             dataGridView_CornerDot.Columns.Clear();
 
@@ -146,7 +148,7 @@ namespace Simplex_Method
             }
         }
 
-        private void non_sort_for_columns()
+        private void non_sort_for_columns() // Несортировка для таблиц
         {
             foreach (DataGridViewColumn dgvc in dataGridView1.Columns)
             {
@@ -156,7 +158,7 @@ namespace Simplex_Method
             {
                 dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-        } //Делаем колонки несортируемыми
+        }
 
         public void read_grids(DataGridView Grid, List<List<double>> N)
         {
@@ -203,8 +205,7 @@ namespace Simplex_Method
         }
 
         /// <summary>
-        /// Считывание из колонок по DisplayIndex. Считывает не по относительному индексу, а по Display. 
-        /// То есть значения считываются так, как они отображены в dataGridView
+        /// Считывание значений из уже заполненных таблиц
         /// </summary>
         /// <param name="Grid"></param>
         /// <param name="N"></param>
@@ -232,7 +233,7 @@ namespace Simplex_Method
             }
         }
 
-        private void spravka_click(object sender, EventArgs e)
+        private void spravka_click(object sender, EventArgs e) // Справка по использованию
         {
             Spravka spravka = new Spravka();
             spravka.Show();
@@ -248,7 +249,7 @@ namespace Simplex_Method
             List<List<Fractions>> cel_function_with_radicals = new List<List<Fractions>>();
 
             // Если выбраны десятичные дроби
-            if (decimal_or_radical_drob)
+            if (desyat_ili_obikn)
             {
                 try
                 {
@@ -286,7 +287,7 @@ namespace Simplex_Method
             // Высчитываем ранг матрицы, но по копированной матрице
             int rang = 0;
 
-            if (decimal_or_radical_drob)
+            if (desyat_ili_obikn)
             {
                 // Копируем элементы для десятичных
                 for (int i = 0; i < ogr.Count; i++)
@@ -313,10 +314,8 @@ namespace Simplex_Method
                 rang = RangOfMatrix(copy_elements_with_radicals);
             }
 
-
-
             // Выбран мин или макс
-            int MinMax = is_check_MinMax(); // 0 - выбран max, 1 - выбран min
+            int MinMax = MinMax_check(); // 0 - выбран max, 1 - выбран min
 
             // Определитель - выбрана ли угловая точка
             bool CornerDot = checkBoxCornerDot.Checked;
@@ -330,7 +329,7 @@ namespace Simplex_Method
 
                 List<List<double>> corner_dot = new List<List<double>>();
                 List<List<Fractions>> corner_dot_with_radicals = new List<List<Fractions>>();
-                if (decimal_or_radical_drob) {
+                if (desyat_ili_obikn) {
                     read_grids(dataGridView_CornerDot, corner_dot);
 
                 } 
@@ -342,7 +341,7 @@ namespace Simplex_Method
                 int index = 0;//индекс переменной, которая является базисной
                 int count_basix_var = 0;//число базисных переменных
 
-                if (decimal_or_radical_drob)
+                if (desyat_ili_obikn)
                 {
                     //проверяем на возможность выражения базисных переменных для десятичных
                     for (int j = 0; j < corner_dot[0].Count; j++)
@@ -378,7 +377,7 @@ namespace Simplex_Method
                     return;
                 }
 
-                if (decimal_or_radical_drob)
+                if (desyat_ili_obikn)
                 {
                     // Массив запоминающий индексы переменных для отображения
                     List<int> variable_visualization = new List<int>();
@@ -389,7 +388,7 @@ namespace Simplex_Method
                     // Меняем колонки местами, чтобы обычный прямой ход Гаусса ставил базис именно по ненулевым столбцам корневой точки
                     ChangeColumnsForGauss(ogr, corner_dot, variable_visualization);
 
-                    StepsSolve byStep = new StepsSolve(cel_function, ogr, MinMax, CornerDot, rang, decimal_or_radical_drob, variable_visualization);
+                    StepsSolve byStep = new StepsSolve(cel_function, ogr, MinMax, CornerDot, rang, desyat_ili_obikn, variable_visualization);
                     byStep.ShowDialog();
                 }
                 else
@@ -404,7 +403,7 @@ namespace Simplex_Method
                     // Меняем колонки местами, чтобы обычный прямой ход Гаусса ставил базис именно по ненулевым столбцам корневой точки
                     ChangeColumnsForGauss(ogr_with_radicals, corner_dot_with_radicals, variable_visualization);
 
-                    StepsSolve byStep = new StepsSolve(cel_function_with_radicals, ogr_with_radicals, MinMax, CornerDot, rang, decimal_or_radical_drob, variable_visualization);
+                    StepsSolve byStep = new StepsSolve(cel_function_with_radicals, ogr_with_radicals, MinMax, CornerDot, rang, desyat_ili_obikn, variable_visualization);
                     byStep.ShowDialog();
                 }
 
@@ -413,15 +412,15 @@ namespace Simplex_Method
             else if ((radioButton_step_by_step.Checked == true) && (radioButton_symplex.Checked == true) && (checkBoxCornerDot.Checked == false))
             {
                 // Если выбраны десятичные дроби
-                if (decimal_or_radical_drob == true)
+                if (desyat_ili_obikn == true)
                 {
-                    StepsSolve byStep = new StepsSolve(cel_function, ogr, MinMax, CornerDot, rang, decimal_or_radical_drob);
+                    StepsSolve byStep = new StepsSolve(cel_function, ogr, MinMax, CornerDot, rang, desyat_ili_obikn);
                     byStep.ShowDialog();
                 }
                 // Если выбраны обыкновенные дроби
-                else if (decimal_or_radical_drob == false)
+                else if (desyat_ili_obikn == false)
                 {
-                    StepsSolve byStep = new StepsSolve(cel_function_with_radicals, ogr_with_radicals, MinMax, CornerDot, rang, decimal_or_radical_drob);
+                    StepsSolve byStep = new StepsSolve(cel_function_with_radicals, ogr_with_radicals, MinMax, CornerDot, rang, desyat_ili_obikn);
                     byStep.ShowDialog();
                 }
             }
@@ -440,7 +439,7 @@ namespace Simplex_Method
                 int index = 0;//индекс переменной, которая является базисной
                 int count_basix_var = 0;//число базисных переменных
 
-                if (decimal_or_radical_drob)
+                if (desyat_ili_obikn)
                 {
                     //проверяем на возможность выражения базисных переменных для десятичных
                     for (int j = 0; j < corner_dot[0].Count; j++)
@@ -476,7 +475,7 @@ namespace Simplex_Method
                     return;
                 }
 
-                if (decimal_or_radical_drob)
+                if (desyat_ili_obikn)
                 {
                     // Массив запоминающий индексы переменных для отображения
                     List<int> variable_visualization = new List<int>();
@@ -487,7 +486,7 @@ namespace Simplex_Method
                     // Меняем колонки местами, чтобы обычный прямой ход Гаусса ставил базис именно по ненулевым столбцам корневой точки
                     ChangeColumnsForGauss(ogr, corner_dot, variable_visualization);
 
-                    Auto byAuto = new Auto(cel_function, ogr, MinMax, CornerDot, count_basix_var, decimal_or_radical_drob, variable_visualization);
+                    Auto byAuto = new Auto(cel_function, ogr, MinMax, CornerDot, count_basix_var, desyat_ili_obikn, variable_visualization);
                     byAuto.ShowDialog();
                 }
                 else
@@ -502,7 +501,7 @@ namespace Simplex_Method
                     // Меняем колонки местами, чтобы обычный прямой ход Гаусса ставил базис именно по ненулевым столбцам корневой точки
                     ChangeColumnsForGauss(ogr_with_radicals, corner_dot_with_radicals, variable_visualization);
 
-                    Auto byAuto = new Auto(cel_function_with_radicals, ogr_with_radicals, MinMax, CornerDot, count_basix_var, decimal_or_radical_drob, variable_visualization);
+                    Auto byAuto = new Auto(cel_function_with_radicals, ogr_with_radicals, MinMax, CornerDot, count_basix_var, desyat_ili_obikn, variable_visualization);
                     byAuto.ShowDialog();
                 }
             }
@@ -510,22 +509,22 @@ namespace Simplex_Method
             else if ((radioButton_auto_answer.Checked == true) && (radioButton_symplex.Checked == true) && (checkBoxCornerDot.Checked == false))
             {
                 // Если выбраны десятичные дроби
-                if (decimal_or_radical_drob == true)
+                if (desyat_ili_obikn == true)
                 {
-                    Auto byAuto = new Auto(cel_function, ogr, MinMax, rang, decimal_or_radical_drob);
+                    Auto byAuto = new Auto(cel_function, ogr, MinMax, rang, desyat_ili_obikn);
                     byAuto.ShowDialog();
                 }
                 // Если выбраны обыкновенные дроби
-                else if (decimal_or_radical_drob == false)
+                else if (desyat_ili_obikn == false)
                 {
-                    Auto byAuto = new Auto(cel_function_with_radicals, ogr_with_radicals, MinMax, rang, decimal_or_radical_drob);
+                    Auto byAuto = new Auto(cel_function_with_radicals, ogr_with_radicals, MinMax, rang, desyat_ili_obikn);
                     byAuto.ShowDialog();
                 }
             }
             //если выбраны пошаговый режим и метод искусственного базиса БЕЗ задания начальной угловой точки
             else if ((radioButton_step_by_step.Checked == true) && (radioButton_imagine_b.Checked == true) && (checkBoxCornerDot.Checked == false))
             {
-                if (decimal_or_radical_drob)
+                if (desyat_ili_obikn)
                 {
                     // Массив запоминающий индексы переменных для отображения
                     List<int> variable_visualization = new List<int>();
@@ -533,7 +532,7 @@ namespace Simplex_Method
                     for (int i = 0; i < ogr[0].Count; i++)
                         variable_visualization.Add(i + 1);
 
-                    StepsIskBasis stepByStepArtifical = new StepsIskBasis(ogr, cel_function, rang, variable_visualization, MinMax, decimal_or_radical_drob);
+                    StepsIskBasis stepByStepArtifical = new StepsIskBasis(ogr, cel_function, rang, variable_visualization, MinMax, desyat_ili_obikn);
                     stepByStepArtifical.Show();
                 }
                 else
@@ -544,7 +543,7 @@ namespace Simplex_Method
                     for (int i = 0; i < ogr_with_radicals[0].Count; i++)
                         variable_visualization.Add(i + 1);
 
-                    StepsIskBasis stepByStepArtifical = new StepsIskBasis(ogr_with_radicals, cel_function_with_radicals, rang, variable_visualization, MinMax, decimal_or_radical_drob);
+                    StepsIskBasis stepByStepArtifical = new StepsIskBasis(ogr_with_radicals, cel_function_with_radicals, rang, variable_visualization, MinMax, desyat_ili_obikn);
                     stepByStepArtifical.Show();
                 }
 
@@ -553,7 +552,7 @@ namespace Simplex_Method
             //если выбраны авто режим и метод искуственного базиса и БЕЗ задания начальной угловой точки
             else if ((radioButton_auto_answer.Checked == true) && (radioButton_imagine_b.Checked == true) && (checkBoxCornerDot.Checked == false))
             {
-                if (decimal_or_radical_drob)
+                if (desyat_ili_obikn)
                 {
                     // Массив запоминающий индексы переменных для отображения
                     List<int> variable_visualization = new List<int>();
@@ -561,7 +560,7 @@ namespace Simplex_Method
                     for (int i = 0; i < ogr[0].Count; i++)
                         variable_visualization.Add(i + 1);
 
-                    AutoIskBasis autoModeArtifical = new AutoIskBasis(ogr, cel_function, rang, variable_visualization, MinMax, decimal_or_radical_drob);
+                    AutoIskBasis autoModeArtifical = new AutoIskBasis(ogr, cel_function, rang, variable_visualization, MinMax, desyat_ili_obikn);
                     autoModeArtifical.Show();
                 }
                 else
@@ -572,7 +571,7 @@ namespace Simplex_Method
                     for (int i = 0; i < ogr_with_radicals[0].Count; i++)
                         variable_visualization.Add(i + 1);
 
-                    AutoIskBasis autoModeArtifical = new AutoIskBasis(ogr_with_radicals, cel_function_with_radicals, rang, variable_visualization, MinMax, decimal_or_radical_drob);
+                    AutoIskBasis autoModeArtifical = new AutoIskBasis(ogr_with_radicals, cel_function_with_radicals, rang, variable_visualization, MinMax, desyat_ili_obikn);
                     autoModeArtifical.Show();
                 }
             }
@@ -722,6 +721,13 @@ namespace Simplex_Method
             return -1;
         }
 
+        private int MinMax_check()
+        {
+            if (comboBox3.Text.ToString() == "max")
+                return 0;
+            return -1;
+        }
+
         private void About_click(object sender, EventArgs e)
         {
             WhatIsThisProgramm About = new WhatIsThisProgramm();
@@ -765,7 +771,7 @@ namespace Simplex_Method
             // Определяем макс или мин и очищаем от этого строку
             if (fileText.Contains("max") || fileText.Contains(" max"))
             {
-                radioButton_max.Checked = true;
+                comboBox3.SelectedIndex = 1;
                 fileText = fileText.Replace(" max", "");
                 fileText = fileText.Replace("  max", "");
             }
@@ -773,7 +779,7 @@ namespace Simplex_Method
             {
                 if (fileText.Contains("min") || fileText.Contains(" min"))
                 {
-                    radioButton_min.Checked = true;
+                    comboBox3.SelectedIndex = 0;
                     fileText = fileText.Replace(" min", "");
                     fileText = fileText.Replace("  min", "");
                 }
@@ -952,11 +958,11 @@ namespace Simplex_Method
         {
             if (radioButton_decimal_drob.Checked)
             {
-                decimal_or_radical_drob = true;
+                desyat_ili_obikn = true;
             }
             else if (radioButton_default_drob.Checked)
             {
-                decimal_or_radical_drob = false;
+                desyat_ili_obikn = false;
             }
         }
 
@@ -973,7 +979,7 @@ namespace Simplex_Method
             List<List<Fractions>> cel_function_with_radicals = new List<List<Fractions>>();
 
             // Если выбраны десятичные дроби
-            if (decimal_or_radical_drob)
+            if (desyat_ili_obikn)
             {
                 try
                 {
@@ -992,7 +998,7 @@ namespace Simplex_Method
                     general[0].Add(cel_function[0][i].ToString());
                 }
 
-                if (radioButton_max.Checked)
+                if (comboBox3.SelectedIndex == 1)
                 {
                     general[0].Add("max");
                 }
@@ -1053,7 +1059,7 @@ namespace Simplex_Method
                     general_with_radicals[0].Add(cel_function_with_radicals[0][i].ToString());
                 }
 
-                if (radioButton_max.Checked)
+                if (comboBox3.SelectedIndex == 1)
                 {
                     general_with_radicals[0].Add("max");
                 }

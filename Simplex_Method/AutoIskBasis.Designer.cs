@@ -116,7 +116,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AutoModeArtificalBasix";
             this.Text = "Искусственный базис, автоматически.";
-            this.Load += new System.EventHandler(this.AutoModeArtificalBasix_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBoxCornerDot.ResumeLayout(false);

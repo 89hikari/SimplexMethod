@@ -640,16 +640,5 @@ namespace Simplex_Method
                 }
             }
         }
-
-        private void AutoModeArtificalBasix_Load(object sender, EventArgs e)
-        {
-            var outPutDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-            var filePath = System.IO.Path.Combine(outPutDirectory, "data\\Help\\AutoModeHelp.rtf");
-
-            string file_path = new Uri(filePath).LocalPath; // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug
-                                                            // C:\Users\Kis\source\repos\_Legkov\SymplexMethodCsharp\bin\Debug\data\Help\MainPageHelp.rtf
-
-     //       helpProvider1.HelpNamespace = file_path;
-        }
     }
 }

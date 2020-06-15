@@ -169,7 +169,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Симплекс метод, пошагово.";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StepByStep_FormClosing);
-            this.Load += new System.EventHandler(this.StepByStep_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBoxCornerDot.ResumeLayout(false);

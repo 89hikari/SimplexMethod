@@ -9,8 +9,6 @@ namespace Simplex_Method
 {
     public partial class Simplex
     {
-        public int count_of_permutations;
-        public int count_of_free_variables;
         /// <summary>
         /// Список коэфф-тов системы ограничений-равенств.
         /// </summary>
@@ -48,17 +46,17 @@ namespace Simplex_Method
         /// </summary>
         public bool simplex_or_artificial;
         /// <summary>
-        /// Опорный элемент.
+        /// Опорный элемент для десятич.
         /// </summary>
         double supporting_member;
         /// <summary>
         /// Опорный элемент для дроби
         /// </summary>
-        Fractions supporting_member_for_radicals;
+        Fractions supporting_member_for_drob;
         /// <summary>
-        /// Какие дроби выбраны. false - обыкновенные, true - десятичные.
+        /// Какие дроби выбраны
         /// </summary>
-        bool radical_or_decimal;
+        bool drob_or_desyat;
         /// <summary>
         /// Разрешающая строка.
         /// </summary>
@@ -84,6 +82,8 @@ namespace Simplex_Method
         /// </summary>
         public List<List<int>> buffer_delete_artifical_rows = new List<List<int>>();
         private Simplex simplextable;
+        public int count_of_permutations; //кол-во перестановок
+        public int count_of_free_variables; //кол-во переменных
 
         public Simplex(int number_of_permutations, int number_of_free_variables, List<List<double>> ogr, List<List<double>> cel_function, bool simplex_or_artificial, bool radical_or_decimal)
         {
@@ -97,7 +97,7 @@ namespace Simplex_Method
             Copy_List(cel_function, this.cel_function);
 
             this.simplex_or_artificial = simplex_or_artificial;
-            this.radical_or_decimal = radical_or_decimal;
+            this.drob_or_desyat = radical_or_decimal;
         }
 
         public Simplex(int number_of_basix_permutations, int number_of_free_variables, List<List<Fractions>> ogr_with_radicals, List<List<Fractions>> cel_function_with_radicals, bool simplex_or_artificial, bool radical_or_decimal)
@@ -112,7 +112,7 @@ namespace Simplex_Method
             Copy_List(cel_function_with_radicals, this.cel_function_with_radicals);
 
             this.simplex_or_artificial = simplex_or_artificial;
-            this.radical_or_decimal = radical_or_decimal;
+            this.drob_or_desyat = radical_or_decimal;
         }
 
         public Simplex(Simplex simplextable)
@@ -141,10 +141,8 @@ namespace Simplex_Method
             this.count_of_permutations = simplextable.count_of_permutations;
             this.count_of_free_variables = simplextable.count_of_free_variables;
 
-            this.radical_or_decimal = simplextable.radical_or_decimal;
+            this.drob_or_desyat = simplextable.drob_or_desyat;
         }
-
-
 
         /// <summary>
         /// Метод копирующий двумерные List. Перед копированием, нужно инициализировать оба List
@@ -177,20 +175,20 @@ namespace Simplex_Method
         }
 
         /// <summary>
-        /// Проверка решения/не разрешимости. 0 - продолжаем искать решение. 1 - ответ готов. -1 - задача не разрешима.
+        /// Проверка на решение. 0 - продолжаем искать. 1 - ответ готов. -1 - задача не разрешима.
         /// </summary>
         public int ResponseCheck()
         {
-            // Если выбраны десятичные дроби
-            if (radical_or_decimal == true)
+            // Если десятичные
+            if (drob_or_desyat == true)
             {
-                //неразрешимо?
+                // неразрешимо?
                 bool insoluble = false;
                 for (int j = 0; j < simplex_elements[0].Count - 1; j++)
                 {
                     if (simplex_elements[simplex_elements.Count - 1][j] < 0) // Проходимся по последней строке. Если есть отрицательне, то...
                     {
-                        // Предполагаем, что она неразрешима, и смотрим дальше...
+                        // Предполагаем, что она неразрешима, и смотрим дальше
                         insoluble = true;
                         for (int i = 0; i < simplex_elements.Count - 1; i++) // Проходимся по всем элеметам, кроме последней(f) строки и (d)столбца
                         {
@@ -208,7 +206,7 @@ namespace Simplex_Method
                         return -1;
                 }
 
-                //предполагаем, что нет отрицательных элементов в последней строке
+                // если нет отрицательных элементов в последней строке
                 insoluble = true;
                 //проверяем
                 for (int j = 0; j < simplex_elements[0].Count - 1; j++) // Проходимся по последней (f) строке
@@ -278,7 +276,7 @@ namespace Simplex_Method
         public void BufferingSimplexTableValues(int step)
         {
             // Если выбраны десятичные
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 buffer_simplex_elements.Add(new List<List<double>>());
                 for (int i = 0; i < simplex_elements.Count; i++)
@@ -307,7 +305,7 @@ namespace Simplex_Method
         public void BufferingSimplexTableValues_ForArtifical()
         {
             // Если выбраны десятичные
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 buffer_simplex_elements.Add(new List<List<double>>());
                 for (int i = 0; i < simplex_elements.Count; i++)
@@ -381,7 +379,7 @@ namespace Simplex_Method
         /// <param name="Grid"></param>
         public void DeleteArtificalBasix(DataGridView Grid)
         {
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 for (int j = 0; j < Grid.ColumnCount - 1; j++)
                 {
@@ -410,7 +408,7 @@ namespace Simplex_Method
 
         public void CalculateCelRow(DataGridView Grid)
         {
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 double a = 0;
                 int column_index = 0;
@@ -425,7 +423,7 @@ namespace Simplex_Method
                     {
                         a += simplex_elements[i][j] * cel_function[0][Int32.Parse(Grid.Rows[i].HeaderCell.Value.ToString().Trim('x')) - 1];
                     }
-                    a -= cel_function[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("Своб.", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую (возможно Replace не нужно)
+                    a -= cel_function[0][Int32.Parse(Grid.Columns[column_index].HeaderCell.Value.ToString().Replace("Своб.", column_index.ToString()).Trim('x')) - 1]; // функция подставления в коэфф в целевую функцию
 
                     ////отображение
                     Grid.Rows[count_of_permutations].Cells[column_index].Value = a;
@@ -512,7 +510,7 @@ namespace Simplex_Method
                     count++;
             }
 
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
 
                 if (simplex_elements[simplex_elements.Count - 1][simplex_elements[0].Count - 1] == 0)
@@ -551,7 +549,7 @@ namespace Simplex_Method
 
                 else if (simplex_elements_with_radicals[simplex_elements_with_radicals.Count - 1][simplex_elements_with_radicals[0].Count - 1] > 0)
                     return -1;
-                else //if (simplex_elements_with_radicals[simplex_elements_with_radicals.Count - 1][simplex_elements_with_radicals[0].Count - 1] < 0)
+                else
                     return 0;
             }
 
@@ -563,7 +561,7 @@ namespace Simplex_Method
         public void CalculateSimplexTable(int row_of_the_support_element, int column_of_the_support_element)
         {
             // Если выбраны десятичные
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 //записываем значение опорного элемента
                 supporting_member = simplex_elements[row_of_the_support_element][column_of_the_support_element];
@@ -599,7 +597,6 @@ namespace Simplex_Method
                     }
                 }
 
-
                 //вычисление разрешающего столбца
                 for (int i = 0; i < simplex_elements.Count; i++) // Проходимся столько раз, сколько высота симплекс таблицы (сверху вниз)
                 {
@@ -613,7 +610,7 @@ namespace Simplex_Method
             else
             {
                 //записываем значение опорного элемента
-                supporting_member_for_radicals = simplex_elements_with_radicals[row_of_the_support_element][column_of_the_support_element];
+                supporting_member_for_drob = simplex_elements_with_radicals[row_of_the_support_element][column_of_the_support_element];
 
                 //вычисление остальных строк сиплекс-таблицы
 
@@ -626,14 +623,14 @@ namespace Simplex_Method
                             if (j != column_of_the_support_element) // Исключаем колонку с опорным элементом
                             {
                                 // вычисляем i-тый, j-тый элемент по формуле.
-                                simplex_elements_with_radicals[i][j] = (((simplex_elements_with_radicals[i][j] * simplex_elements_with_radicals[row_of_the_support_element][column_of_the_support_element]) - (simplex_elements_with_radicals[row_of_the_support_element][j] * simplex_elements_with_radicals[i][column_of_the_support_element])) / supporting_member_for_radicals).Reduction();
+                                simplex_elements_with_radicals[i][j] = (((simplex_elements_with_radicals[i][j] * simplex_elements_with_radicals[row_of_the_support_element][column_of_the_support_element]) - (simplex_elements_with_radicals[row_of_the_support_element][j] * simplex_elements_with_radicals[i][column_of_the_support_element])) / supporting_member_for_drob).Reduction();
                             }
                         }
                     }
                 }
 
                 //вычисление на месте опорного
-                simplex_elements_with_radicals[row_of_the_support_element][column_of_the_support_element] = 1 / supporting_member_for_radicals; // на место опорного элемента подставляем 1 поделить на опорный
+                simplex_elements_with_radicals[row_of_the_support_element][column_of_the_support_element] = 1 / supporting_member_for_drob; // на место опорного элемента подставляем 1 поделить на опорный
 
                 // Стоит после вычисления всех строк, потому что домнажать по формуле мы должны на старые значения, а не новые.
                 //вычисление разрешающей строки
@@ -641,23 +638,20 @@ namespace Simplex_Method
                 {
                     if (j != column_of_the_support_element) // Если текущая колонка не с опорным элементом, то делаем...
                     {
-                        simplex_elements_with_radicals[row_of_the_support_element][j] /= supporting_member_for_radicals; // в строке с опорным элементом делим ячейку на опорный
+                        simplex_elements_with_radicals[row_of_the_support_element][j] /= supporting_member_for_drob; // в строке с опорным элементом делим ячейку на опорный
 
                     }
                 }
-
 
                 //вычисление разрешающего столбца
                 for (int i = 0; i < simplex_elements_with_radicals.Count; i++) // Проходимся столько раз, сколько высота симплекс таблицы (сверху вниз)
                 {
                     if (i != row_of_the_support_element) // Если текущий элемент не в строке опорного, то
                     {
-                        simplex_elements_with_radicals[i][column_of_the_support_element] /= supporting_member_for_radicals * (-1); // в колонке опорного делим ячейку на опорный домноженную на -1
+                        simplex_elements_with_radicals[i][column_of_the_support_element] /= supporting_member_for_drob * (-1); // в колонке опорного делим ячейку на опорный домноженную на -1
                     }
                 }
             }
-
-
         }
 
         /// <summary>
@@ -666,7 +660,7 @@ namespace Simplex_Method
         public void GetOutOfTheBufferSimplex(int step)
         {
             // Если выбраны десятичные
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 for (int i = 0; i < buffer_simplex_elements[step - 5].Count; i++)
                     for (int j = 0; j < buffer_simplex_elements[step - 5][0].Count; j++)
@@ -690,7 +684,7 @@ namespace Simplex_Method
         public void GetOutOfTheBufferSimplex_ForArtifical()
         {
             // Если выбраны десятичные
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 simplex_elements = buffer_simplex_elements[buffer_simplex_elements.Count - 1];
                 buffer_simplex_elements.RemoveAt(buffer_simplex_elements.Count - 1);
@@ -719,7 +713,7 @@ namespace Simplex_Method
         /// </summary>
         public void SelectionRandomSupportElement()
         {
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 //координаты минимума в столбце
                 int[] minimum = new int[2];
@@ -727,12 +721,12 @@ namespace Simplex_Method
                 //ищем отрицательный элемент в последней строке
                 for (int j = 0; j < simplex_elements[0].Count - 1; j++)
                 {
-                    if (simplex_elements[/*simplextablegrid.RowDefinitions.Count - 2*/simplex_elements.Count - 1][j] < 0)
+                    if (simplex_elements[simplex_elements.Count - 1][j] < 0)
                     {
                         minimum[0] = -1;
                         minimum[1] = -1;
                         //ищем подходящий не отрицательный элемент в столбце
-                        for (int i = 0; i < /*simplextablegrid.RowDefinitions.Count - 1*/simplex_elements.Count - 1; i++)
+                        for (int i = 0; i < simplex_elements.Count - 1; i++)
                         {
                             if (simplex_elements[i][j] > 0)
                             {
@@ -767,12 +761,12 @@ namespace Simplex_Method
                 //ищем отрицательный элемент в последней строке
                 for (int j = 0; j < simplex_elements_with_radicals[0].Count - 1; j++)
                 {
-                    if (simplex_elements_with_radicals[/*simplextablegrid.RowDefinitions.Count - 2*/simplex_elements_with_radicals.Count - 1][j] < 0)
+                    if (simplex_elements_with_radicals[simplex_elements_with_radicals.Count - 1][j] < 0)
                     {
                         minimum[0] = -1;
                         minimum[1] = -1;
                         //ищем подходящий не отрицательный элемент в столбце
-                        for (int i = 0; i < /*simplextablegrid.RowDefinitions.Count - 1*/simplex_elements_with_radicals.Count - 1; i++)
+                        for (int i = 0; i < simplex_elements_with_radicals.Count - 1; i++)
                         {
                             if (simplex_elements_with_radicals[i][j] > 0)
                             {
@@ -806,7 +800,7 @@ namespace Simplex_Method
         /// <param name="simplextable"></param>
         public void SelectionOfTheSupportElement(DataGridView Grid)
         {
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 //координаты минимального элемента в столбце
                 int[] minimum = new int[2];
@@ -1294,7 +1288,7 @@ namespace Simplex_Method
 
         public string[] ResponseDot(DataGridView Grid)
         {
-            if (radical_or_decimal)
+            if (drob_or_desyat)
             {
                 //угловая точка соответствующая решению 
                 string[] finish_corner_dot = new string[cel_function[0].Count];
