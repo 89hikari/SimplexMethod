@@ -403,7 +403,6 @@ namespace Simplex_Method
 
                 }
             }
-
         }
 
         public void CalculateCelRow(DataGridView Grid)
@@ -552,7 +551,6 @@ namespace Simplex_Method
                 else
                     return 0;
             }
-
         }
 
         /// <summary>
@@ -675,7 +673,6 @@ namespace Simplex_Method
                         simplex_elements_with_radicals[i][j] = buffer_simplex_elements_for_radicals[step - 5][i][j];
                 buffer_simplex_elements_for_radicals.RemoveAt(step - 5);
             }
-
         }
 
         /// <summary>
@@ -695,7 +692,6 @@ namespace Simplex_Method
                 simplex_elements_with_radicals = buffer_simplex_elements_for_radicals[buffer_simplex_elements_for_radicals.Count - 1];
                 buffer_simplex_elements_for_radicals.RemoveAt(buffer_simplex_elements_for_radicals.Count - 1);
             }
-
         }
 
         public double Response()
@@ -899,7 +895,6 @@ namespace Simplex_Method
                     }
                 }
             }
-
         }
 
         /// <summary>
